@@ -1,0 +1,4105 @@
+<?xml version='1.0' encoding='utf-8'?>
+<wordbook>
+    <item>
+        <word>Dependency Injection</word>
+        <trans>依赖注入</trans>
+        <phonetic>/dɪˈpendənsi ɪnˈdʒekʃən/</phonetic>
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>一种设计模式，由Spring容器管理对象间的依赖关系，降低代码耦合度</note>
+        <examples>
+            <example>
+                <source>@Autowired private UserService userService;</source>
+                <trans>使用@Autowired注解实现依赖注入</trans>
+            </example>
+            <example>
+                <source>Constructor injection is preferred over field injection.</source>
+                <trans>构造器注入比字段注入更推荐使用</trans>
+            </example>
+        </examples>
+    </item>
+    <item>
+        <word>Inversion of Control</word>
+        <trans>控制反转</trans>
+        <phonetic>/ɪnˈvɜːrʒən əv kənˈtroʊl/</phonetic>
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>将对象创建和生命周期管理交给Spring容器，而不是由程序代码直接控制</note>
+        <examples>
+            <example>
+                <source>Spring IoC container manages bean lifecycle.</source>
+                <trans>Spring IoC容器管理Bean的生命周期</trans>
+            </example>
+            <example>
+                <source>IoC eliminates tight coupling between classes.</source>
+                <trans>IoC消除了类之间的紧耦合关系</trans>
+            </example>
+        </examples>
+    </item>
+    <item>
+        <word>Bean</word>
+        <trans>Spring管理的对象</trans>
+        <phonetic>/biːn/</phonetic>
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>由Spring容器实例化、组装和管理的对象，是Spring IoC容器的基本单位</note>
+        <examples>
+            <example>
+                <source>@Component public class UserServiceImpl implements UserService {}</source>
+                <trans>使用@Component注解将类注册为Spring Bean</trans>
+            </example>
+            <example>
+                <source>Beans are singleton by default in Spring.</source>
+                <trans>Spring中的Bean默认是单例模式</trans>
+            </example>
+        </examples>
+    </item>
+    <item>
+        <word>ApplicationContext</word>
+        <trans>&amp;lt;p&amp;gt;应用程序上下文&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Spring的核心容器接口&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Spring IoC容器的高级接口，继承自BeanFactory。提供Bean管理、事件发布、国际化支持、资源访问等企业级功能。是Spring应用的核心容器。</note>
+    </item>
+    <item>
+        <word>Autowired</word>
+        <trans>&amp;lt;p&amp;gt;自动装配注解&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：自动注入依赖对象&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Spring框架的核心依赖注入注解。支持byType自动装配，可标注在字段、方法、构造器上。与@Qualifier结合可实现byName装配。</note>
+    </item>
+    <item>
+        <word>Component</word>
+        <trans>&amp;lt;p&amp;gt;组件注解&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：标识一个Spring管理的组件类&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Spring通用组件注解，标识一个由Spring管理的Bean。是@Service、@Repository、@Controller的基础注解。支持组件扫描自动发现。</note>
+    </item>
+    <item>
+        <word>Service</word>
+        <trans>&amp;lt;p&amp;gt;服务层注解&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：标识业务逻辑层组件&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Spring服务层注解，语义上标识业务逻辑层组件。本质上等同于@Component，但提供了更好的分层架构语义表达。</note>
+    </item>
+    <item>
+        <word>Repository</word>
+        <trans>&amp;lt;p&amp;gt;数据访问层注解&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：标识数据访问对象&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Spring数据访问层注解，标识DAO层组件。除了Bean注册功能外，还提供数据访问异常转换功能，将底层异常转换为Spring统一异常体系。</note>
+    </item>
+    <item>
+        <word>Controller</word>
+        <trans>&amp;lt;p&amp;gt;控制器注解&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：标识Web层控制器&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Spring MVC控制器注解，标识Web层控制器组件。处理HTTP请求，调用业务逻辑，返回视图或数据。支持请求映射和参数绑定。</note>
+    </item>
+    <item>
+        <word>Configuration</word>
+        <trans>&amp;lt;p&amp;gt;配置类注解&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：标识Java配置类&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>标识Java配置类，替代传统XML配置。配合@Bean注解定义Bean。支持@Import导入其他配置类，@PropertySource导入属性文件。</note>
+    </item>
+    <item>
+        <word>Bean Factory</word>
+        <trans>&amp;lt;p&amp;gt;Bean工厂&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Spring IoC容器的基础接口&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Spring IoC容器的基础接口，提供Bean的获取、判断、类型查询等基本功能。ApplicationContext在其基础上扩展了更多企业级特性。</note>
+    </item>
+    <item>
+        <word>Qualifier</word>
+        <trans>&amp;lt;p&amp;gt;限定符注解&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：指定要注入的特定Bean&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>依赖注入限定符注解，解决多个同类型Bean的装配歧义。指定具体的Bean名称或自定义限定符进行精确匹配。</note>
+    </item>
+    <item>
+        <word>Primary</word>
+        <trans>&amp;lt;p&amp;gt;主要Bean注解&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：多个候选Bean时的首选&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>标识主要Bean的注解。当存在多个同类型Bean时，@Primary标注的Bean将被优先选择进行依赖注入，避免装配歧义。</note>
+    </item>
+    <item>
+        <word>Scope</word>
+        <trans>&amp;lt;p&amp;gt;作用域&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：定义Bean的生命周期范围&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>定义Bean作用域的注解。支持singleton（单例）、prototype（原型）、request（请求级）、session（会话级）等作用域。</note>
+    </item>
+    <item>
+        <word>Singleton</word>
+        <trans>&amp;lt;p&amp;gt;单例作用域&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：整个容器中只有一个实例&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Spring默认的Bean作用域。整个Spring容器中只维护一个Bean实例，所有对该Bean的请求都返回同一个实例。线程安全需要特别注意。</note>
+    </item>
+    <item>
+        <word>Prototype</word>
+        <trans>&amp;lt;p&amp;gt;原型作用域&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：每次请求都创建新实例&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>原型作用域Bean。每次请求都创建新的Bean实例。适用于有状态的Bean，但需要注意内存管理和Bean的销毁。</note>
+    </item>
+    <item>
+        <word>Request</word>
+        <trans>&amp;lt;p&amp;gt;请求作用域&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：每个HTTP请求创建一个实例&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Web应用中的请求级作用域。每个HTTP请求创建一个Bean实例，请求结束时销毁。只在Web环境中有效。</note>
+    </item>
+    <item>
+        <word>Session</word>
+        <trans>&amp;lt;p&amp;gt;会话作用域&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：每个HTTP会话创建一个实例&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Web应用中的会话级作用域。每个HTTP会话创建一个Bean实例，会话结束时销毁。适用于用户会话状态管理。</note>
+    </item>
+    <item>
+        <word>Lazy</word>
+        <trans>&amp;lt;p&amp;gt;懒加载注解&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：延迟Bean的初始化&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>懒加载注解，延迟Bean的初始化。标注的Bean只有在首次被请求时才会创建，可以提高应用启动速度，减少内存占用。</note>
+    </item>
+    <item>
+        <word>PostConstruct</word>
+        <trans>&amp;lt;p&amp;gt;构造后回调&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Bean初始化后执行的方法&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>JSR-250标准注解，标记在Bean初始化后需要执行的回调方法。常用于初始化数据、建立连接等操作。比@Bean的init-method更灵活，可以直接标注在方法上。</note>
+    </item>
+    <item>
+        <word>PreDestroy</word>
+        <trans>&amp;lt;p&amp;gt;销毁前回调&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Bean销毁前执行的方法&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>JSR-250标准注解，标记在Bean销毁前需要执行的回调方法。用于清理资源、关闭连接、保存状态等清理工作。</note>
+    </item>
+    <item>
+        <word>Conditional</word>
+        <trans>&amp;lt;p&amp;gt;条件注解&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：根据条件决定是否创建Bean&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>条件化Bean创建注解。根据特定条件决定是否创建Bean。Spring Boot大量使用此注解实现自动配置的条件化装配。</note>
+    </item>
+    <item>
+        <word>Profile</word>
+        <trans>&amp;lt;p&amp;gt;环境配置&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：不同环境下激活不同的配置&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>环境配置注解，实现不同环境下的差异化配置。如开发、测试、生产环境使用不同的数据源配置。支持表达式组合。</note>
+    </item>
+    <item>
+        <word>PropertySource</word>
+        <trans>&amp;lt;p&amp;gt;属性源注解&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：指定配置文件位置&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>属性源注解，指定配置文件位置。支持classpath、file等资源定位方式。可以指定encoding和ignoreResourceNotFound属性。</note>
+    </item>
+    <item>
+        <word>Value</word>
+        <trans>&amp;lt;p&amp;gt;值注入注解&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：注入配置属性值&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>属性值注入注解，支持SpEL表达式。可以注入配置文件属性、系统属性、环境变量等。支持默认值设置和类型转换。</note>
+    </item>
+    <item>
+        <word>ConfigurationProperties</word>
+        <trans>&amp;lt;p&amp;gt;配置属性绑定&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：将配置文件属性绑定到Java对象&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>类型安全的配置属性绑定注解。将配置文件中的属性绑定到Java对象，支持嵌套属性、集合类型、校验等高级特性。</note>
+    </item>
+    <item>
+        <word>EnableAutoConfiguration</word>
+        <trans>&amp;lt;p&amp;gt;启用自动配置&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Spring Boot自动配置机制&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Spring Boot自动配置机制。这是EnableAutoConfiguration的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>SpringBootApplication</word>
+        <trans>&amp;lt;p&amp;gt;Spring Boot主应用注解&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：组合多个注解&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>组合多个注解。这是SpringBootApplication的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Auto Configuration</word>
+        <trans>&amp;lt;p&amp;gt;自动配置&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Spring Boot根据classpath自动配置Bean&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Spring Boot根据classpath自动配置Bean。这是Auto Configuration的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Starter</word>
+        <trans>&amp;lt;p&amp;gt;启动器&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Spring Boot预配置的依赖集合&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Spring Boot预配置的依赖集合。这是Starter的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Actuator</word>
+        <trans>&amp;lt;p&amp;gt;监控执行器&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Spring Boot生产级监控和管理功能&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Spring Boot生产级监控和管理功能。这是Actuator的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Endpoint</word>
+        <trans>&amp;lt;p&amp;gt;端点&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Actuator暴露的监控和管理接口&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Actuator暴露的监控和管理接口。这是Endpoint的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Health Check</word>
+        <trans>&amp;lt;p&amp;gt;健康检查&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：应用程序健康状态监控&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>应用程序健康状态监控。这是Health Check的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Metrics</word>
+        <trans>&amp;lt;p&amp;gt;指标监控&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：应用程序性能指标收集&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>应用程序性能指标收集。这是Metrics的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Info</word>
+        <trans>&amp;lt;p&amp;gt;信息端点&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：应用程序基本信息展示&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>应用程序基本信息展示。这是Info的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Environment</word>
+        <trans>&amp;lt;p&amp;gt;环境端点&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：显示应用程序环境信息&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>显示应用程序环境信息。这是Environment的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Beans</word>
+        <trans>&amp;lt;p&amp;gt;Bean端点&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：显示所有Spring Bean信息&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>显示所有Spring Bean信息。这是Beans的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Mappings</word>
+        <trans>&amp;lt;p&amp;gt;映射端点&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：显示所有Web映射信息&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>显示所有Web映射信息。这是Mappings的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Liveness Probe</word>
+        <trans>&amp;lt;p&amp;gt;存活探针&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Kubernetes容器存活状态检查&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Kubernetes容器存活状态检查。这是Liveness Probe的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Readiness Probe</word>
+        <trans>&amp;lt;p&amp;gt;就绪探针&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Kubernetes容器就绪状态检查&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Kubernetes容器就绪状态检查。这是Readiness Probe的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>External Configuration</word>
+        <trans>&amp;lt;p&amp;gt;外部配置&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：通过配置文件管理应用属性&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>通过配置文件管理应用属性。这是External Configuration的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>YAML</word>
+        <trans>&amp;lt;p&amp;gt;YAML配置格式&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：人类友好的数据序列化标准&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>人类友好的数据序列化标准。这是YAML的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Properties</word>
+        <trans>&amp;lt;p&amp;gt;属性配置文件&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：键值对配置格式&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>键值对配置格式。这是Properties的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Profiles</word>
+        <trans>&amp;lt;p&amp;gt;配置文件&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：不同环境的配置管理&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>不同环境的配置管理。这是Profiles的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Logging</word>
+        <trans>&amp;lt;p&amp;gt;日志记录&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：应用程序运行日志管理&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>应用程序运行日志管理。这是Logging的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>DevTools</word>
+        <trans>&amp;lt;p&amp;gt;开发工具&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Spring Boot开发时热重载工具&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Spring Boot开发时热重载工具。这是DevTools的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Test</word>
+        <trans>&amp;lt;p&amp;gt;测试注解&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Spring Boot测试支持&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Spring Boot测试支持。这是Test的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>MockMvc</word>
+        <trans>&amp;lt;p&amp;gt;模拟MVC&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Web层单元测试工具&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Web层单元测试工具。这是MockMvc的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>WebTestClient</word>
+        <trans>&amp;lt;p&amp;gt;Web测试客户端&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：WebFlux测试工具&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>WebFlux测试工具。这是WebTestClient的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>TestContainer</word>
+        <trans>&amp;lt;p&amp;gt;测试容器&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：集成测试中的容器化依赖&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>集成测试中的容器化依赖。这是TestContainer的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Gateway</word>
+        <trans>&amp;lt;p&amp;gt;网关&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：微服务架构中的API网关&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>微服务架构中的API网关。这是Gateway的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Route</word>
+        <trans>&amp;lt;p&amp;gt;路由&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：网关中的请求路由规则&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>网关中的请求路由规则。这是Route的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Predicate</word>
+        <trans>&amp;lt;p&amp;gt;断言&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：路由匹配条件&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>路由匹配条件。这是Predicate的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Filter</word>
+        <trans>&amp;lt;p&amp;gt;过滤器&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：请求/响应处理链中的组件&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>请求/响应处理链中的组件。这是Filter的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Circuit Breaker</word>
+        <trans>&amp;lt;p&amp;gt;断路器&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：微服务容错机制&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>微服务容错机制。这是Circuit Breaker的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Load Balancer</word>
+        <trans>&amp;lt;p&amp;gt;负载均衡器&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：分发请求到多个服务实例&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>分发请求到多个服务实例。这是Load Balancer的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Service Discovery</word>
+        <trans>&amp;lt;p&amp;gt;服务发现&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：自动发现和注册微服务&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>自动发现和注册微服务。这是Service Discovery的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Eureka</word>
+        <trans>&amp;lt;p&amp;gt;服务注册中心&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Netflix开源的服务发现组件&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Netflix开源的服务发现组件。这是Eureka的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Zuul</word>
+        <trans>&amp;lt;p&amp;gt;API网关&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Netflix开源的路由和过滤组件&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Netflix开源的路由和过滤组件。这是Zuul的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Hystrix</word>
+        <trans>&amp;lt;p&amp;gt;断路器&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Netflix开源的容错库&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Netflix开源的容错库。这是Hystrix的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Ribbon</word>
+        <trans>&amp;lt;p&amp;gt;客户端负载均衡&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Netflix开源的负载均衡组件&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Netflix开源的负载均衡组件。这是Ribbon的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Feign</word>
+        <trans>&amp;lt;p&amp;gt;声明式HTTP客户端&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：简化服务间调用&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>简化服务间调用。这是Feign的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Config Server</word>
+        <trans>&amp;lt;p&amp;gt;配置服务器&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：集中化配置管理&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>集中化配置管理。这是Config Server的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Bus</word>
+        <trans>&amp;lt;p&amp;gt;消息总线&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：配置动态刷新机制&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>配置动态刷新机制。这是Bus的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Sleuth</word>
+        <trans>&amp;lt;p&amp;gt;链路追踪&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：分布式请求跟踪&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>分布式请求跟踪。这是Sleuth的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Zipkin</word>
+        <trans>&amp;lt;p&amp;gt;链路追踪分析&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：分布式追踪系统&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>分布式追踪系统。这是Zipkin的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>OAuth2</word>
+        <trans>&amp;lt;p&amp;gt;开放授权标准&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：第三方授权协议&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>第三方授权协议。这是OAuth2的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>JWT</word>
+        <trans>&amp;lt;p&amp;gt;JSON Web Token&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：无状态的身份认证令牌&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>无状态的身份认证令牌。这是JWT的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Resource Server</word>
+        <trans>&amp;lt;p&amp;gt;资源服务器&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：OAuth2中保护资源的服务器&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>OAuth2中保护资源的服务器。这是Resource Server的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Authorization Server</word>
+        <trans>&amp;lt;p&amp;gt;授权服务器&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：OAuth2中颁发令牌的服务器&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>OAuth2中颁发令牌的服务器。这是Authorization Server的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Client Registration</word>
+        <trans>&amp;lt;p&amp;gt;客户端注册&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：OAuth2客户端配置信息&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>OAuth2客户端配置信息。这是Client Registration的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Access Token</word>
+        <trans>&amp;lt;p&amp;gt;访问令牌&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：用于访问受保护资源的凭证&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>用于访问受保护资源的凭证。这是Access Token的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Refresh Token</word>
+        <trans>&amp;lt;p&amp;gt;刷新令牌&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：用于获取新访问令牌的凭证&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>用于获取新访问令牌的凭证。这是Refresh Token的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Grant Type</word>
+        <trans>&amp;lt;p&amp;gt;授权类型&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：OAuth2中获取令牌的方式&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>OAuth2中获取令牌的方式。这是Grant Type的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Authorization Code</word>
+        <trans>&amp;lt;p&amp;gt;授权码模式&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：最常用的OAuth2授权流程&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>最常用的OAuth2授权流程。这是Authorization Code的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Client Credentials</word>
+        <trans>&amp;lt;p&amp;gt;客户端凭证模式&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：服务间认证的授权流程&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>服务间认证的授权流程。这是Client Credentials的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Implicit</word>
+        <trans>&amp;lt;p&amp;gt;隐式授权模式&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：简化的前端授权流程&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>简化的前端授权流程。这是Implicit的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Password</word>
+        <trans>&amp;lt;p&amp;gt;密码模式&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：直接使用用户名密码获取令牌&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>直接使用用户名密码获取令牌。这是Password的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>JWK Set</word>
+        <trans>&amp;lt;p&amp;gt;JSON Web密钥集&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：用于验证JWT签名的公钥集合&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>用于验证JWT签名的公钥集合。这是JWK Set的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>JWS</word>
+        <trans>&amp;lt;p&amp;gt;JSON Web签名&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：带签名的JWT&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>带签名的JWT。这是JWS的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>JWE</word>
+        <trans>&amp;lt;p&amp;gt;JSON Web加密&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：加密的JWT&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>加密的JWT。这是JWE的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Claims</word>
+        <trans>&amp;lt;p&amp;gt;声明&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：JWT中包含的用户信息和权限&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>JWT中包含的用户信息和权限。这是Claims的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Issuer</word>
+        <trans>&amp;lt;p&amp;gt;签发者&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：JWT的签发机构标识&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>JWT的签发机构标识。这是Issuer的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Subject</word>
+        <trans>&amp;lt;p&amp;gt;主体&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：JWT所代表的用户或实体&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>JWT所代表的用户或实体。这是Subject的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Audience</word>
+        <trans>&amp;lt;p&amp;gt;受众&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：JWT的目标接收方&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>JWT的目标接收方。这是Audience的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Expiration</word>
+        <trans>&amp;lt;p&amp;gt;过期时间&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：JWT的有效期&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>JWT的有效期。这是Expiration的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Authentication</word>
+        <trans>&amp;lt;p&amp;gt;认证&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：验证用户身份的过程&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>验证用户身份的过程。这是Authentication的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Authorization</word>
+        <trans>&amp;lt;p&amp;gt;授权&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：验证用户权限的过程&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>验证用户权限的过程。这是Authorization的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Principal</word>
+        <trans>&amp;lt;p&amp;gt;主体&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：已认证的用户对象&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>已认证的用户对象。这是Principal的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Authorities</word>
+        <trans>&amp;lt;p&amp;gt;权限集合&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：用户拥有的权限列表&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>用户拥有的权限列表。这是Authorities的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Granted Authority</word>
+        <trans>&amp;lt;p&amp;gt;授予权限&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：用户具有的单个权限&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>用户具有的单个权限。这是Granted Authority的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Security Context</word>
+        <trans>&amp;lt;p&amp;gt;安全上下文&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：当前线程的安全信息&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>当前线程的安全信息。这是Security Context的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Security Filter Chain</word>
+        <trans>&amp;lt;p&amp;gt;安全过滤器链&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Spring Security的核心过滤机制&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Spring Security的核心过滤机制。这是Security Filter Chain的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Authentication Manager</word>
+        <trans>&amp;lt;p&amp;gt;认证管理器&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：负责用户认证的组件&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>负责用户认证的组件。这是Authentication Manager的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>User Details</word>
+        <trans>&amp;lt;p&amp;gt;用户详情&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：包含用户信息和权限的对象&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>包含用户信息和权限的对象。这是User Details的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>User Details Service</word>
+        <trans>&amp;lt;p&amp;gt;用户详情服务&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：加载用户信息的服务接口&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>加载用户信息的服务接口。这是User Details Service的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Password Encoder</word>
+        <trans>&amp;lt;p&amp;gt;密码编码器&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：密码加密和验证组件&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>密码加密和验证组件。这是Password Encoder的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>CSRF</word>
+        <trans>&amp;lt;p&amp;gt;跨站请求伪造&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Web安全攻击防护机制&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Web安全攻击防护机制。这是CSRF的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>CORS</word>
+        <trans>&amp;lt;p&amp;gt;跨域资源共享&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Web跨域访问控制机制&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Web跨域访问控制机制。这是CORS的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Session Management</word>
+        <trans>&amp;lt;p&amp;gt;会话管理&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：用户会话的创建和维护&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>用户会话的创建和维护。这是Session Management的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Remember Me</word>
+        <trans>&amp;lt;p&amp;gt;记住我&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：自动登录功能&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>自动登录功能。这是Remember Me的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Method Security</word>
+        <trans>&amp;lt;p&amp;gt;方法级安全&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：在方法层面的权限控制&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>在方法层面的权限控制。这是Method Security的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Pre Authorize</word>
+        <trans>&amp;lt;p&amp;gt;预授权&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：方法执行前的权限检查&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>方法执行前的权限检查。这是Pre Authorize的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Post Authorize</word>
+        <trans>&amp;lt;p&amp;gt;后授权&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：方法执行后的权限检查&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>方法执行后的权限检查。这是Post Authorize的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Secured</word>
+        <trans>&amp;lt;p&amp;gt;安全注解&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：方法级别的权限控制&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>方法级别的权限控制。这是Secured的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Role</word>
+        <trans>&amp;lt;p&amp;gt;角色&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：用户权限的分组概念&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>用户权限的分组概念。这是Role的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Hierarchy</word>
+        <trans>&amp;lt;p&amp;gt;层次结构&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：角色权限的继承关系&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>角色权限的继承关系。这是Hierarchy的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Access Decision Manager</word>
+        <trans>&amp;lt;p&amp;gt;访问决策管理器&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：权限决策组件&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>权限决策组件。这是Access Decision Manager的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Voter</word>
+        <trans>&amp;lt;p&amp;gt;投票器&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：参与权限决策的组件&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>参与权限决策的组件。这是Voter的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>WebFlux</word>
+        <trans>&amp;lt;p&amp;gt;响应式Web框架&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Spring 5引入的异步非阻塞框架&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Spring 5引入的异步非阻塞框架。这是WebFlux的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Reactive</word>
+        <trans>&amp;lt;p&amp;gt;响应式编程&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：基于事件驱动的异步编程模式&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>基于事件驱动的异步编程模式。这是Reactive的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Mono</word>
+        <trans>&amp;lt;p&amp;gt;单个异步值&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Reactor框架中表示0或1个元素的发布者&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Reactor框架中表示0或1个元素的发布者。这是Mono的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Flux</word>
+        <trans>&amp;lt;p&amp;gt;多个异步值&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Reactor框架中表示0到N个元素的发布者&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Reactor框架中表示0到N个元素的发布者。这是Flux的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Publisher</word>
+        <trans>&amp;lt;p&amp;gt;发布者&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：响应式流中的数据源&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>响应式流中的数据源。这是Publisher的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Subscriber</word>
+        <trans>&amp;lt;p&amp;gt;订阅者&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：响应式流中的数据消费者&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>响应式流中的数据消费者。这是Subscriber的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Subscription</word>
+        <trans>&amp;lt;p&amp;gt;订阅&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：连接发布者和订阅者的桥梁&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>连接发布者和订阅者的桥梁。这是Subscription的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Backpressure</word>
+        <trans>&amp;lt;p&amp;gt;背压&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：控制数据流速度的机制&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>控制数据流速度的机制。这是Backpressure的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Router Function</word>
+        <trans>&amp;lt;p&amp;gt;路由函数&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：WebFlux中的函数式路由&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>WebFlux中的函数式路由。这是Router Function的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Handler Function</word>
+        <trans>&amp;lt;p&amp;gt;处理函数&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：WebFlux中的请求处理函数&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>WebFlux中的请求处理函数。这是Handler Function的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>WebClient</word>
+        <trans>&amp;lt;p&amp;gt;Web客户端&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：WebFlux中的响应式HTTP客户端&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>WebFlux中的响应式HTTP客户端。这是WebClient的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>ServerRequest</word>
+        <trans>&amp;lt;p&amp;gt;服务器请求&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：WebFlux中的请求对象&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>WebFlux中的请求对象。这是ServerRequest的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>ServerResponse</word>
+        <trans>&amp;lt;p&amp;gt;服务器响应&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：WebFlux中的响应对象&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>WebFlux中的响应对象。这是ServerResponse的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>JPA</word>
+        <trans>&amp;lt;p&amp;gt;Java持久化API&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Java对象关系映射标准&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Java对象关系映射标准。这是JPA的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Hibernate</word>
+        <trans>&amp;lt;p&amp;gt;ORM框架&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Java最流行的对象关系映射实现&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Java最流行的对象关系映射实现。这是Hibernate的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Entity</word>
+        <trans>&amp;lt;p&amp;gt;实体&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：JPA中映射数据库表的Java类&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>JPA中映射数据库表的Java类。这是Entity的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>CrudRepository</word>
+        <trans>&amp;lt;p&amp;gt;增删改查仓库&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：基本CRUD操作接口&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>基本CRUD操作接口。这是CrudRepository的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>JpaRepository</word>
+        <trans>&amp;lt;p&amp;gt;JPA仓库&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：扩展了分页和批量操作的接口&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>扩展了分页和批量操作的接口。这是JpaRepository的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Query</word>
+        <trans>&amp;lt;p&amp;gt;查询注解&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：自定义JPQL或原生SQL查询&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>自定义JPQL或原生SQL查询。这是Query的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Modifying</word>
+        <trans>&amp;lt;p&amp;gt;修改注解&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：标识增删改操作的查询方法&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>标识增删改操作的查询方法。这是Modifying的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Transactional</word>
+        <trans>&amp;lt;p&amp;gt;事务注解&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：声明式事务管理&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>声明式事务管理。这是Transactional的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Entity Manager</word>
+        <trans>&amp;lt;p&amp;gt;实体管理器&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：JPA中管理实体的核心接口&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>JPA中管理实体的核心接口。这是Entity Manager的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Persistence Context</word>
+        <trans>&amp;lt;p&amp;gt;持久化上下文&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：实体对象的缓存环境&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>实体对象的缓存环境。这是Persistence Context的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Lazy Loading</word>
+        <trans>&amp;lt;p&amp;gt;懒加载&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：按需加载关联对象&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>按需加载关联对象。这是Lazy Loading的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Eager Loading</word>
+        <trans>&amp;lt;p&amp;gt;急加载&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：立即加载关联对象&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>立即加载关联对象。这是Eager Loading的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Cascade</word>
+        <trans>&amp;lt;p&amp;gt;级联操作&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：操作传播到关联对象&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>操作传播到关联对象。这是Cascade的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Fetch Type</word>
+        <trans>&amp;lt;p&amp;gt;获取类型&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：控制关联对象的加载策略&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>控制关联对象的加载策略。这是Fetch Type的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Join Column</word>
+        <trans>&amp;lt;p&amp;gt;连接列&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：外键关联配置&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>外键关联配置。这是Join Column的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>One To One</word>
+        <trans>&amp;lt;p&amp;gt;一对一关系&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：实体间的一对一映射&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>实体间的一对一映射。这是One To One的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>One To Many</word>
+        <trans>&amp;lt;p&amp;gt;一对多关系&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：实体间的一对多映射&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>实体间的一对多映射。这是One To Many的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Many To One</word>
+        <trans>&amp;lt;p&amp;gt;多对一关系&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：实体间的多对一映射&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>实体间的多对一映射。这是Many To One的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Many To Many</word>
+        <trans>&amp;lt;p&amp;gt;多对多关系&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：实体间的多对多映射&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>实体间的多对多映射。这是Many To Many的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Data Source</word>
+        <trans>&amp;lt;p&amp;gt;数据源&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：数据库连接配置&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>数据库连接配置。这是Data Source的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Connection Pool</word>
+        <trans>&amp;lt;p&amp;gt;连接池&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：数据库连接的池化管理&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>数据库连接的池化管理。这是Connection Pool的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>JDBC Template</word>
+        <trans>&amp;lt;p&amp;gt;JDBC模板&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Spring对JDBC的封装&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Spring对JDBC的封装。这是JDBC Template的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Named Parameter</word>
+        <trans>&amp;lt;p&amp;gt;命名参数&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：SQL参数的命名绑定&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>SQL参数的命名绑定。这是Named Parameter的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Row Mapper</word>
+        <trans>&amp;lt;p&amp;gt;行映射器&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：ResultSet到对象的映射器&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>ResultSet到对象的映射器。这是Row Mapper的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Result Set Extractor</word>
+        <trans>&amp;lt;p&amp;gt;结果集提取器&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：复杂结果集的处理器&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>复杂结果集的处理器。这是Result Set Extractor的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Transaction Manager</word>
+        <trans>&amp;lt;p&amp;gt;事务管理器&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：管理数据库事务的组件&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>管理数据库事务的组件。这是Transaction Manager的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Isolation Level</word>
+        <trans>&amp;lt;p&amp;gt;隔离级别&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：事务的隔离程度设置&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>事务的隔离程度设置。这是Isolation Level的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Propagation</word>
+        <trans>&amp;lt;p&amp;gt;传播行为&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：事务的传播策略&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>事务的传播策略。这是Propagation的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Rollback</word>
+        <trans>&amp;lt;p&amp;gt;回滚&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：事务失败时的数据恢复操作&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>事务失败时的数据恢复操作。这是Rollback的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Commit</word>
+        <trans>&amp;lt;p&amp;gt;提交&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：事务成功时的数据确认操作&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>事务成功时的数据确认操作。这是Commit的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Savepoint</word>
+        <trans>&amp;lt;p&amp;gt;保存点&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：事务中的中间检查点&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>事务中的中间检查点。这是Savepoint的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Aspect</word>
+        <trans>&amp;lt;p&amp;gt;切面&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：AOP中横切关注点的模块化&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>AOP中横切关注点的模块化。这是Aspect的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Join Point</word>
+        <trans>&amp;lt;p&amp;gt;连接点&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：程序执行中可以插入切面的点&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>程序执行中可以插入切面的点。这是Join Point的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Pointcut</word>
+        <trans>&amp;lt;p&amp;gt;切入点&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：定义在哪些连接点上应用切面&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>定义在哪些连接点上应用切面。这是Pointcut的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Advice</word>
+        <trans>&amp;lt;p&amp;gt;通知&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：在连接点上执行的代码&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>在连接点上执行的代码。这是Advice的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Around</word>
+        <trans>&amp;lt;p&amp;gt;环绕通知&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：在方法执行前后都执行的通知&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>在方法执行前后都执行的通知。这是Around的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Before</word>
+        <trans>&amp;lt;p&amp;gt;前置通知&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：在方法执行前执行的通知&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>在方法执行前执行的通知。这是Before的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>After</word>
+        <trans>&amp;lt;p&amp;gt;后置通知&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：在方法执行后执行的通知&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>在方法执行后执行的通知。这是After的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>After Returning</word>
+        <trans>&amp;lt;p&amp;gt;返回后通知&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：在方法正常返回后执行&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>在方法正常返回后执行。这是After Returning的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>After Throwing</word>
+        <trans>&amp;lt;p&amp;gt;异常通知&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：在方法抛出异常后执行&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>在方法抛出异常后执行。这是After Throwing的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Target</word>
+        <trans>&amp;lt;p&amp;gt;目标对象&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：被代理的对象&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>被代理的对象。这是Target的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Proxy</word>
+        <trans>&amp;lt;p&amp;gt;代理对象&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：AOP生成的包装对象&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>AOP生成的包装对象。这是Proxy的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Weaving</word>
+        <trans>&amp;lt;p&amp;gt;织入&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：将切面应用到目标对象的过程&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>将切面应用到目标对象的过程。这是Weaving的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Annotation</word>
+        <trans>&amp;lt;p&amp;gt;注解&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Java元数据机制&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Java元数据机制。这是Annotation的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Reflection</word>
+        <trans>&amp;lt;p&amp;gt;反射&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：运行时检查和操作类信息的能力&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>运行时检查和操作类信息的能力。这是Reflection的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Classpath</word>
+        <trans>&amp;lt;p&amp;gt;类路径&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：JVM查找类文件的路径&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>JVM查找类文件的路径。这是Classpath的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>JAR</word>
+        <trans>&amp;lt;p&amp;gt;Java归档文件&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Java应用程序的打包格式&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Java应用程序的打包格式。这是JAR的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>WAR</word>
+        <trans>&amp;lt;p&amp;gt;Web应用归档&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Web应用程序的打包格式&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Web应用程序的打包格式。这是WAR的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Maven</word>
+        <trans>&amp;lt;p&amp;gt;项目管理工具&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Java项目的构建和依赖管理&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Java项目的构建和依赖管理。这是Maven的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Gradle</word>
+        <trans>&amp;lt;p&amp;gt;构建工具&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：现代化的项目构建系统&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>现代化的项目构建系统。这是Gradle的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>POM</word>
+        <trans>&amp;lt;p&amp;gt;项目对象模型&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Maven项目配置文件&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Maven项目配置文件。这是POM的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Build</word>
+        <trans>&amp;lt;p&amp;gt;构建&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：编译和打包应用程序的过程&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>编译和打包应用程序的过程。这是Build的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Artifact</word>
+        <trans>&amp;lt;p&amp;gt;构件&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：构建过程产生的文件&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>构建过程产生的文件。这是Artifact的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Group ID</word>
+        <trans>&amp;lt;p&amp;gt;组织标识&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Maven坐标的组织部分&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Maven坐标的组织部分。这是Group ID的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Artifact ID</word>
+        <trans>&amp;lt;p&amp;gt;构件标识&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Maven坐标的项目部分&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Maven坐标的项目部分。这是Artifact ID的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Version</word>
+        <trans>&amp;lt;p&amp;gt;版本号&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Maven坐标的版本部分&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Maven坐标的版本部分。这是Version的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Dependency</word>
+        <trans>&amp;lt;p&amp;gt;依赖&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：项目所需的外部库&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>项目所需的外部库。这是Dependency的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Plugin</word>
+        <trans>&amp;lt;p&amp;gt;插件&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：扩展构建功能的组件&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>扩展构建功能的组件。这是Plugin的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Goal</word>
+        <trans>&amp;lt;p&amp;gt;目标&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Maven插件的执行单元&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Maven插件的执行单元。这是Goal的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Phase</word>
+        <trans>&amp;lt;p&amp;gt;阶段&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Maven构建生命周期的阶段&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Maven构建生命周期的阶段。这是Phase的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Lifecycle</word>
+        <trans>&amp;lt;p&amp;gt;生命周期&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Maven构建的完整过程&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Maven构建的完整过程。这是Lifecycle的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Docker</word>
+        <trans>&amp;lt;p&amp;gt;容器技术&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：应用程序的容器化部署&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>应用程序的容器化部署。这是Docker的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Container</word>
+        <trans>&amp;lt;p&amp;gt;容器&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：轻量级的应用运行环境&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>轻量级的应用运行环境。这是Container的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Image</word>
+        <trans>&amp;lt;p&amp;gt;镜像&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：容器的模板和蓝图&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>容器的模板和蓝图。这是Image的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Dockerfile</word>
+        <trans>&amp;lt;p&amp;gt;Docker配置文件&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：定义镜像构建过程&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>定义镜像构建过程。这是Dockerfile的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Kubernetes</word>
+        <trans>&amp;lt;p&amp;gt;容器编排平台&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：大规模容器应用管理&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>大规模容器应用管理。这是Kubernetes的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Pod</word>
+        <trans>&amp;lt;p&amp;gt;Pod&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Kubernetes中的最小部署单元&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Kubernetes中的最小部署单元。这是Pod的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Deployment</word>
+        <trans>&amp;lt;p&amp;gt;部署&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Kubernetes中的应用部署管理&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Kubernetes中的应用部署管理。这是Deployment的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>ConfigMap</word>
+        <trans>&amp;lt;p&amp;gt;配置映射&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Kubernetes中的配置管理&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Kubernetes中的配置管理。这是ConfigMap的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Secret</word>
+        <trans>&amp;lt;p&amp;gt;密钥&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Kubernetes中的敏感信息管理&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Kubernetes中的敏感信息管理。这是Secret的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Ingress</word>
+        <trans>&amp;lt;p&amp;gt;入口&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Kubernetes中的外部访问管理&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Kubernetes中的外部访问管理。这是Ingress的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Namespace</word>
+        <trans>&amp;lt;p&amp;gt;命名空间&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Kubernetes中的资源隔离&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Kubernetes中的资源隔离。这是Namespace的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Label</word>
+        <trans>&amp;lt;p&amp;gt;标签&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Kubernetes资源的标识和选择&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Kubernetes资源的标识和选择。这是Label的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Selector</word>
+        <trans>&amp;lt;p&amp;gt;选择器&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：根据标签选择资源的机制&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>根据标签选择资源的机制。这是Selector的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Replica Set</word>
+        <trans>&amp;lt;p&amp;gt;副本集&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Kubernetes中的Pod副本管理&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Kubernetes中的Pod副本管理。这是Replica Set的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Horizontal Pod Autoscaler</word>
+        <trans>&amp;lt;p&amp;gt;水平Pod自动扩缩容&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：根据负载自动调整Pod数量&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>根据负载自动调整Pod数量。这是Horizontal Pod Autoscaler的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Graceful Shutdown</word>
+        <trans>&amp;lt;p&amp;gt;优雅关闭&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：应用程序的平滑停止过程&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>应用程序的平滑停止过程。这是Graceful Shutdown的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Blue Green Deployment</word>
+        <trans>&amp;lt;p&amp;gt;蓝绿部署&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：零停机的部署策略&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>零停机的部署策略。这是Blue Green Deployment的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Rolling Update</word>
+        <trans>&amp;lt;p&amp;gt;滚动更新&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：逐步更新应用版本&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>逐步更新应用版本。这是Rolling Update的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Canary Deployment</word>
+        <trans>&amp;lt;p&amp;gt;金丝雀部署&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：小流量验证的部署策略&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>小流量验证的部署策略。这是Canary Deployment的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>CI/CD</word>
+        <trans>&amp;lt;p&amp;gt;持续集成/持续部署&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：自动化的软件交付流程&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>自动化的软件交付流程。这是CI/CD的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Pipeline</word>
+        <trans>&amp;lt;p&amp;gt;流水线&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：CI/CD中的自动化构建流程&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>CI/CD中的自动化构建流程。这是Pipeline的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Jenkins</word>
+        <trans>&amp;lt;p&amp;gt;自动化服务器&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：流行的CI/CD工具&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>流行的CI/CD工具。这是Jenkins的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Git</word>
+        <trans>&amp;lt;p&amp;gt;版本控制系统&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：分布式代码版本管理&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>分布式代码版本管理。这是Git的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Branch</word>
+        <trans>&amp;lt;p&amp;gt;分支&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：代码的并行开发线&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>代码的并行开发线。这是Branch的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Merge</word>
+        <trans>&amp;lt;p&amp;gt;合并&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：将不同分支的代码整合&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>将不同分支的代码整合。这是Merge的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Pull Request</word>
+        <trans>&amp;lt;p&amp;gt;拉取请求&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：代码审查和合并的流程&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>代码审查和合并的流程。这是Pull Request的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Clone</word>
+        <trans>&amp;lt;p&amp;gt;克隆&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：复制远程仓库到本地&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>复制远程仓库到本地。这是Clone的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Push</word>
+        <trans>&amp;lt;p&amp;gt;推送&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：将本地变更上传到远程仓库&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>将本地变更上传到远程仓库。这是Push的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Pull</word>
+        <trans>&amp;lt;p&amp;gt;拉取&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：从远程仓库下载最新变更&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>从远程仓库下载最新变更。这是Pull的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Tag</word>
+        <trans>&amp;lt;p&amp;gt;标签&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：代码版本的标记&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>代码版本的标记。这是Tag的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Release</word>
+        <trans>&amp;lt;p&amp;gt;发布&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：软件版本的正式发布&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>软件版本的正式发布。这是Release的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Microservices</word>
+        <trans>&amp;lt;p&amp;gt;微服务架构&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：将应用拆分为小型独立服务&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>将应用拆分为小型独立服务。这是Microservices的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Monolith</word>
+        <trans>&amp;lt;p&amp;gt;单体架构&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：传统的一体化应用架构&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>传统的一体化应用架构。这是Monolith的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Domain Driven Design</word>
+        <trans>&amp;lt;p&amp;gt;领域驱动设计&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：以业务领域为中心的设计方法&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>以业务领域为中心的设计方法。这是Domain Driven Design的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Event Driven Architecture</word>
+        <trans>&amp;lt;p&amp;gt;事件驱动架构&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：基于事件的系统架构&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>基于事件的系统架构。这是Event Driven Architecture的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>CQRS</word>
+        <trans>&amp;lt;p&amp;gt;命令查询责任分离&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：读写操作分离的架构模式&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>读写操作分离的架构模式。这是CQRS的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Event Sourcing</word>
+        <trans>&amp;lt;p&amp;gt;事件溯源&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：通过事件序列重建状态的模式&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>通过事件序列重建状态的模式。这是Event Sourcing的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Saga</word>
+        <trans>&amp;lt;p&amp;gt;长事务模式&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：分布式事务的协调模式&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>分布式事务的协调模式。这是Saga的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Eventual Consistency</word>
+        <trans>&amp;lt;p&amp;gt;最终一致性&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：分布式系统的一致性模型&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>分布式系统的一致性模型。这是Eventual Consistency的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>CAP Theorem</word>
+        <trans>&amp;lt;p&amp;gt;CAP定理&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：分布式系统的一致性、可用性、分区容忍性理论&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>分布式系统的一致性、可用性、分区容忍性理论。这是CAP Theorem的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>ACID</word>
+        <trans>&amp;lt;p&amp;gt;事务特性&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：原子性、一致性、隔离性、持久性&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>原子性、一致性、隔离性、持久性。这是ACID的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>BASE</word>
+        <trans>&amp;lt;p&amp;gt;分布式系统特性&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：基本可用、软状态、最终一致性&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>基本可用、软状态、最终一致性。这是BASE的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>ComponentScan</word>
+        <trans>&amp;lt;p&amp;gt;组件扫描&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：自动发现和注册Bean的注解&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>自动发现和注册Bean的注解。这是ComponentScan的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>EnableWebMvc</word>
+        <trans>&amp;lt;p&amp;gt;启用Web MVC&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：开启Spring MVC功能&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>开启Spring MVC功能。这是EnableWebMvc的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>ResponseBody</word>
+        <trans>&amp;lt;p&amp;gt;响应体注解&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：将返回值作为HTTP响应体&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>将返回值作为HTTP响应体。这是ResponseBody的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>RequestMapping</word>
+        <trans>&amp;lt;p&amp;gt;请求映射&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：映射HTTP请求到处理方法&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>映射HTTP请求到处理方法。这是RequestMapping的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>PathVariable</word>
+        <trans>&amp;lt;p&amp;gt;路径变量&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：从URL路径中提取参数&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>从URL路径中提取参数。这是PathVariable的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>RequestParam</word>
+        <trans>&amp;lt;p&amp;gt;请求参数&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：从HTTP请求中提取参数&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>从HTTP请求中提取参数。这是RequestParam的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>RequestBody</word>
+        <trans>&amp;lt;p&amp;gt;请求体注解&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：将HTTP请求体转换为Java对象&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>将HTTP请求体转换为Java对象。这是RequestBody的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Valid</word>
+        <trans>&amp;lt;p&amp;gt;验证注解&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：启用JSR-303验证&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>启用JSR-303验证。这是Valid的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Isolation</word>
+        <trans>&amp;lt;p&amp;gt;隔离级别&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：控制事务间的可见性&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>控制事务间的可见性。这是Isolation的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>AOP</word>
+        <trans>&amp;lt;p&amp;gt;面向切面编程&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：横切关注点的编程范式&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>横切关注点的编程范式。这是AOP的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Exception</word>
+        <trans>&amp;lt;p&amp;gt;异常&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：程序运行时的错误&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>程序运行时的错误。这是Exception的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Exception Handler</word>
+        <trans>&amp;lt;p&amp;gt;异常处理器&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：统一处理异常的机制&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>统一处理异常的机制。这是Exception Handler的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Global Exception Handler</word>
+        <trans>&amp;lt;p&amp;gt;全局异常处理&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：应用级的异常处理&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>应用级的异常处理。这是Global Exception Handler的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Interceptor</word>
+        <trans>&amp;lt;p&amp;gt;拦截器&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：在控制器方法前后执行的组件&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>在控制器方法前后执行的组件。这是Interceptor的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Middleware</word>
+        <trans>&amp;lt;p&amp;gt;中间件&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：处理请求和响应的软件组件&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>处理请求和响应的软件组件。这是Middleware的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Security</word>
+        <trans>&amp;lt;p&amp;gt;安全性&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：保护应用程序免受攻击的机制&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>保护应用程序免受攻击的机制。这是Security的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Permission</word>
+        <trans>&amp;lt;p&amp;gt;权限&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：用户可执行的操作&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>用户可执行的操作。这是Permission的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>RBAC</word>
+        <trans>&amp;lt;p&amp;gt;基于角色的访问控制&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Role-Based Access Control&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Role-Based Access Control。这是RBAC的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>XSS</word>
+        <trans>&amp;lt;p&amp;gt;跨站脚本攻击&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Cross-Site Scripting&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Cross-Site Scripting。这是XSS的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>SQL Injection</word>
+        <trans>&amp;lt;p&amp;gt;SQL注入&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：恶意SQL代码注入攻击&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>恶意SQL代码注入攻击。这是SQL Injection的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Validation</word>
+        <trans>&amp;lt;p&amp;gt;验证&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：检查数据是否符合规则&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>检查数据是否符合规则。这是Validation的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Sanitization</word>
+        <trans>&amp;lt;p&amp;gt;数据清理&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：清除或转义危险字符&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>清除或转义危险字符。这是Sanitization的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Encoding</word>
+        <trans>&amp;lt;p&amp;gt;编码&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：将数据转换为安全格式&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>将数据转换为安全格式。这是Encoding的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Encryption</word>
+        <trans>&amp;lt;p&amp;gt;加密&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：保护数据机密性的技术&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>保护数据机密性的技术。这是Encryption的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Hashing</word>
+        <trans>&amp;lt;p&amp;gt;哈希&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：将数据转换为固定长度的散列值&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>将数据转换为固定长度的散列值。这是Hashing的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Salt</word>
+        <trans>&amp;lt;p&amp;gt;盐值&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：增强密码哈希安全性的随机数据&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>增强密码哈希安全性的随机数据。这是Salt的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Token</word>
+        <trans>&amp;lt;p&amp;gt;令牌&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：身份验证的凭证&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>身份验证的凭证。这是Token的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Cookie</word>
+        <trans>&amp;lt;p&amp;gt;浏览器cookie&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：客户端的数据存储&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>客户端的数据存储。这是Cookie的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>HTTP</word>
+        <trans>&amp;lt;p&amp;gt;超文本传输协议&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Web通信的基础协议&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Web通信的基础协议。这是HTTP的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>HTTPS</word>
+        <trans>&amp;lt;p&amp;gt;安全HTTP&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：使用TLS/SSL加密的HTTP&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>使用TLS/SSL加密的HTTP。这是HTTPS的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>REST</word>
+        <trans>&amp;lt;p&amp;gt;表述性状态传递&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Web服务的架构风格&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Web服务的架构风格。这是REST的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>RESTful</word>
+        <trans>&amp;lt;p&amp;gt;符合REST风格&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：遵循REST设计原则的API&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>遵循REST设计原则的API。这是RESTful的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>CRUD</word>
+        <trans>&amp;lt;p&amp;gt;增删改查&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Create、Read、Update、Delete操作&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Create、Read、Update、Delete操作。这是CRUD的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>GET</word>
+        <trans>&amp;lt;p&amp;gt;HTTP GET方法&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：获取资源的请求方法&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>获取资源的请求方法。这是GET的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>POST</word>
+        <trans>&amp;lt;p&amp;gt;HTTP POST方法&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：创建资源的请求方法&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>创建资源的请求方法。这是POST的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>PUT</word>
+        <trans>&amp;lt;p&amp;gt;HTTP PUT方法&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：更新资源的请求方法&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>更新资源的请求方法。这是PUT的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>DELETE</word>
+        <trans>&amp;lt;p&amp;gt;HTTP DELETE方法&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：删除资源的请求方法&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>删除资源的请求方法。这是DELETE的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>PATCH</word>
+        <trans>&amp;lt;p&amp;gt;HTTP PATCH方法&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：部分更新资源的请求方法&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>部分更新资源的请求方法。这是PATCH的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Status Code</word>
+        <trans>&amp;lt;p&amp;gt;状态码&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：HTTP响应的状态标识&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>HTTP响应的状态标识。这是Status Code的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>404 Not Found</word>
+        <trans>&amp;lt;p&amp;gt;资源未找到&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：请求的资源不存在&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>请求的资源不存在。这是404 Not Found的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>500 Internal Server Error</word>
+        <trans>&amp;lt;p&amp;gt;内部服务器错误&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：服务器处理请求时发生错误&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>服务器处理请求时发生错误。这是500 Internal Server Error的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>400 Bad Request</word>
+        <trans>&amp;lt;p&amp;gt;错误请求&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：客户端请求语法错误&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>客户端请求语法错误。这是400 Bad Request的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>401 Unauthorized</word>
+        <trans>&amp;lt;p&amp;gt;未授权&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：需要身份验证&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>需要身份验证。这是401 Unauthorized的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>403 Forbidden</word>
+        <trans>&amp;lt;p&amp;gt;禁止访问&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：服务器拒绝执行请求&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>服务器拒绝执行请求。这是403 Forbidden的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>200 OK</word>
+        <trans>&amp;lt;p&amp;gt;请求成功&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：服务器成功处理请求&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>服务器成功处理请求。这是200 OK的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>201 Created</word>
+        <trans>&amp;lt;p&amp;gt;资源已创建&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：请求成功并创建了新资源&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>请求成功并创建了新资源。这是201 Created的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>204 No Content</word>
+        <trans>&amp;lt;p&amp;gt;无内容&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：请求成功但无返回内容&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>请求成功但无返回内容。这是204 No Content的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>JSON</word>
+        <trans>&amp;lt;p&amp;gt;JavaScript对象表示法&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：轻量级的数据交换格式&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>轻量级的数据交换格式。这是JSON的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>XML</word>
+        <trans>&amp;lt;p&amp;gt;可扩展标记语言&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：结构化数据的标记语言&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>结构化数据的标记语言。这是XML的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Snapshot</word>
+        <trans>&amp;lt;p&amp;gt;快照版本&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：开发中的不稳定版本&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>开发中的不稳定版本。这是Snapshot的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Local Repository</word>
+        <trans>&amp;lt;p&amp;gt;本地仓库&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Maven在本地的构件缓存&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Maven在本地的构件缓存。这是Local Repository的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Central Repository</word>
+        <trans>&amp;lt;p&amp;gt;中央仓库&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Maven官方的构件仓库&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Maven官方的构件仓库。这是Central Repository的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Remote Repository</word>
+        <trans>&amp;lt;p&amp;gt;远程仓库&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：网络上的构件仓库&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>网络上的构件仓库。这是Remote Repository的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Compile</word>
+        <trans>&amp;lt;p&amp;gt;编译&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：将源代码转换为字节码&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>将源代码转换为字节码。这是Compile的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Package</word>
+        <trans>&amp;lt;p&amp;gt;打包&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：将编译后的代码打包成分发格式&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>将编译后的代码打包成分发格式。这是Package的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Install</word>
+        <trans>&amp;lt;p&amp;gt;安装&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：将包安装到本地仓库&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>将包安装到本地仓库。这是Install的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Deploy</word>
+        <trans>&amp;lt;p&amp;gt;部署&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：将包发布到远程仓库&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>将包发布到远程仓库。这是Deploy的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Clean</word>
+        <trans>&amp;lt;p&amp;gt;清理&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：删除构建过程产生的文件&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>删除构建过程产生的文件。这是Clean的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Integration Test</word>
+        <trans>&amp;lt;p&amp;gt;集成测试&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：测试组件间的交互&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>测试组件间的交互。这是Integration Test的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Unit Test</word>
+        <trans>&amp;lt;p&amp;gt;单元测试&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：测试单个组件的功能&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>测试单个组件的功能。这是Unit Test的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Test Coverage</word>
+        <trans>&amp;lt;p&amp;gt;测试覆盖率&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：测试代码覆盖的比例&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>测试代码覆盖的比例。这是Test Coverage的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Mock</word>
+        <trans>&amp;lt;p&amp;gt;模拟&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：创建假对象进行测试&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>创建假对象进行测试。这是Mock的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Stub</word>
+        <trans>&amp;lt;p&amp;gt;存根&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：返回预设值的测试对象&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>返回预设值的测试对象。这是Stub的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>JUnit</word>
+        <trans>&amp;lt;p&amp;gt;Java单元测试框架&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：最流行的Java测试框架&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>最流行的Java测试框架。这是JUnit的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>TestNG</word>
+        <trans>&amp;lt;p&amp;gt;Java测试框架&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：功能更丰富的测试框架&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>功能更丰富的测试框架。这是TestNG的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Mockito</word>
+        <trans>&amp;lt;p&amp;gt;Java模拟框架&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：创建mock对象的库&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>创建mock对象的库。这是Mockito的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>AssertJ</word>
+        <trans>&amp;lt;p&amp;gt;断言库&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：提供流畅API的断言库&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>提供流畅API的断言库。这是AssertJ的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Test Driven Development</word>
+        <trans>&amp;lt;p&amp;gt;测试驱动开发&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：先写测试后写代码的开发方式&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>先写测试后写代码的开发方式。这是Test Driven Development的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>TDD</word>
+        <trans>&amp;lt;p&amp;gt;测试驱动开发&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Test Driven Development的缩写&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Test Driven Development的缩写。这是TDD的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Behavior Driven Development</word>
+        <trans>&amp;lt;p&amp;gt;行为驱动开发&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：关注业务行为的开发方式&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>关注业务行为的开发方式。这是Behavior Driven Development的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>BDD</word>
+        <trans>&amp;lt;p&amp;gt;行为驱动开发&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Behavior Driven Development的缩写&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Behavior Driven Development的缩写。这是BDD的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Continuous Integration</word>
+        <trans>&amp;lt;p&amp;gt;持续集成&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：频繁地将代码集成到主分支&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>频繁地将代码集成到主分支。这是Continuous Integration的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>CI</word>
+        <trans>&amp;lt;p&amp;gt;持续集成&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Continuous Integration的缩写&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Continuous Integration的缩写。这是CI的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Continuous Deployment</word>
+        <trans>&amp;lt;p&amp;gt;持续部署&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：自动化部署到生产环境&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>自动化部署到生产环境。这是Continuous Deployment的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>CD</word>
+        <trans>&amp;lt;p&amp;gt;持续部署&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Continuous Deployment的缩写&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Continuous Deployment的缩写。这是CD的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>GitLab CI</word>
+        <trans>&amp;lt;p&amp;gt;持续集成&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：GitLab内置的CI/CD功能&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>GitLab内置的CI/CD功能。这是GitLab CI的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>GitHub Actions</word>
+        <trans>&amp;lt;p&amp;gt;自动化工具&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：GitHub的CI/CD服务&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>GitHub的CI/CD服务。这是GitHub Actions的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Travis CI</word>
+        <trans>&amp;lt;p&amp;gt;持续集成服务&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：云端的CI/CD平台&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>云端的CI/CD平台。这是Travis CI的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>CircleCI</word>
+        <trans>&amp;lt;p&amp;gt;持续集成平台&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：云端的CI/CD服务&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>云端的CI/CD服务。这是CircleCI的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Registry</word>
+        <trans>&amp;lt;p&amp;gt;镜像仓库&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：存储和分发Docker镜像的服务&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>存储和分发Docker镜像的服务。这是Registry的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Docker Hub</word>
+        <trans>&amp;lt;p&amp;gt;镜像仓库&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Docker官方的公共镜像仓库&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Docker官方的公共镜像仓库。这是Docker Hub的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>K8s</word>
+        <trans>&amp;lt;p&amp;gt;Kubernetes的缩写&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：容器编排平台&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>容器编排平台。这是K8s的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Helm</word>
+        <trans>&amp;lt;p&amp;gt;包管理器&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Kubernetes的应用包管理工具&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Kubernetes的应用包管理工具。这是Helm的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Chart</word>
+        <trans>&amp;lt;p&amp;gt;图表&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Helm中的应用包格式&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Helm中的应用包格式。这是Chart的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Minikube</word>
+        <trans>&amp;lt;p&amp;gt;本地K8s&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：在本地运行Kubernetes的工具&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>在本地运行Kubernetes的工具。这是Minikube的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>kubectl</word>
+        <trans>&amp;lt;p&amp;gt;K8s命令行&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：操作Kubernetes的命令行工具&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>操作Kubernetes的命令行工具。这是kubectl的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Cloud</word>
+        <trans>&amp;lt;p&amp;gt;云计算&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：通过互联网提供计算资源的服务模式&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>通过互联网提供计算资源的服务模式。这是Cloud的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>IaaS</word>
+        <trans>&amp;lt;p&amp;gt;基础设施即服务&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Infrastructure as a Service&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Infrastructure as a Service。这是IaaS的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>PaaS</word>
+        <trans>&amp;lt;p&amp;gt;平台即服务&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Platform as a Service&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Platform as a Service。这是PaaS的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>SaaS</word>
+        <trans>&amp;lt;p&amp;gt;软件即服务&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Software as a Service&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Software as a Service。这是SaaS的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>AWS</word>
+        <trans>&amp;lt;p&amp;gt;亚马逊云服务&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Amazon Web Services&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Amazon Web Services。这是AWS的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Azure</word>
+        <trans>&amp;lt;p&amp;gt;微软云平台&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Microsoft Azure&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Microsoft Azure。这是Azure的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>GCP</word>
+        <trans>&amp;lt;p&amp;gt;谷歌云平台&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Google Cloud Platform&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Google Cloud Platform。这是GCP的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Alibaba Cloud</word>
+        <trans>&amp;lt;p&amp;gt;阿里云&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：阿里巴巴的云计算服务&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>阿里巴巴的云计算服务。这是Alibaba Cloud的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Serverless</word>
+        <trans>&amp;lt;p&amp;gt;无服务器&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：由云提供商管理服务器的计算模式&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>由云提供商管理服务器的计算模式。这是Serverless的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Function as a Service</word>
+        <trans>&amp;lt;p&amp;gt;函数即服务&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：执行单个函数的云服务&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>执行单个函数的云服务。这是Function as a Service的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>FaaS</word>
+        <trans>&amp;lt;p&amp;gt;函数即服务&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Function as a Service的缩写&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Function as a Service的缩写。这是FaaS的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Lambda</word>
+        <trans>&amp;lt;p&amp;gt;AWS Lambda&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：AWS的无服务器计算服务&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>AWS的无服务器计算服务。这是Lambda的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>API Gateway</word>
+        <trans>&amp;lt;p&amp;gt;API网关&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：管理API请求的服务&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>管理API请求的服务。这是API Gateway的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>VPC</word>
+        <trans>&amp;lt;p&amp;gt;虚拟私有云&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：云中的虚拟网络&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>云中的虚拟网络。这是VPC的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>CDN</word>
+        <trans>&amp;lt;p&amp;gt;内容分发网络&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：加速内容传输的网络&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>加速内容传输的网络。这是CDN的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Auto Scaling</word>
+        <trans>&amp;lt;p&amp;gt;自动扩缩&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：根据负载自动调整资源的功能&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>根据负载自动调整资源的功能。这是Auto Scaling的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Monitoring</word>
+        <trans>&amp;lt;p&amp;gt;监控&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：观察和跟踪系统状态的过程&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>观察和跟踪系统状态的过程。这是Monitoring的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Alerting</word>
+        <trans>&amp;lt;p&amp;gt;告警&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：系统异常时的通知机制&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>系统异常时的通知机制。这是Alerting的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Service-Oriented Architecture</word>
+        <trans>&amp;lt;p&amp;gt;面向服务的架构&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：基于服务的软件设计方法&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>基于服务的软件设计方法。这是Service-Oriented Architecture的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>SOA</word>
+        <trans>&amp;lt;p&amp;gt;面向服务架构&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Service-Oriented Architecture的缩写&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Service-Oriented Architecture的缩写。这是SOA的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Domain-Driven Design</word>
+        <trans>&amp;lt;p&amp;gt;领域驱动设计&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：以业务领域为中心的设计方法&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>以业务领域为中心的设计方法。这是Domain-Driven Design的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Event-Driven Architecture</word>
+        <trans>&amp;lt;p&amp;gt;事件驱动架构&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：基于事件的系统设计&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>基于事件的系统设计。这是Event-Driven Architecture的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Two-Phase Commit</word>
+        <trans>&amp;lt;p&amp;gt;两阶段提交&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：分布式事务的一种协议&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>分布式事务的一种协议。这是Two-Phase Commit的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>SSO</word>
+        <trans>&amp;lt;p&amp;gt;单点登录&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：用户只需登录一次即可访问多个相关系统&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>用户只需登录一次即可访问多个相关系统。这是SSO的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Single Sign On</word>
+        <trans>&amp;lt;p&amp;gt;单点登录&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：同SSO，统一身份认证机制&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>同SSO，统一身份认证机制。这是Single Sign On的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>SAML</word>
+        <trans>&amp;lt;p&amp;gt;安全断言标记语言&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：基于XML的身份认证和授权标准&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>基于XML的身份认证和授权标准。这是SAML的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>CAS</word>
+        <trans>&amp;lt;p&amp;gt;中央认证服务&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：耶鲁大学开发的单点登录协议&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>耶鲁大学开发的单点登录协议。这是CAS的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Identity Provider</word>
+        <trans>&amp;lt;p&amp;gt;身份提供者&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：负责用户身份验证的服务&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>负责用户身份验证的服务。这是Identity Provider的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Service Provider</word>
+        <trans>&amp;lt;p&amp;gt;服务提供者&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：依赖身份提供者进行认证的应用&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>依赖身份提供者进行认证的应用。这是Service Provider的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>LDAP</word>
+        <trans>&amp;lt;p&amp;gt;轻量级目录访问协议&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：用于访问和维护目录信息服务&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>用于访问和维护目录信息服务。这是LDAP的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Active Directory</word>
+        <trans>&amp;lt;p&amp;gt;活动目录&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：微软的目录服务和身份管理&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>微软的目录服务和身份管理。这是Active Directory的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Kerberos</word>
+        <trans>&amp;lt;p&amp;gt;网络认证协议&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：基于票据的安全认证机制&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>基于票据的安全认证机制。这是Kerberos的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Multi Factor Authentication</word>
+        <trans>&amp;lt;p&amp;gt;多因素认证&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：使用多种验证因子的安全机制&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>使用多种验证因子的安全机制。这是Multi Factor Authentication的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>MFA</word>
+        <trans>&amp;lt;p&amp;gt;多因素认证&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Multi Factor Authentication的缩写&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Multi Factor Authentication的缩写。这是MFA的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Two Factor Authentication</word>
+        <trans>&amp;lt;p&amp;gt;双因素认证&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：使用两种验证因子的认证方式&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>使用两种验证因子的认证方式。这是Two Factor Authentication的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>2FA</word>
+        <trans>&amp;lt;p&amp;gt;双因素认证&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Two Factor Authentication的缩写&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Two Factor Authentication的缩写。这是2FA的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Message Queue</word>
+        <trans>&amp;lt;p&amp;gt;消息队列&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：异步消息传递的通信模式&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>异步消息传递的通信模式。这是Message Queue的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Message Broker</word>
+        <trans>&amp;lt;p&amp;gt;消息代理&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：负责消息路由和传递的中间件&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>负责消息路由和传递的中间件。这是Message Broker的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>ActiveMQ</word>
+        <trans>&amp;lt;p&amp;gt;阿帕奇消息队列&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：开源的JMS消息中间件&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>开源的JMS消息中间件。这是ActiveMQ的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>RabbitMQ</word>
+        <trans>&amp;lt;p&amp;gt;消息代理软件&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：基于AMQP协议的消息队列&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>基于AMQP协议的消息队列。这是RabbitMQ的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Apache Kafka</word>
+        <trans>&amp;lt;p&amp;gt;分布式流处理平台&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：高吞吐量的消息系统&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>高吞吐量的消息系统。这是Apache Kafka的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Apache RocketMQ</word>
+        <trans>&amp;lt;p&amp;gt;分布式消息队列&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：阿里巴巴开源的消息中间件&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>阿里巴巴开源的消息中间件。这是Apache RocketMQ的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>JMS</word>
+        <trans>&amp;lt;p&amp;gt;Java消息服务&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Java平台的消息中间件API&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Java平台的消息中间件API。这是JMS的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>AMQP</word>
+        <trans>&amp;lt;p&amp;gt;高级消息队列协议&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：应用层消息队列协议标准&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>应用层消息队列协议标准。这是AMQP的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Producer</word>
+        <trans>&amp;lt;p&amp;gt;生产者&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：发送消息到队列的应用程序&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>发送消息到队列的应用程序。这是Producer的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Consumer</word>
+        <trans>&amp;lt;p&amp;gt;消费者&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：从队列接收消息的应用程序&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>从队列接收消息的应用程序。这是Consumer的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Topic</word>
+        <trans>&amp;lt;p&amp;gt;主题&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：发布订阅模式中的消息分类&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>发布订阅模式中的消息分类。这是Topic的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Queue</word>
+        <trans>&amp;lt;p&amp;gt;队列&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：点对点消息传递的存储结构&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>点对点消息传递的存储结构。这是Queue的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Publish Subscribe</word>
+        <trans>&amp;lt;p&amp;gt;发布订阅&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：一对多的消息传递模式&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>一对多的消息传递模式。这是Publish Subscribe的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Point to Point</word>
+        <trans>&amp;lt;p&amp;gt;点对点&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：一对一的消息传递模式&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>一对一的消息传递模式。这是Point to Point的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Dead Letter Queue</word>
+        <trans>&amp;lt;p&amp;gt;死信队列&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：处理无法投递消息的特殊队列&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>处理无法投递消息的特殊队列。这是Dead Letter Queue的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>DLQ</word>
+        <trans>&amp;lt;p&amp;gt;死信队列&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Dead Letter Queue的缩写&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Dead Letter Queue的缩写。这是DLQ的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Message Persistence</word>
+        <trans>&amp;lt;p&amp;gt;消息持久化&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：将消息保存到持久存储的机制&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>将消息保存到持久存储的机制。这是Message Persistence的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Message Acknowledgment</word>
+        <trans>&amp;lt;p&amp;gt;消息确认&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：确保消息被成功处理的机制&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>确保消息被成功处理的机制。这是Message Acknowledgment的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Virtual Topic</word>
+        <trans>&amp;lt;p&amp;gt;虚拟主题&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：ActiveMQ中的虚拟目的地概念&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>ActiveMQ中的虚拟目的地概念。这是Virtual Topic的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Composite Destination</word>
+        <trans>&amp;lt;p&amp;gt;复合目的地&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：同时发送到多个目的地的功能&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>同时发送到多个目的地的功能。这是Composite Destination的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Advisory Message</word>
+        <trans>&amp;lt;p&amp;gt;通知消息&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：ActiveMQ中的状态通知机制&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>ActiveMQ中的状态通知机制。这是Advisory Message的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Redis</word>
+        <trans>&amp;lt;p&amp;gt;内存数据库&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：开源的键值存储系统&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>开源的键值存储系统。这是Redis的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>NoSQL</word>
+        <trans>&amp;lt;p&amp;gt;非关系型数据库&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：不使用传统SQL的数据库&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>不使用传统SQL的数据库。这是NoSQL的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Key Value Store</word>
+        <trans>&amp;lt;p&amp;gt;键值存储&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：基于键值对的数据存储模型&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>基于键值对的数据存储模型。这是Key Value Store的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>In Memory Database</word>
+        <trans>&amp;lt;p&amp;gt;内存数据库&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：数据主要存储在内存中的数据库&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>数据主要存储在内存中的数据库。这是In Memory Database的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Cache</word>
+        <trans>&amp;lt;p&amp;gt;缓存&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：临时存储常用数据以提高访问速度&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>临时存储常用数据以提高访问速度。这是Cache的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Distributed Cache</word>
+        <trans>&amp;lt;p&amp;gt;分布式缓存&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：跨多个节点的缓存系统&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>跨多个节点的缓存系统。这是Distributed Cache的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Cache Hit</word>
+        <trans>&amp;lt;p&amp;gt;缓存命中&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：在缓存中找到所需数据&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>在缓存中找到所需数据。这是Cache Hit的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Cache Miss</word>
+        <trans>&amp;lt;p&amp;gt;缓存未命中&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：在缓存中未找到所需数据&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>在缓存中未找到所需数据。这是Cache Miss的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Cache Eviction</word>
+        <trans>&amp;lt;p&amp;gt;缓存淘汰&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：移除缓存中数据的策略&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>移除缓存中数据的策略。这是Cache Eviction的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>LRU</word>
+        <trans>&amp;lt;p&amp;gt;最近最少使用&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：常用的缓存淘汰算法&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>常用的缓存淘汰算法。这是LRU的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>LFU</word>
+        <trans>&amp;lt;p&amp;gt;最少使用频率&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：基于访问频率的缓存淘汰算法&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>基于访问频率的缓存淘汰算法。这是LFU的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>TTL</word>
+        <trans>&amp;lt;p&amp;gt;生存时间&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：缓存数据的有效期&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>缓存数据的有效期。这是TTL的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Redis Cluster</word>
+        <trans>&amp;lt;p&amp;gt;Redis集群&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Redis的分布式部署方案&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Redis的分布式部署方案。这是Redis Cluster的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Redis Sentinel</word>
+        <trans>&amp;lt;p&amp;gt;Redis哨兵&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Redis的高可用性解决方案&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Redis的高可用性解决方案。这是Redis Sentinel的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Master Slave</word>
+        <trans>&amp;lt;p&amp;gt;主从复制&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：数据库主从同步机制&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>数据库主从同步机制。这是Master Slave的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Replication</word>
+        <trans>&amp;lt;p&amp;gt;复制&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：数据在多个节点间的同步&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>数据在多个节点间的同步。这是Replication的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Sharding</word>
+        <trans>&amp;lt;p&amp;gt;分片&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：将数据分散到多个节点的技术&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>将数据分散到多个节点的技术。这是Sharding的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Consistent Hashing</word>
+        <trans>&amp;lt;p&amp;gt;一致性哈希&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：分布式系统中的数据分布算法&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>分布式系统中的数据分布算法。这是Consistent Hashing的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Data Persistence</word>
+        <trans>&amp;lt;p&amp;gt;数据持久化&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：将数据保存到永久存储的过程&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>将数据保存到永久存储的过程。这是Data Persistence的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>AOF</word>
+        <trans>&amp;lt;p&amp;gt;仅追加文件&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Redis的持久化方式之一&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Redis的持久化方式之一。这是AOF的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>RDB</word>
+        <trans>&amp;lt;p&amp;gt;Redis数据库&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Redis的快照持久化方式&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Redis的快照持久化方式。这是RDB的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Nacos</word>
+        <trans>&amp;lt;p&amp;gt;阿里云服务&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：动态服务发现和配置管理平台&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>动态服务发现和配置管理平台。这是Nacos的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Service Registry</word>
+        <trans>&amp;lt;p&amp;gt;服务注册&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：将服务信息注册到注册中心&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>将服务信息注册到注册中心。这是Service Registry的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Configuration Management</word>
+        <trans>&amp;lt;p&amp;gt;配置管理&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：集中管理应用程序配置的方式&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>集中管理应用程序配置的方式。这是Configuration Management的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Dynamic Configuration</word>
+        <trans>&amp;lt;p&amp;gt;动态配置&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：运行时可修改的配置&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>运行时可修改的配置。这是Dynamic Configuration的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Configuration Center</word>
+        <trans>&amp;lt;p&amp;gt;配置中心&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：集中存储和管理配置的服务&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>集中存储和管理配置的服务。这是Configuration Center的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Consul</word>
+        <trans>&amp;lt;p&amp;gt;服务网格&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：HashiCorp的服务发现和配置工具&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>HashiCorp的服务发现和配置工具。这是Consul的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Zookeeper</word>
+        <trans>&amp;lt;p&amp;gt;分布式协调&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Apache的分布式协调服务&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Apache的分布式协调服务。这是Zookeeper的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>etcd</word>
+        <trans>&amp;lt;p&amp;gt;键值存储&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：CoreOS开发的分布式键值存储&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>CoreOS开发的分布式键值存储。这是etcd的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Service Mesh</word>
+        <trans>&amp;lt;p&amp;gt;服务网格&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：微服务间通信的基础设施层&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>微服务间通信的基础设施层。这是Service Mesh的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Istio</word>
+        <trans>&amp;lt;p&amp;gt;服务网格&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：开源的服务网格平台&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>开源的服务网格平台。这是Istio的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Envoy</word>
+        <trans>&amp;lt;p&amp;gt;代理服务器&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：云原生的边缘和服务代理&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>云原生的边缘和服务代理。这是Envoy的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Apache Dubbo</word>
+        <trans>&amp;lt;p&amp;gt;RPC框架&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：阿里巴巴开源的高性能RPC框架&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>阿里巴巴开源的高性能RPC框架。这是Apache Dubbo的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>gRPC</word>
+        <trans>&amp;lt;p&amp;gt;远程过程调用&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Google开源的高性能RPC框架&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Google开源的高性能RPC框架。这是gRPC的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Protocol Buffers</word>
+        <trans>&amp;lt;p&amp;gt;协议缓冲&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Google的数据序列化协议&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Google的数据序列化协议。这是Protocol Buffers的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Thrift</word>
+        <trans>&amp;lt;p&amp;gt;RPC框架&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Apache的跨语言服务开发框架&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Apache的跨语言服务开发框架。这是Thrift的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>RESTful API</word>
+        <trans>&amp;lt;p&amp;gt;表述性状态传递&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：基于REST架构的API设计&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>基于REST架构的API设计。这是RESTful API的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>GraphQL</word>
+        <trans>&amp;lt;p&amp;gt;查询语言&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Facebook开发的API查询语言&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Facebook开发的API查询语言。这是GraphQL的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Rate Limiting</word>
+        <trans>&amp;lt;p&amp;gt;限流&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：控制请求频率的机制&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>控制请求频率的机制。这是Rate Limiting的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Bulkhead</word>
+        <trans>&amp;lt;p&amp;gt;舱壁模式&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：隔离资源防止故障传播&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>隔离资源防止故障传播。这是Bulkhead的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Timeout</word>
+        <trans>&amp;lt;p&amp;gt;超时&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：请求等待响应的最大时间&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>请求等待响应的最大时间。这是Timeout的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Retry</word>
+        <trans>&amp;lt;p&amp;gt;重试&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：失败后重新执行操作的机制&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>失败后重新执行操作的机制。这是Retry的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Exponential Backoff</word>
+        <trans>&amp;lt;p&amp;gt;指数退避&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：重试间隔逐渐增加的策略&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>重试间隔逐渐增加的策略。这是Exponential Backoff的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Jitter</word>
+        <trans>&amp;lt;p&amp;gt;抖动&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：在退避策略中增加随机性&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>在退避策略中增加随机性。这是Jitter的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>MyBatis</word>
+        <trans>&amp;lt;p&amp;gt;持久层框架&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：半自动化的ORM框架&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>半自动化的ORM框架。这是MyBatis的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>MyBatis Plus</word>
+        <trans>&amp;lt;p&amp;gt;MyBatis增强&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：简化MyBatis开发的工具&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>简化MyBatis开发的工具。这是MyBatis Plus的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Spring Data</word>
+        <trans>&amp;lt;p&amp;gt;数据访问&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Spring的数据访问抽象层&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Spring的数据访问抽象层。这是Spring Data的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>JDBC</word>
+        <trans>&amp;lt;p&amp;gt;Java数据库连接&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Java访问数据库的API&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Java访问数据库的API。这是JDBC的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>HikariCP</word>
+        <trans>&amp;lt;p&amp;gt;连接池&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：高性能的JDBC连接池&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>高性能的JDBC连接池。这是HikariCP的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Druid</word>
+        <trans>&amp;lt;p&amp;gt;连接池&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：阿里巴巴开源的数据库连接池&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>阿里巴巴开源的数据库连接池。这是Druid的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Database Migration</word>
+        <trans>&amp;lt;p&amp;gt;数据库迁移&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：管理数据库结构变更的工具&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>管理数据库结构变更的工具。这是Database Migration的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Flyway</word>
+        <trans>&amp;lt;p&amp;gt;数据库迁移&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：开源的数据库版本控制工具&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>开源的数据库版本控制工具。这是Flyway的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Liquibase</word>
+        <trans>&amp;lt;p&amp;gt;数据库迁移&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：企业级的数据库变更管理工具&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>企业级的数据库变更管理工具。这是Liquibase的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>ORM</word>
+        <trans>&amp;lt;p&amp;gt;对象关系映射&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：对象与关系数据库的映射技术&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>对象与关系数据库的映射技术。这是ORM的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>POJO</word>
+        <trans>&amp;lt;p&amp;gt;简单Java对象&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：无特殊限制的Java对象&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>无特殊限制的Java对象。这是POJO的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Data Transfer Object</word>
+        <trans>&amp;lt;p&amp;gt;数据传输对象&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：用于传输数据的对象&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>用于传输数据的对象。这是Data Transfer Object的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>DTO</word>
+        <trans>&amp;lt;p&amp;gt;数据传输对象&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Data Transfer Object的缩写&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Data Transfer Object的缩写。这是DTO的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Value Object</word>
+        <trans>&amp;lt;p&amp;gt;值对象&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：不可变的数据对象&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>不可变的数据对象。这是Value Object的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>VO</word>
+        <trans>&amp;lt;p&amp;gt;值对象&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Value Object的缩写&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Value Object的缩写。这是VO的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Data Access Object</word>
+        <trans>&amp;lt;p&amp;gt;数据访问对象&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：封装数据访问逻辑的对象&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>封装数据访问逻辑的对象。这是Data Access Object的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>DAO</word>
+        <trans>&amp;lt;p&amp;gt;数据访问对象&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Data Access Object的缩写&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Data Access Object的缩写。这是DAO的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Active Record</word>
+        <trans>&amp;lt;p&amp;gt;活动记录&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：对象与数据库记录一一对应的模式&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>对象与数据库记录一一对应的模式。这是Active Record的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Unit of Work</word>
+        <trans>&amp;lt;p&amp;gt;工作单元&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：管理事务中对象变更的模式&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>管理事务中对象变更的模式。这是Unit of Work的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Repository Pattern</word>
+        <trans>&amp;lt;p&amp;gt;仓库模式&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：封装数据访问逻辑的设计模式&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>封装数据访问逻辑的设计模式。这是Repository Pattern的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Elasticsearch</word>
+        <trans>&amp;lt;p&amp;gt;搜索引擎&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：基于Lucene的分布式搜索和分析引擎&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>基于Lucene的分布式搜索和分析引擎。这是Elasticsearch的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Lucene</word>
+        <trans>&amp;lt;p&amp;gt;搜索引擎库&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Apache的全文检索引擎库&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Apache的全文检索引擎库。这是Lucene的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Solr</word>
+        <trans>&amp;lt;p&amp;gt;搜索平台&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Apache基于Lucene的企业搜索平台&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Apache基于Lucene的企业搜索平台。这是Solr的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Full Text Search</word>
+        <trans>&amp;lt;p&amp;gt;全文搜索&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：在文档内容中搜索的技术&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>在文档内容中搜索的技术。这是Full Text Search的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Inverted Index</word>
+        <trans>&amp;lt;p&amp;gt;倒排索引&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：搜索引擎的核心数据结构&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>搜索引擎的核心数据结构。这是Inverted Index的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Tokenization</word>
+        <trans>&amp;lt;p&amp;gt;分词&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：将文本分解为词汇单元的过程&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>将文本分解为词汇单元的过程。这是Tokenization的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Stemming</word>
+        <trans>&amp;lt;p&amp;gt;词干提取&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：将单词还原为词根的过程&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>将单词还原为词根的过程。这是Stemming的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Lemmatization</word>
+        <trans>&amp;lt;p&amp;gt;词形还原&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：将单词还原为原形的过程&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>将单词还原为原形的过程。这是Lemmatization的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>TF IDF</word>
+        <trans>&amp;lt;p&amp;gt;词频逆文档频率&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：文本挖掘中的权重计算方法&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>文本挖掘中的权重计算方法。这是TF IDF的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Vector Search</word>
+        <trans>&amp;lt;p&amp;gt;向量搜索&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：基于向量相似度的搜索方法&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>基于向量相似度的搜索方法。这是Vector Search的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Semantic Search</word>
+        <trans>&amp;lt;p&amp;gt;语义搜索&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：理解查询意图的搜索方法&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>理解查询意图的搜索方法。这是Semantic Search的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Nginx</word>
+        <trans>&amp;lt;p&amp;gt;Web服务器&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：高性能的HTTP服务器和反向代理&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>高性能的HTTP服务器和反向代理。这是Nginx的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Apache HTTP Server</word>
+        <trans>&amp;lt;p&amp;gt;Web服务器&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Apache基金会的HTTP服务器&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Apache基金会的HTTP服务器。这是Apache HTTP Server的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Reverse Proxy</word>
+        <trans>&amp;lt;p&amp;gt;反向代理&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：代表服务器处理客户端请求&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>代表服务器处理客户端请求。这是Reverse Proxy的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Forward Proxy</word>
+        <trans>&amp;lt;p&amp;gt;正向代理&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：代表客户端发送请求&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>代表客户端发送请求。这是Forward Proxy的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Load Balancing</word>
+        <trans>&amp;lt;p&amp;gt;负载均衡&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：分发请求到多个服务器&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>分发请求到多个服务器。这是Load Balancing的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Round Robin</word>
+        <trans>&amp;lt;p&amp;gt;轮询&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：简单的负载均衡算法&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>简单的负载均衡算法。这是Round Robin的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Weighted Round Robin</word>
+        <trans>&amp;lt;p&amp;gt;加权轮询&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：考虑服务器权重的轮询算法&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>考虑服务器权重的轮询算法。这是Weighted Round Robin的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Least Connections</word>
+        <trans>&amp;lt;p&amp;gt;最少连接&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：基于连接数的负载均衡算法&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>基于连接数的负载均衡算法。这是Least Connections的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Sticky Session</word>
+        <trans>&amp;lt;p&amp;gt;会话粘滞&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：将用户请求固定到特定服务器&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>将用户请求固定到特定服务器。这是Sticky Session的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Session Affinity</word>
+        <trans>&amp;lt;p&amp;gt;会话亲和性&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：同Sticky Session&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>同Sticky Session。这是Session Affinity的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Failover</word>
+        <trans>&amp;lt;p&amp;gt;故障转移&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：主服务器故障时切换到备用服务器&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>主服务器故障时切换到备用服务器。这是Failover的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>High Availability</word>
+        <trans>&amp;lt;p&amp;gt;高可用性&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：系统持续运行的能力&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>系统持续运行的能力。这是High Availability的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>HA</word>
+        <trans>&amp;lt;p&amp;gt;高可用性&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：High Availability的缩写&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>High Availability的缩写。这是HA的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Disaster Recovery</word>
+        <trans>&amp;lt;p&amp;gt;灾难恢复&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：重大故障后的恢复机制&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>重大故障后的恢复机制。这是Disaster Recovery的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>DR</word>
+        <trans>&amp;lt;p&amp;gt;灾难恢复&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Disaster Recovery的缩写&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Disaster Recovery的缩写。这是DR的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Backup</word>
+        <trans>&amp;lt;p&amp;gt;备份&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：数据的副本用于恢复&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>数据的副本用于恢复。这是Backup的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Restore</word>
+        <trans>&amp;lt;p&amp;gt;恢复&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：从备份中恢复数据&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>从备份中恢复数据。这是Restore的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Hot Backup</word>
+        <trans>&amp;lt;p&amp;gt;热备份&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：系统运行时进行的备份&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>系统运行时进行的备份。这是Hot Backup的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Cold Backup</word>
+        <trans>&amp;lt;p&amp;gt;冷备份&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：系统停止时进行的备份&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>系统停止时进行的备份。这是Cold Backup的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Incremental Backup</word>
+        <trans>&amp;lt;p&amp;gt;增量备份&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：只备份变更的数据&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>只备份变更的数据。这是Incremental Backup的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Full Backup</word>
+        <trans>&amp;lt;p&amp;gt;完全备份&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：备份所有数据&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>备份所有数据。这是Full Backup的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Prometheus</word>
+        <trans>&amp;lt;p&amp;gt;监控系统&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：开源的监控和告警工具&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>开源的监控和告警工具。这是Prometheus的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Grafana</word>
+        <trans>&amp;lt;p&amp;gt;可视化平台&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：开源的监控数据可视化工具&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>开源的监控数据可视化工具。这是Grafana的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>InfluxDB</word>
+        <trans>&amp;lt;p&amp;gt;时序数据库&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：专门存储时间序列数据的数据库&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>专门存储时间序列数据的数据库。这是InfluxDB的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Time Series Database</word>
+        <trans>&amp;lt;p&amp;gt;时序数据库&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：优化时间序列数据存储的数据库&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>优化时间序列数据存储的数据库。这是Time Series Database的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Counter</word>
+        <trans>&amp;lt;p&amp;gt;计数器&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：只增不减的指标类型&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>只增不减的指标类型。这是Counter的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Gauge</word>
+        <trans>&amp;lt;p&amp;gt;仪表&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：可增可减的指标类型&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>可增可减的指标类型。这是Gauge的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Histogram</word>
+        <trans>&amp;lt;p&amp;gt;直方图&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：统计数值分布的指标类型&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>统计数值分布的指标类型。这是Histogram的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Summary</word>
+        <trans>&amp;lt;p&amp;gt;摘要&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：统计百分位数的指标类型&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>统计百分位数的指标类型。这是Summary的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Alert</word>
+        <trans>&amp;lt;p&amp;gt;告警&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：系统异常时的通知机制&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>系统异常时的通知机制。这是Alert的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Alerting Rule</word>
+        <trans>&amp;lt;p&amp;gt;告警规则&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：定义告警条件的规则&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>定义告警条件的规则。这是Alerting Rule的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Notification</word>
+        <trans>&amp;lt;p&amp;gt;通知&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：告警信息的发送方式&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>告警信息的发送方式。这是Notification的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Dashboard</word>
+        <trans>&amp;lt;p&amp;gt;仪表板&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：数据可视化的界面&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>数据可视化的界面。这是Dashboard的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>ELK Stack</word>
+        <trans>&amp;lt;p&amp;gt;日志技术栈&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Elasticsearch、Logstash、Kibana的组合&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Elasticsearch、Logstash、Kibana的组合。这是ELK Stack的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Logstash</word>
+        <trans>&amp;lt;p&amp;gt;日志处理&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Elastic的日志收集和处理工具&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Elastic的日志收集和处理工具。这是Logstash的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Kibana</word>
+        <trans>&amp;lt;p&amp;gt;数据可视化&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Elastic的日志分析和可视化工具&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Elastic的日志分析和可视化工具。这是Kibana的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Fluentd</word>
+        <trans>&amp;lt;p&amp;gt;日志收集器&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：开源的统一日志层&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>开源的统一日志层。这是Fluentd的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Filebeat</word>
+        <trans>&amp;lt;p&amp;gt;日志收集器&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Elastic的轻量级日志收集器&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Elastic的轻量级日志收集器。这是Filebeat的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Log Aggregation</word>
+        <trans>&amp;lt;p&amp;gt;日志聚合&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：集中收集和处理日志的技术&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>集中收集和处理日志的技术。这是Log Aggregation的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Log Rotation</word>
+        <trans>&amp;lt;p&amp;gt;日志轮转&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：管理日志文件大小和数量的机制&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>管理日志文件大小和数量的机制。这是Log Rotation的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Structured Logging</word>
+        <trans>&amp;lt;p&amp;gt;结构化日志&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：以结构化格式记录日志&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>以结构化格式记录日志。这是Structured Logging的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>JSON Logging</word>
+        <trans>&amp;lt;p&amp;gt;JSON日志&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：以JSON格式记录的日志&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>以JSON格式记录的日志。这是JSON Logging的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Centralized Logging</word>
+        <trans>&amp;lt;p&amp;gt;集中式日志&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：将日志集中存储的架构&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>将日志集中存储的架构。这是Centralized Logging的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Distributed Tracing</word>
+        <trans>&amp;lt;p&amp;gt;分布式追踪&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：跟踪跨服务请求的技术&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>跟踪跨服务请求的技术。这是Distributed Tracing的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>OpenTracing</word>
+        <trans>&amp;lt;p&amp;gt;追踪标准&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：分布式追踪的开放标准&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>分布式追踪的开放标准。这是OpenTracing的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Jaeger</word>
+        <trans>&amp;lt;p&amp;gt;追踪系统&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Uber开源的分布式追踪系统&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Uber开源的分布式追踪系统。这是Jaeger的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Span</word>
+        <trans>&amp;lt;p&amp;gt;跨度&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：分布式追踪中的操作单元&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>分布式追踪中的操作单元。这是Span的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Trace</word>
+        <trans>&amp;lt;p&amp;gt;追踪&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：完整请求的执行路径&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>完整请求的执行路径。这是Trace的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Correlation ID</word>
+        <trans>&amp;lt;p&amp;gt;关联ID&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：跟踪请求的唯一标识符&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>跟踪请求的唯一标识符。这是Correlation ID的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>APM</word>
+        <trans>&amp;lt;p&amp;gt;应用性能监控&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Application Performance Monitoring的缩写&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Application Performance Monitoring的缩写。这是APM的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>New Relic</word>
+        <trans>&amp;lt;p&amp;gt;APM工具&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：商业的应用性能监控服务&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>商业的应用性能监控服务。这是New Relic的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>AppDynamics</word>
+        <trans>&amp;lt;p&amp;gt;APM工具&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：企业级应用性能监控平台&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>企业级应用性能监控平台。这是AppDynamics的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Dynatrace</word>
+        <trans>&amp;lt;p&amp;gt;APM工具&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：AI驱动的应用性能监控平台&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>AI驱动的应用性能监控平台。这是Dynatrace的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Observability</word>
+        <trans>&amp;lt;p&amp;gt;可观测性&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：系统内部状态的可见性&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>系统内部状态的可见性。这是Observability的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Three Pillars</word>
+        <trans>&amp;lt;p&amp;gt;三大支柱&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：可观测性的三个核心：指标、日志、追踪&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>可观测性的三个核心：指标、日志、追踪。这是Three Pillars的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>SLI</word>
+        <trans>&amp;lt;p&amp;gt;服务级别指标&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Service Level Indicator的缩写&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Service Level Indicator的缩写。这是SLI的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>SLO</word>
+        <trans>&amp;lt;p&amp;gt;服务级别目标&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Service Level Objective的缩写&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Service Level Objective的缩写。这是SLO的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>SLA</word>
+        <trans>&amp;lt;p&amp;gt;服务级别协议&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Service Level Agreement的缩写&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Service Level Agreement的缩写。这是SLA的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Error Rate</word>
+        <trans>&amp;lt;p&amp;gt;错误率&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：失败请求的比例&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>失败请求的比例。这是Error Rate的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Latency</word>
+        <trans>&amp;lt;p&amp;gt;延迟&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：请求响应的时间&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>请求响应的时间。这是Latency的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Throughput</word>
+        <trans>&amp;lt;p&amp;gt;吞吐量&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：单位时间处理的请求数&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>单位时间处理的请求数。这是Throughput的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>Availability</word>
+        <trans>&amp;lt;p&amp;gt;可用性&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：系统正常运行的时间比例&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>系统正常运行的时间比例。这是Availability的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>MTTR</word>
+        <trans>&amp;lt;p&amp;gt;平均恢复时间&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Mean Time To Recovery的缩写&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Mean Time To Recovery的缩写。这是MTTR的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>MTBF</word>
+        <trans>&amp;lt;p&amp;gt;平均故障间隔&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Mean Time Between Failures的缩写&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Mean Time Between Failures的缩写。这是MTBF的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>RTO</word>
+        <trans>&amp;lt;p&amp;gt;恢复时间目标&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Recovery Time Objective的缩写&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Recovery Time Objective的缩写。这是RTO的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+    <item>
+        <word>RPO</word>
+        <trans>&amp;lt;p&amp;gt;恢复点目标&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;说明：Recovery Point Objective的缩写&amp;lt;/p&amp;gt;</trans>
+        <phonetic />
+        <tags>软件技术词汇</tags>
+        <progress>1</progress>
+        <note>Recovery Point Objective的缩写。这是RPO的核心功能特性，在实际开发中需要根据具体业务场景合理使用。</note>
+    </item>
+</wordbook>

@@ -1,0 +1,1031 @@
+# ===============================================
+# 通用 .gitignore 模板文件
+# 基于 Context7 最佳实践和 GitHub 官方文档
+# 创建时间：2025年06月27日 12:07:42 星期五
+# 适用于：多技术栈项目的通用忽略配置
+# ===============================================
+
+# =============================================================================
+# 操作系统相关文件
+# =============================================================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# =============================================================================
+# IDE 和编辑器相关
+# =============================================================================
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+.idea_modules/
+
+# Eclipse
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+.apt_generated/
+.apt_generated_test/
+.classpath
+.factorypath
+.project
+.springBeans
+.sts4-cache/
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+/build/
+
+# Visual Studio Code
+.vscode/
+.history/
+*.vsix
+
+# Visual Studio
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.userprefs
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Xcode
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.xcuserstate
+project.xcworkspace/
+xcuserdata/
+*.xcscmblueprint
+*.xccheckout
+
+# Vim
+*.swp
+*.swo
+*~
+.netrwhist
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# Sublime Text
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+*.sublime-workspace
+*.sublime-project
+sftp-config.json
+Package Control.last-run
+Package Control.ca-list
+Package Control.ca-bundle
+Package Control.system-ca-bundle
+
+# Atom
+.ftpconfig
+.sftpconfig
+
+# =============================================================================
+# 编程语言相关
+# =============================================================================
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+hs_err_pid*
+replay_pid*
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# Gradle
+.gradle
+/build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+gradle-app.setting
+!gradle-wrapper.jar
+!gradle-wrapper.properties
+
+# Spring Boot
+spring-boot-*.jar
+*.original
+
+# Kotlin
+*.kt.class
+
+# Scala
+*.class
+*.log
+.scala_dependencies
+.worksheet
+
+# C/C++
+*.o
+*.a
+*.so
+*.dylib
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Testing
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps
+
+# C#
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+*.dll
+*.exe
+*.pdb
+*.cache
+*.pidb
+*.suo
+*.user
+*.userprefs
+*.userosscache
+*.sln.docstates
+packages/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+*.manifest
+*.spec
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.nox/
+.coverage
+.pytest_cache/
+cover/
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.coverage
+.coverage.*
+htmlcov/
+.spyderproject
+.spyproject
+.rope_project
+.webassets-cache
+instance/
+.scrapy
+docs/_build/
+target/
+.ipynb_checkpoints
+profile_default/
+ipython_config.py
+.python-version
+celerybeat-schedule
+celerybeat.pid
+*.sage.py
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+pids
+*.pid
+*.seed
+*.pid.lock
+lib-cov
+coverage
+.nyc_output
+.grunt
+bower_components
+.lock-wscript
+build/Release
+node_modules/
+jspm_packages/
+web_modules/
+*.tgz
+*.tar.gz
+.cache/
+.parcel-cache/
+.next
+out/
+.nuxt
+dist/
+.cache/
+.vuepress/dist
+.serverless/
+.fusebox/
+.dynamodb/
+.tern-port
+.vscode-test
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+# PHP
+/vendor/
+/node_modules/
+/public/hot
+/public/storage
+/storage/*.key
+/.env
+/.env.backup
+/.phpunit.result.cache
+/Homestead.json
+/Homestead.yaml
+/auth.json
+/npm-debug.log
+/yarn-error.log
+/.vagrant
+
+# Ruby
+*.gem
+*.rbc
+/.config
+/coverage/
+/InstalledFiles
+/pkg/
+/spec/reports/
+/spec/examples.txt
+/test/tmp/
+/test/version_tmp/
+/tmp/
+.bundle/
+vendor/bundle
+lib/bundler/man/
+.rvmrc
+.rbenv-version
+.ruby-version
+.ruby-gemset
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+.yardoc
+_yardoc
+doc/
+rdoc
+Gemfile.lock
+*.bridge
+*.mode1v3
+*.mode2v3
+*.moved-aside
+*.pbxuser
+*.perspectivev3
+
+# Go
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+go.work
+vendor/
+
+# Rust
+target/
+**/*.rs.bk
+*.pdb
+Cargo.lock
+
+# Swift
+.build/
+Package.pins
+Package.resolved
+*.xcodeproj
+DerivedData/
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Flutter
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+.vscode/
+.history
+**/android/**/gradle-wrapper.jar
+**/android/.gradle
+**/android/captures/
+**/android/gradlew
+**/android/gradlew.bat
+**/android/local.properties
+**/android/**/GeneratedPluginRegistrant.java
+**/ios/**/*.mode1v3
+**/ios/**/*.mode2v3
+**/ios/**/*.moved-aside
+**/ios/**/*.pbxuser
+**/ios/**/*.perspectivev3
+**/ios/**/UserInterfaceState.xcuserstate
+**/ios/**/project.xcworkspace/
+**/ios/.generated/
+**/ios/Flutter/App.framework
+**/ios/Flutter/Flutter.framework
+**/ios/Flutter/Flutter.podspec
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/app.flx
+**/ios/Flutter/app.zip
+**/ios/Flutter/flutter_assets/
+**/ios/Flutter/flutter_export_environment.sh
+**/ios/ServiceDefinitions.json
+**/ios/Runner/GeneratedPluginRegistrant.*
+
+# =============================================================================
+# 框架特定文件
+# =============================================================================
+
+# React
+.eslintcache
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Vue.js
+.DS_Store
+node_modules/
+/dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+/tests/e2e/videos/
+/tests/e2e/screenshots/
+
+# Angular
+/dist/
+/tmp/
+/out-tsc/
+/bazel-out
+/node_modules/
+npm-debug.log
+yarn-error.log
+.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/typings
+.angular/cache
+
+# Laravel
+/vendor/
+/node_modules/
+/public/hot
+/public/storage
+/storage/*.key
+/.env
+/.env.backup
+/.phpunit.result.cache
+/Homestead.json
+/Homestead.yaml
+/npm-debug.log
+/yarn-error.log
+/.vagrant
+
+# Django
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media
+
+# Rails
+*.rbc
+capybara-*.html
+.rspec
+/log
+/tmp
+/db/*.sqlite3
+/db/*.sqlite3-journal
+/public/system
+/coverage/
+/spec/tmp
+*.orig
+rerun.txt
+pickle-email-*.html
+.project
+.idea
+.secret
+.byebug_history
+
+# Spring Boot
+*.jar
+!**/wrapper/*.jar
+!**/*test*/**/*.jar
+!**/gradle/wrapper/gradle-wrapper.jar
+target/
+*.log
+*.gz
+*.tmp
+*.pid
+spring-shell.log
+
+# ASP.NET Core
+bin/
+obj/
+*.user
+*.rsuser
+*.suo
+*.userosscache
+*.sln.docstates
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+
+# =============================================================================
+# 数据库文件
+# =============================================================================
+
+# SQLite
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+*.db-shm
+*.db-wal
+
+# MySQL
+*.sql
+
+# PostgreSQL
+*.backup
+
+# MongoDB
+*.log
+
+# Redis
+dump.rdb
+appendonly.aof
+
+# =============================================================================
+# 云平台和容器相关
+# =============================================================================
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+.docker
+.devcontainer
+
+# Kubernetes
+*.kube
+
+# AWS
+.aws/
+*.pem
+
+# Azure
+.azure/
+
+# Google Cloud
+.gcloud/
+*.json
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+*.tfvars
+*.tfplan
+crash.log
+
+# Vagrant
+.vagrant/
+*.box
+
+# =============================================================================
+# 日志和临时文件
+# =============================================================================
+
+# 日志文件
+*.log
+*.logs
+logs/
+log/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# 运行时数据
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+.nyc_output
+
+# 临时文件
+*.tmp
+*.temp
+temp/
+tmp/
+*.cache
+.cache/
+
+# =============================================================================
+# 安全敏感文件
+# =============================================================================
+
+# 环境变量和配置文件
+.env
+.env.*
+.envrc
+*.env
+config.json
+config.yaml
+config.yml
+secrets.json
+secrets.yaml
+secrets.yml
+
+# 证书和密钥文件
+*.pem
+*.key
+*.crt
+*.cer
+*.csr
+*.jks
+*.keystore
+*.p12
+*.pfx
+*.pub
+id_rsa
+id_dsa
+id_ecdsa
+id_ed25519
+
+# API密钥和令牌
+*api-key*
+*api_key*
+*secret*
+*token*
+*password*
+*credential*
+
+# =============================================================================
+# 备份和版本控制
+# =============================================================================
+
+# 备份文件
+*.bak
+*.backup
+*.old
+*.orig
+*.save
+*~
+
+# 版本控制
+.svn/
+.hg/
+.bzr/
+_darcs/
+
+# Git相关（项目特定）
+.git-blame-ignore-revs
+
+# =============================================================================
+# 构建和分发
+# =============================================================================
+
+# 构建输出
+build/
+dist/
+out/
+target/
+bin/
+obj/
+release/
+debug/
+
+# 包管理器缓存
+.npm
+.yarn-integrity
+.pnp
+.pnp.js
+
+# 依赖锁定文件（根据需要选择性忽略）
+# package-lock.json
+# yarn.lock
+# Pipfile.lock
+# Gemfile.lock
+# go.sum
+# Cargo.lock
+
+# 分发包
+*.zip
+*.tar.gz
+*.rar
+*.7z
+*.dmg
+*.iso
+
+# =============================================================================
+# 开发工具和测试
+# =============================================================================
+
+# 测试覆盖率
+coverage/
+.coverage
+.coverage.*
+htmlcov/
+.pytest_cache/
+.cache
+junit.xml
+test-results.xml
+
+# 性能分析
+*.prof
+
+# 调试文件
+*.dmp
+core
+vgcore.*
+
+# 热重载和开发服务器
+.hot-reload
+.dev-server
+
+# =============================================================================
+# 文档和多媒体
+# =============================================================================
+
+# 生成的文档
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# LaTeX
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+
+# 大文件（根据项目需要调整）
+*.mov
+*.mp4
+*.avi
+*.wmv
+*.flv
+*.webm
+
+# =============================================================================
+# 其他工具和服务
+# =============================================================================
+
+# Sentry
+.sentryclirc
+
+# Bower
+bower_components/
+
+# JetBrains Rider
+.idea/
+*.sln.iml
+
+# Rider
+.idea/
+*.sln.iml
+
+# FUSE
+.fuse_hidden*
+
+# KDE
+.directory
+
+# Linux trash folder
+.Trash-*
+
+# Windows Installer files
+*.msi
+*.msix
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# =============================================================================
+# 自定义排除规则
+# 根据项目需要在此处添加特定的忽略规则
+# =============================================================================
+
+# 项目特定配置文件
+# config/local.json
+# config/development.json
+
+# 本地开发工具
+# .vscode/settings.json
+# .idea/workspace.xml
+
+# 业务特定文件
+# uploads/
+# user-content/
+# private/
+
+# =============================================================================
+# 反向包含规则（使用!开头可以强制包含被忽略的文件）
+# =============================================================================
+
+# 强制包含重要的配置文件
+!.gitignore
+!.gitkeep
+!.editorconfig
+!.gitattributes
+
+# 强制包含构建脚本
+!Dockerfile*
+!Makefile*
+!*.dockerfile
+
+# 强制包含许可证和说明文件
+!LICENSE*
+!README*
+!CHANGELOG*
+!CONTRIBUTING*
+
+# 强制包含CI/CD配置
+!.github/
+!.gitlab-ci.yml
+!.travis.yml
+!.circleci/
+!.jenkins/
+
+
+# =============================================================================
+# WordPony 项目特定排除规则 (Tauri + Vue + Rust)
+# =============================================================================
+
+# 构建输出和分发
+dist/
+build/
+out/
+target/
+release/
+debug/
+
+# Tauri 特定文件
+src-tauri/target/
+src-tauri/gen/android/
+src-tauri/gen/apple/
+.tauri/
+*.deb
+*.rpm
+*.dmg
+*.app
+*.appx
+*.snap
+
+# Node.js 和前端
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.eslintcache
+.cache/
+.parcel-cache/
+.next
+.nuxt
+.vuepress/dist
+
+# IDE 和编辑器
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*~
+
+# 开发工具生成的文件
+auto-imports.d.ts
+components.d.ts
+.eslintrc-auto-import.json
+
+# Python 脚本（临时工具）
+*.pyc
+__pycache__/
+remove_duplicates.py
+convert_to_xml.py
+userinput.py
+
+# 用户文档和说明文件
+说明
+需求.md
+git-push-manual
+.cursorignore
+
+# 临时文件和日志
+*.log
+*.tmp
+*.temp
+*.pid
+*.lock
+.DS_Store
+Thumbs.db
+
+# 环境配置文件
+.env
+.env.local
+.env.*.local
+
+# 测试和覆盖率
+coverage/
+.nyc_output
+*.lcov
+
+# 备份文件
+*.bak
+*.backup
+*.old
+*.orig
+
+# 压缩文件（避免意外提交大文件）
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# 强制包含重要文件（即使被上述规则排除）
+!.gitignore
+!.gitkeep
+!.editorconfig
+!.gitattributes
+!LICENSE*
+!README*
+!CHANGELOG*
+!CONTRIBUTING*
+!Dockerfile*
+!Makefile*
+
+# =============================================================================
+# 注意事项
+# =============================================================================
+# 1. 此文件为通用模板，请根据具体项目需求进行调整
+# 2. 敏感信息（如API密钥、密码）绝不应提交到版本控制
+# 3. 大文件建议使用Git LFS或其他存储方案
+# 4. 定期审查和更新.gitignore规则
+# 5. 团队成员应了解和遵循忽略规则
+# ============================================================================= 

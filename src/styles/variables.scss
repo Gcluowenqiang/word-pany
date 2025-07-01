@@ -1,0 +1,64 @@
+/* SCSS变量定义 - Win11 Fluent Design 系统 */
+
+// 颜色系统变量
+$win11-primary: #005fb8;
+$win11-primary-light: #0078d4;
+$win11-accent: #0078d4;
+$win11-background: #f3f3f3;
+$win11-surface: #ffffff;
+$win11-surface-secondary: #fafafa;
+$win11-border: #e5e5e5;
+$win11-text-primary: #323130;
+$win11-text-secondary: #605e5c;
+
+// 圆角系统变量
+$win11-radius-small: 4px;
+$win11-radius-medium: 8px;
+$win11-radius-large: 12px;
+$win11-radius-xl: 16px;
+
+// 阴影系统变量
+$win11-shadow-small: 0 1px 3px rgba(0, 0, 0, 0.1);
+$win11-shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.12);
+$win11-shadow-large: 0 8px 32px rgba(0, 0, 0, 0.16);
+
+// 动画时长变量
+$win11-duration-fast: 0.15s;
+$win11-duration-normal: 0.3s;
+$win11-duration-slow: 0.5s;
+
+// 缓动函数变量
+$win11-ease: cubic-bezier(0.4, 0, 0.2, 1);
+$win11-ease-in: cubic-bezier(0.4, 0, 1, 1);
+$win11-ease-out: cubic-bezier(0, 0, 0.2, 1);
+
+// 深色模式颜色变量
+$win11-background-dark: #202020;
+$win11-surface-dark: #2d2d2d;
+$win11-surface-secondary-dark: #3d3d3d;
+$win11-border-dark: #404040;
+$win11-text-primary-dark: #ffffff;
+$win11-text-secondary-dark: #cccccc;
+
+// Mixin定义
+@mixin mica-effect {
+  backdrop-filter: blur(20px) saturate(1.8);
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: $win11-shadow-medium;
+}
+
+@mixin mica-effect-dark {
+  backdrop-filter: blur(20px) saturate(1.8);
+  background: rgba(32, 32, 32, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: $win11-shadow-medium;
+}
+
+@mixin smooth-transition($duration: $win11-duration-normal) {
+  transition: all $duration $win11-ease;
+}
+
+@mixin win11-rounded($radius: $win11-radius-medium) {
+  border-radius: $radius;
+} 

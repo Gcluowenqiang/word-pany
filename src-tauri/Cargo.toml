@@ -1,0 +1,52 @@
+[package]
+name = "word-pony"
+version = "3.1.0"
+description = "极简风格的Win11桌面单词学习应用"
+authors = ["Luowenqiang"]
+license = "MIT"
+repository = "https://github.com/luowenqiang/word-pony"
+default-run = "word-pony"
+edition = "2021"
+rust-version = "1.70"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[build-dependencies]
+tauri-build = { version = "2.0", features = [] }
+
+[dependencies]
+serde_json = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+tokio = { version = "1.0", features = ["full"] }
+tauri = { version = "2.0", features = ["tray-icon"] }
+tauri-plugin-autostart = "2.0"
+tauri-plugin-global-shortcut = "2.0"
+tauri-plugin-notification = "2.0"
+tauri-plugin-os = "2.0"
+tauri-plugin-process = "2.0"
+tauri-plugin-shell = "2.0"
+tauri-plugin-window-state = "2.0"
+tauri-plugin-single-instance = "2.0"
+tauri-plugin-store = "2.0.0"
+tauri-plugin-clipboard-manager = "2.0.0-beta.0"
+tauri-plugin-dialog = "2.0.0"
+tauri-plugin-updater = "2.0.0"
+quick-xml = { version = "0.31", features = ["serialize"] }
+chrono = { version = "0.4", features = ["serde"] }
+anyhow = "1.0"
+thiserror = "1.0"
+uuid = { version = "1.0", features = ["v4", "serde"] }
+dirs = "5.0"
+log = "0.4"
+env_logger = "0.10"
+regex = "1.10"
+tts = "0.26"
+rodio = "0.17"
+crossbeam-channel = "0.5"
+lazy_static = "1.4"
+rand = "0.8"
+
+
+
+[features]
+# this feature is used for production builds or when `
