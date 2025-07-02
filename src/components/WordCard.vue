@@ -217,15 +217,16 @@ onUnmounted(() => {
 .word-card {
   width: 100%;
   min-height: auto;
-  background: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 4px;
+  background: var(--wp-surface, #ffffff);
+  border: 1px solid var(--wp-border-color, #e0e0e0);
+  border-radius: var(--wp-border-radius-sm, 4px);
   padding: 16px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: var(--wp-font-family, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif);
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
   margin: 0;
+  transition: var(--wp-transition);
 }
 
 .word-content {
@@ -237,27 +238,27 @@ onUnmounted(() => {
 
 .word-section {
   text-align: center;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid var(--wp-border-color-light, #f0f0f0);
   padding-bottom: 8px;
 }
 
 .word {
   font-size: 20px;
   font-weight: bold;
-  color: #333;
+  color: var(--wp-on-surface, #333);
   margin: 0;
   line-height: 1.2;
   cursor: pointer;
-  transition: color 0.2s;
+  transition: var(--wp-transition);
 }
 
 .word:hover {
-  color: #0066cc;
+  color: var(--wp-primary, #0066cc);
 }
 
 .phonetic {
   font-size: 12px;
-  color: #666;
+  color: var(--wp-on-surface-variant, #666);
   font-style: italic;
   margin: 4px 0 0 0;
 }
@@ -269,21 +270,21 @@ onUnmounted(() => {
 
 .translation {
   font-size: 14px;
-  color: #444;
+  color: var(--wp-on-surface, #444);
   margin: 0;
   line-height: 1.4;
   cursor: pointer;
-  transition: color 0.2s;
+  transition: var(--wp-transition);
 }
 
 .translation:hover {
-  color: #0066cc;
+  color: var(--wp-primary, #0066cc);
 }
 
 .tags-section {
   padding: 8px 0;
-  border-top: 1px solid #f0f0f0;
-  border-bottom: 1px solid #f0f0f0;
+  border-top: 1px solid var(--wp-border-color-light, #f0f0f0);
+  border-bottom: 1px solid var(--wp-border-color-light, #f0f0f0);
 }
 
 .tag-line {
@@ -414,28 +415,28 @@ onUnmounted(() => {
 .win11-button {
   flex: 1;
   padding: 6px 12px;
-  border: 1px solid #ddd;
-  background: #f8f8f8;
-  color: #333;
-  border-radius: 3px;
+  border: 1px solid var(--wp-border-color, #ddd);
+  background: var(--wp-surface-variant, #f8f8f8);
+  color: var(--wp-on-surface, #333);
+  border-radius: var(--wp-border-radius-sm, 3px);
   cursor: pointer;
   font-size: 12px;
-  transition: all 0.2s;
+  transition: var(--wp-transition);
 }
 
 .win11-button:hover {
-  background: #e8e8e8;
-  border-color: #ccc;
+  background: var(--wp-surface, #e8e8e8);
+  border-color: var(--wp-border-color, #ccc);
 }
 
 .win11-button.secondary {
-  background: #f0f0f0;
-  border-color: #ddd;
+  background: var(--wp-surface-variant, #f0f0f0);
+  border-color: var(--wp-border-color, #ddd);
 }
 
 .win11-button.secondary:hover {
-  background: #e8e8e8;
-  border-color: #ccc;
+  background: var(--wp-surface, #e8e8e8);
+  border-color: var(--wp-border-color, #ccc);
 }
 
 .copy-btn, .auto-btn {

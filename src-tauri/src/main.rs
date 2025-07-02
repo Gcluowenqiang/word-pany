@@ -60,13 +60,20 @@ async fn main() {
             commands::minimize_to_tray,
             commands::clear_cache,
             commands::save_study_session,
+            // 增量更新相关命令
+            commands::get_app_version,
+            commands::apply_incremental_patch,
+            commands::verify_file_hash,
+            commands::get_file_size,
+            commands::check_disk_space,
+            commands::create_file_backup,
+            commands::restore_file_backup,
+            commands::prepare_app_restart,
+            commands::log_update_event,
         ])
         .setup(|app| {
             let _handle = app.handle().clone();
             
-            // 注册自动更新插件（仅限桌面平台）
-            #[cfg(desktop)]
-            app.handle().plugin(tauri_plugin_updater::Builder::new().build())?;
             
             // 创建托盘菜单
             let quit = MenuItem::with_id(app, "quit", "退出", true, None::<&str>)?;

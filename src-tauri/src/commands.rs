@@ -382,4 +382,151 @@ pub async fn reset_all_progress(app: AppHandle) -> Result<(), String> {
     
     log::info!("✅ 所有学习进度已重置");
     Ok(())
+}
+
+// ========================
+// 增量更新相关命令
+// ========================
+
+/// 获取应用版本号
+#[command]
+pub async fn get_app_version() -> Result<String, String> {
+    Ok(env!("CARGO_PKG_VERSION").to_string())
+}
+
+/// 应用增量补丁 (模拟实现)
+#[command]
+pub async fn apply_incremental_patch(patch_data: Vec<u8>) -> Result<(), String> {
+    // 这是一个模拟实现，实际中需要使用真正的二进制差异算法
+    log::info!("🔧 开始应用增量补丁，大小: {} bytes", patch_data.len());
+    
+    // 模拟补丁应用过程
+    tokio::time::sleep(std::time::Duration::from_millis(1000)).await;
+    
+    // 在实际实现中，这里应该：
+    // 1. 验证补丁文件的完整性
+    // 2. 备份当前可执行文件
+    // 3. 应用二进制差异补丁
+    // 4. 验证新文件的正确性
+    // 5. 准备重启应用
+    
+    log::info!("✅ 增量补丁应用成功 (模拟)");
+    Ok(())
+}
+
+/// 验证文件哈希
+#[command]
+pub async fn verify_file_hash(file_path: String, expected_hash: String) -> Result<bool, String> {
+    use sha2::{Sha256, Digest};
+    
+    let file_content = std::fs::read(&file_path).map_err(|e| {
+        format!("读取文件失败: {}", e)
+    })?;
+    
+    let mut hasher = Sha256::new();
+    hasher.update(&file_content);
+    let hash_result = format!("{:x}", hasher.finalize());
+    
+    let is_valid = hash_result == expected_hash;
+    
+    log::info!("📋 文件哈希验证: {} - {}", 
+        file_path, 
+        if is_valid { "✅ 通过" } else { "❌ 失败" }
+    );
+    
+    Ok(is_valid)
+}
+
+/// 获取文件大小
+#[command]
+pub async fn get_file_size(file_path: String) -> Result<u64, String> {
+    let metadata = std::fs::metadata(&file_path).map_err(|e| {
+        format!("获取文件信息失败: {}", e)
+    })?;
+    
+    Ok(metadata.len())
+}
+
+/// 检查磁盘空间
+#[command]
+pub async fn check_disk_space(required_bytes: u64) -> Result<bool, String> {
+    // 简化实现：检查当前目录所在磁盘的可用空间
+    let current_dir = std::env::current_dir().map_err(|e| {
+        format!("获取当前目录失败: {}", e)
+    })?;
+    
+    // 在实际实现中，应该使用系统API获取磁盘空间
+    // 这里返回 true 作为简化实现
+    log::info!("💾 磁盘空间检查: 需要 {} bytes", required_bytes);
+    
+    Ok(true)
+}
+
+/// 创建文件备份
+#[command]
+pub async fn create_file_backup(file_path: String) -> Result<String, String> {
+    let backup_path = format!("{}.backup", file_path);
+    
+    std::fs::copy(&file_path, &backup_path).map_err(|e| {
+        format!("创建备份失败: {}", e)
+    })?;
+    
+    log::info!("💾 文件备份已创建: {} -> {}", file_path, backup_path);
+    
+    Ok(backup_path)
+}
+
+/// 还原文件备份
+#[command]
+pub async fn restore_file_backup(original_path: String, backup_path: String) -> Result<(), String> {
+    std::fs::copy(&backup_path, &original_path).map_err(|e| {
+        format!("还原备份失败: {}", e)
+    })?;
+    
+    // 删除备份文件
+    std::fs::remove_file(&backup_path).map_err(|e| {
+        format!("删除备份文件失败: {}", e)
+    })?;
+    
+    log::info!("🔄 文件备份已还原: {} <- {}", original_path, backup_path);
+    
+    Ok(())
+}
+
+/// 准备应用重启
+#[command]
+pub async fn prepare_app_restart() -> Result<(), String> {
+    log::info!("🔄 准备重启应用...");
+    
+    // 在实际实现中，这里可以：
+    // 1. 保存当前状态
+    // 2. 清理临时文件
+    // 3. 设置重启标志
+    
+    Ok(())
+}
+
+/// 记录更新日志
+#[command]
+pub async fn log_update_event(
+    app: AppHandle,
+    event_type: String,
+    details: serde_json::Value
+) -> Result<(), String> {
+    let store = app.store("update_logs.json").map_err(|e| e.to_string())?;
+    
+    let log_entry = serde_json::json!({
+        "timestamp": chrono::Utc::now().to_rfc3339(),
+        "event_type": event_type,
+        "details": details,
+        "app_version": env!("CARGO_PKG_VERSION")
+    });
+    
+    let log_id = format!("update_log_{}", chrono::Utc::now().timestamp());
+    store.set(&log_id, log_entry);
+    store.save().map_err(|e| e.to_string())?;
+    
+    log::info!("📝 更新日志已记录: {}", event_type);
+    
+    Ok(())
 } 

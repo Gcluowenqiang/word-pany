@@ -72,8 +72,12 @@ export function useNotifications() {
   const sendNotification = async (title: string, body: string, icon?: string) => {
     try {
       if (!permissionGranted.value) {
-        console.warn('通知权限未授予，无法发送通知')
+        console.warn('通知权限未授予，尝试申请权限...')
+        const granted = await requestPermission()
+        if (!granted) {
+          console.warn('用户拒绝了通知权限申请')
         return
+        }
       }
 
       const { sendNotification } = await import('@tauri-apps/plugin-notification')
@@ -238,7 +242,13 @@ export function useNotifications() {
   // 初始化
   const initializeNotifications = async () => {
     loadReminderSettings()
-    await checkPermission()
+    const hasPermission = await checkPermission()
+    
+    // 如果权限未授予但启用了提醒功能，主动申请权限
+    if (!hasPermission && reminderSettings.value.enabled) {
+      console.log('📢 检测到启用了学习提醒，申请通知权限...')
+      await requestPermission()
+    }
     
     if (reminderSettings.value.enabled) {
       await startReminder()

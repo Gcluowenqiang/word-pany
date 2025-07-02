@@ -272,63 +272,159 @@
             </div>
         </el-card>
 
-        <!-- 自动更新管理 -->
+        <!-- 主题个性化 -->
         <el-card class="setting-card">
           <template #header>
-            <span>🔄 自动更新管理</span>
+            <span>主题个性化</span>
           </template>
           
-          <el-form :model="{ autoCheckUpdates }" label-width="120px">
+          <ThemeSelector />
+        </el-card>
+
+        <!-- 更新 -->
+        <el-card class="setting-card">
+          <template #header>
+            <div class="update-header">
+              <span>更新</span>
+              <el-tag v-if="currentUpdate" :type="updateInfo?.isIncremental ? 'success' : 'primary'" size="small">
+                {{ updateInfo?.isIncremental ? '增量更新' : '完整更新' }}
+              </el-tag>
+            </div>
+          </template>
+          
+          <!-- 更新状态显示 -->
+          <div v-if="updateInfo" class="update-info-section">
+            <div class="update-method-badge" :class="updateInfo.method">
+              {{ updateInfo.isIncremental ? '增量更新' : '完整更新' }}
+            </div>
+            
+            <div class="update-details">
+              <div class="detail-row">
+                <span class="detail-label">新版本:</span>
+                <el-tag type="success">{{ updateInfo.version }}</el-tag>
+              </div>
+              
+              <div class="detail-row">
+                <span class="detail-label">下载量:</span>
+                <span class="detail-value">{{ updateStats?.downloadSize || '计算中...' }}</span>
+              </div>
+              
+              <div v-if="updateInfo.isIncremental" class="detail-row">
+                <span class="detail-label">节省流量:</span>
+                <el-tag type="success">{{ updateStats?.savings || '0%' }}</el-tag>
+              </div>
+              
+              <div class="detail-row">
+                <span class="detail-label">更新方式:</span>
+                <span class="detail-value">{{ updateInfo.description }}</span>
+              </div>
+              
+              <div v-if="updateStats?.speed" class="detail-row">
+                <span class="detail-label">下载速度:</span>
+                <span class="detail-value">{{ updateStats.speed }}</span>
+              </div>
+              
+              <div v-if="updateStats?.estimatedTime" class="detail-row">
+                <span class="detail-label">预计时间:</span>
+                <span class="detail-value">{{ updateStats.estimatedTime }}</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 更新进度 -->
+          <div v-if="isUpdating" class="update-progress-section">
+            <div class="progress-info">
+              <span>{{ updateProgress.toFixed(0) }}% 完成</span>
+              <span v-if="downloadSpeed > 0">{{ formatSpeed(downloadSpeed) }}</span>
+            </div>
+            <el-progress 
+              :percentage="updateProgress" 
+              :status="updateProgress >= 100 ? 'success' : ''"
+              :stroke-width="8"
+            />
+            <div class="progress-description">
+              <span v-if="updateProgress < 70">正在下载更新文件...</span>
+              <span v-else-if="updateProgress < 90">正在应用更新...</span>
+              <span v-else>正在完成更新...</span>
+            </div>
+          </div>
+          
+          <!-- 操作按钮 -->
+          <el-form label-width="120px">
             <el-form-item label="自动检查更新">
               <el-switch
-                v-model="autoCheckUpdates"
-                @change="handleAutoUpdateChange"
+                v-model="enableAutoCheck"
                 active-text="启用"
                 inactive-text="禁用"
               />
               <div class="help-text">
-                启用后将在应用启动时自动检查更新
+                启用后每4小时自动检查一次更新
               </div>
             </el-form-item>
             
             <el-form-item label="检查更新">
-              <el-button 
-                type="primary" 
-                @click="checkForUpdates"
-                :loading="isCheckingUpdate"
-                size="default"
-              >
-                立即检查
-              </el-button>
-              <span v-if="updateCheckResult" class="update-result">
-                {{ updateCheckResult }}
-              </span>
-            </el-form-item>
-            
-            <!-- 更新信息显示 -->
-            <el-form-item v-if="hasUpdate" label="发现新版本">
-              <div class="update-info">
-                <el-tag type="success" size="large">{{ updateVersion }}</el-tag>
-                <p class="update-description">{{ updateDescription }}</p>
-                <div class="update-actions">
+              <div class="update-check-container">
+                <!-- 主要操作区域 -->
+                <div class="update-main-actions">
                   <el-button 
                     type="primary" 
-                    @click="downloadAndInstall"
-                    :loading="isUpdating"
-                    size="default"
+                    @click="checkForUpdatesWrapper"
+                    :loading="isChecking"
+                    :disabled="isUpdating"
+                    size="large"
+                    round
+                    class="check-update-btn"
                   >
-                    立即更新
+                    <template #icon>
+                      <el-icon v-if="!isChecking"><refresh /></el-icon>
+                    </template>
+                    {{ isChecking ? '检查中...' : '立即检查' }}
                   </el-button>
+                  
+                  <el-button 
+                    v-if="currentUpdate" 
+                    @click="installUpdatesWrapper"
+                    :loading="isUpdating"
+                    type="success"
+                    size="large"
+                    round
+                    class="install-update-btn"
+                  >
+                    <template #icon>
+                      <el-icon v-if="!isUpdating"><download /></el-icon>
+                    </template>
+                    {{ isUpdating ? '更新中...' : '安装更新' }}
+                  </el-button>
+                </div>
+                
+                <!-- 状态信息区域 -->
+                <div class="update-status-info">
+                  <div v-if="lastCheckTime" class="last-check-info">
+                    <el-icon class="status-icon"><clock /></el-icon>
+                    <span class="status-text">上次检查: {{ formatTime(lastCheckTime) }}</span>
+                  </div>
+                  
+                  <div v-if="currentUpdate" class="update-available-info">
+                    <el-icon class="status-icon success"><check /></el-icon>
+                    <span class="status-text success">发现新版本 {{ currentUpdate.version }}</span>
+                  </div>
+                  
+                  <div v-else-if="lastCheckTime && !isChecking" class="update-current-info">
+                    <el-icon class="status-icon current"><CircleCheck /></el-icon>
+                    <span class="status-text current">已是最新版本</span>
+                  </div>
                 </div>
               </div>
             </el-form-item>
           </el-form>
+          
+
         </el-card>
         
         <!-- 学习进度管理 -->
         <el-card class="setting-card">
           <template #header>
-            <span>📊 学习进度管理</span>
+            <span>学习进度管理</span>
           </template>
           
           <el-form :model="{ dailyGoal }" label-width="120px">
@@ -378,7 +474,7 @@
                     :loading="isExporting"
                     :icon="isExporting ? '' : 'Upload'"
                   >
-                    {{ isExporting ? '导出中...' : '📤 导出进度' }}
+                    {{ isExporting ? '导出中...' : '导出进度' }}
                   </el-button>
                   <el-button 
                     @click="importProgress" 
@@ -386,7 +482,7 @@
                     :loading="isImporting"
                     :icon="isImporting ? '' : 'Download'"
                   >
-                    {{ isImporting ? '导入中...' : '📥 导入进度' }}
+                    {{ isImporting ? '导入中...' : '导入进度' }}
                   </el-button>
                 </div>
                 <div style="color: #666; font-size: 12px;">
@@ -402,7 +498,7 @@
                   type="danger"
                   :icon="'Delete'"
                 >
-                  🗑️ 重置所有进度
+                  重置所有进度
                 </el-button>
                 <div style="color: #dc3545; font-size: 12px; font-weight: 500;">
                   ⚠️ 此操作将清除所有学习进度数据，请谨慎操作
@@ -440,12 +536,14 @@
 
 <script setup lang="ts">
 import { computed, ref, onMounted, watch } from 'vue'
-import { ArrowLeft } from '@element-plus/icons-vue'
+import { ArrowLeft, Refresh, Download, Clock, Check, CircleCheck } from '@element-plus/icons-vue'
 import { useSettingsStore } from '../stores/settingsStore'
 import { ElMessage } from 'element-plus'
 import HotkeyEditor from '../components/HotkeyEditor.vue'
+import ThemeSelector from '../components/ThemeSelector.vue'
 import { useNotifications } from '../composables/useNotifications'
 import { useProgress } from '../composables/useProgress'
+import { useIncrementalUpdater } from '../composables/useIncrementalUpdater'
 import { save, open } from '@tauri-apps/plugin-dialog'
 
 const settingsStore = useSettingsStore()
@@ -486,14 +584,38 @@ const isExporting = ref(false)
 const isImporting = ref(false)
 const showResetConfirm = ref(false)
 
-// 自动更新相关变量
-const autoCheckUpdates = ref(settings.value.autoCheckUpdates || false)
-const isCheckingUpdate = ref(false)
-const isUpdating = ref(false)
-const hasUpdate = ref(false)
-const updateVersion = ref('')
-const updateDescription = ref('')
-const updateCheckResult = ref('')
+// 增量更新功能
+const {
+  isChecking,
+  isUpdating,
+  updateProgress,
+  downloadSpeed,
+  currentUpdate,
+  updateMethod,
+  lastCheckTime,
+  enableAutoCheck,
+  updateInfo,
+  updateStats,
+  checkForUpdate,
+  installUpdates,
+  formatBytes,
+  formatSpeed,
+  getCurrentVersion
+} = useIncrementalUpdater()
+
+// 其他更新界面状态
+const expandedSections = ref<string[]>([])
+
+// 格式化时间显示
+const formatTime = (date: Date): string => {
+  return date.toLocaleString('zh-CN', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit'
+  })
+}
 
 // 简单的快捷键格式验证
 const validateShortcut = (shortcut: string): boolean => {
@@ -520,27 +642,41 @@ const validateShortcut = (shortcut: string): boolean => {
 }
 
 const saveSettings = () => {
-  settingsStore.saveSettings()
-  // 快捷键现在通过监听器自动更新，无需手动调用
-  ElMessage.success('设置已保存')
+  try {
+    settingsStore.saveSettings()
+    // 快捷键现在通过监听器自动更新，无需手动调用
+    showMessage('💾 应用设置已保存！配置将在重启后生效', 'success', 2500)
+  } catch (error) {
+    console.error('保存设置失败:', error)
+    showMessage('❌ 设置保存失败，请稍后重试', 'error')
+  }
 }
 
 const resetSettings = () => {
-  settingsStore.resetSettings()
-  // 快捷键现在通过监听器自动更新，无需手动调用
-  ElMessage.info('设置已重置')
+  try {
+    settingsStore.resetSettings()
+    // 快捷键现在通过监听器自动更新，无需手动调用
+    showMessage('🔄 设置已重置为默认值！\n快捷键、学习提醒等配置已恢复初始状态', 'info', 4000)
+  } catch (error) {
+    console.error('重置设置失败:', error)
+    showMessage('❌ 设置重置失败，请稍后重试', 'error')
+  }
 }
 
 const onHotkeysToggle = (enabled: string | number | boolean) => {
   const isEnabled = Boolean(enabled)
   settingsStore.updateSettings({ enableHotkeys: isEnabled })
   // 快捷键开关变化会通过监听器自动处理
-  ElMessage.info(isEnabled ? '快捷键已启用' : '快捷键已禁用')
+  if (isEnabled) {
+    showMessage('⌨️ 快捷键已启用！\n您可以使用设定的快捷键快速操作', 'success', 3000)
+  } else {
+    showMessage('🔇 快捷键已禁用\n所有快捷键操作已停止', 'info', 2500)
+  }
 }
 
 const validateHotkey = (action: string, value: string) => {
   if (!validateShortcut(value)) {
-    ElMessage.warning(`快捷键格式错误: ${value}`)
+    showMessage(`❌ 快捷键格式错误\n"${value}" 不是有效的快捷键格式\n请使用如 "Ctrl+Alt+A" 的格式`, 'warning', 4000)
     return false
   }
   // 快捷键配置变化会通过监听器自动重新注册
@@ -566,7 +702,24 @@ const updateHotkey = (action: string, value: string) => {
     ;(window as any).refreshHotkeys()
   }
   
-  ElMessage.success(`快捷键已更新: ${action}`)
+  // 获取操作的中文名称
+  const actionNames: Record<string, string> = {
+    'nextWord': '下一个单词',
+    'showAnswer': '显示答案',
+    'markKnown': '标记已知',
+    'markUnknown': '标记未知',
+    'toggleAudio': '播放语音',
+    'pauseResume': '暂停/继续',
+    'showSettings': '显示设置'
+  }
+  
+  const actionName = actionNames[action] || action
+  
+  if (value.trim()) {
+    showMessage(`⌨️ 快捷键更新成功！\n${actionName}: ${value}\n立即生效，无需重启`, 'success', 3500)
+  } else {
+    showMessage(`🗑️ 快捷键已清空\n${actionName} 的快捷键已删除`, 'info', 2500)
+  }
 }
 
 const onHotkeyChange = (action: string, value: string) => {
@@ -613,14 +766,27 @@ const onWeekdaysChange = () => {
 }
 
 const testNotification = async () => {
-  await sendNotification(
-    '🔔 测试通知',
-    '这是一个测试通知，如果您看到了这条消息，说明通知功能正常工作！'
-  )
+  try {
+    await sendNotification(
+      '🔔 测试通知',
+      '这是一个测试通知，如果您看到了这条消息，说明通知功能正常工作！'
+    )
+    showMessage('📢 测试通知已发送，请查看系统通知区域', 'success', 3000)
+  } catch (error) {
+    console.error('发送测试通知失败:', error)
+    showMessage('❌ 测试通知发送失败，请检查通知权限', 'error')
+  }
 }
 
 const sendTestReminder = async () => {
-  await sendStudyReminder()
+  try {
+    await sendStudyReminder()
+    const goalWord = reminderSettings.value.dailyGoal || 20
+    showMessage(`📚 学习提醒已发送！\n目标：每日学习 ${goalWord} 个单词\n请查看系统通知`, 'success', 4000)
+  } catch (error) {
+    console.error('发送学习提醒失败:', error)
+    showMessage('❌ 学习提醒发送失败，请检查提醒设置', 'error')
+  }
 }
 
 // 初始化时间选择器
@@ -641,21 +807,32 @@ const initializeTimeSelectors = () => {
 }
 
 // 消息提示函数
-const showMessage = (message: string, type: 'success' | 'error' | 'info' = 'info') => {
+const showMessage = (message: string, type: 'success' | 'error' | 'info' | 'warning' = 'info', duration: number = 3000) => {
   ElMessage({
     message,
     type,
-    duration: 3000
+    duration,
+    showClose: true,
+    customClass: 'custom-message'
   })
 }
 
 // 更新每日目标
 const updateDailyGoal = async () => {
+  const oldGoal = learningStats.value?.daily_goal || 20
   const success = await setDailyGoal(dailyGoal.value)
+  
   if (success) {
-    showMessage('每日学习目标已更新', 'success')
+    // 根据目标变化给出不同的提示
+    if (dailyGoal.value > oldGoal) {
+      showMessage(`🚀 目标提升至 ${dailyGoal.value} 个单词，挑战自己！`, 'success', 3000)
+    } else if (dailyGoal.value < oldGoal) {
+      showMessage(`📝 目标调整为 ${dailyGoal.value} 个单词，稳步前进！`, 'info', 3000)
+    } else {
+      showMessage(`✅ 保持每日 ${dailyGoal.value} 个单词的学习目标`, 'success', 2000)
+    }
   } else {
-    showMessage('更新学习目标失败', 'error')
+    showMessage('❌ 目标设置失败，请检查网络连接后重试', 'error')
   }
 }
 
@@ -664,7 +841,7 @@ const exportProgress = async () => {
   try {
     isExporting.value = true
     
-         // 使用文件选择对话框
+    // 使用文件选择对话框
     const filePath = await save({
       title: '导出学习进度',
       defaultPath: `WordPony学习进度_${new Date().toISOString().split('T')[0]}.json`,
@@ -677,14 +854,27 @@ const exportProgress = async () => {
     if (filePath) {
       const success = await exportProgressData(filePath)
       if (success) {
-        showMessage('学习进度导出成功', 'success')
+        const stats = learningStats.value
+        const fileName = filePath.split('\\').pop() || filePath.split('/').pop() || '备份文件'
+        const progressInfo = stats ? 
+          `包含${stats.learned_words}个已学单词，${stats.mastered_words}个已掌握单词` : 
+          '包含完整学习数据'
+        
+        showMessage(`📦 学习进度导出成功！\n${fileName}\n${progressInfo}`, 'success', 4000)
       } else {
-        showMessage('导出学习进度失败', 'error')
+        showMessage('❌ 导出失败，请检查文件路径权限或磁盘空间', 'error')
       }
+    } else {
+      // 用户取消了文件选择
+      console.log('用户取消了导出操作')
     }
   } catch (error) {
     console.error('导出进度失败:', error)
-    showMessage('导出学习进度失败', 'error')
+    if (error instanceof Error) {
+      showMessage(`❌ 导出失败：${error.message}`, 'error')
+    } else {
+      showMessage('❌ 导出失败，请稍后重试', 'error')
+    }
   } finally {
     isExporting.value = false
   }
@@ -695,8 +885,10 @@ const importProgress = async () => {
   try {
     isImporting.value = true
     
-         // 使用文件选择对话框
-     // const { open } = await import('@tauri-apps/plugin-dialog')
+    // 记录导入前的统计数据
+    const oldStats = learningStats.value
+    
+    // 使用文件选择对话框
     const filePath = await open({
       title: '导入学习进度',
       multiple: false,
@@ -709,16 +901,47 @@ const importProgress = async () => {
     if (filePath) {
       const success = await importProgressData(filePath as string)
       if (success) {
-        showMessage('学习进度导入成功', 'success')
         // 重新加载学习统计
         await getLearningStats()
+        
+        const newStats = learningStats.value
+        const fileName = Array.isArray(filePath) ? filePath[0] : filePath
+        const fileBaseName = fileName.split('\\').pop() || fileName.split('/').pop() || '备份文件'
+        
+        // 计算导入的变化
+        let changeInfo = '数据已更新'
+        if (oldStats && newStats) {
+          const learnedDiff = newStats.learned_words - oldStats.learned_words
+          const masteredDiff = newStats.mastered_words - oldStats.mastered_words
+          
+          if (learnedDiff > 0 || masteredDiff > 0) {
+            changeInfo = `新增 ${learnedDiff} 个学习记录，${masteredDiff} 个掌握记录`
+          } else if (learnedDiff < 0 || masteredDiff < 0) {
+            changeInfo = `数据已替换为备份中的进度`
+          } else {
+            changeInfo = '数据与当前进度一致'
+          }
+        }
+        
+        showMessage(`📥 学习进度导入成功！\n${fileBaseName}\n${changeInfo}`, 'success', 4000)
       } else {
-        showMessage('导入学习进度失败', 'error')
+        showMessage('❌ 导入失败，请检查文件格式是否正确', 'error')
       }
+    } else {
+      // 用户取消了文件选择
+      console.log('用户取消了导入操作')
     }
   } catch (error) {
     console.error('导入进度失败:', error)
-    showMessage('导入学习进度失败', 'error')
+    if (error instanceof Error) {
+      if (error.message.includes('parse') || error.message.includes('JSON')) {
+        showMessage('❌ 文件格式错误，请选择正确的JSON备份文件', 'error')
+      } else {
+        showMessage(`❌ 导入失败：${error.message}`, 'error')
+      }
+    } else {
+      showMessage('❌ 导入失败，请确认文件完整性后重试', 'error')
+    }
   } finally {
     isImporting.value = false
   }
@@ -727,94 +950,66 @@ const importProgress = async () => {
 // 重置所有进度
 const resetAllProgress = async () => {
   try {
-    // 这里需要调用后端API来重置进度
+    // 记录重置前的统计数据
+    const oldStats = learningStats.value
+    const wordsToReset = oldStats ? oldStats.learned_words : 0
+    const masteredToReset = oldStats ? oldStats.mastered_words : 0
+    
+    // 调用后端API来重置进度
     const { invoke } = await import('@tauri-apps/api/core')
     await invoke('reset_all_progress')
     
-    showMessage('所有学习进度已重置', 'success')
     showResetConfirm.value = false
     
     // 重新加载统计数据
     await getLearningStats()
+    
+    // 显示重置结果
+    if (wordsToReset > 0) {
+      showMessage(
+        `🔄 进度重置完成！\n已清除 ${wordsToReset} 个单词的学习记录\n其中 ${masteredToReset} 个已掌握单词\n可以重新开始学习之旅！`, 
+        'info', 
+        5000
+      )
+    } else {
+      showMessage('✅ 进度重置完成！可以开始全新的学习之旅', 'success', 3000)
+    }
   } catch (error) {
     console.error('重置进度失败:', error)
-    showMessage('重置学习进度失败', 'error')
-  }
-}
-
-// 自动更新相关方法
-const handleAutoUpdateChange = (enabled: string | number | boolean) => {
-  const isEnabled = Boolean(enabled)
-  settingsStore.updateSettings({ autoCheckUpdates: isEnabled })
-  showMessage(isEnabled ? '已启用自动检查更新' : '已关闭自动检查更新', 'success')
-}
-
-// 检查更新
-const checkForUpdates = async () => {
-  isCheckingUpdate.value = true
-  updateCheckResult.value = ''
-  
-  try {
-    const { check } = await import('@tauri-apps/plugin-updater')
-    
-    console.log('🔍 开始检查更新...')
-    const update = await check()
-    
-    if (update) {
-      hasUpdate.value = true
-      updateVersion.value = update.version
-      updateDescription.value = update.body || '发现新版本，建议立即更新'
-      updateCheckResult.value = `发现新版本: ${update.version}`
-      showMessage('发现新版本，请查看更新详情', 'info')
+    if (error instanceof Error) {
+      showMessage(`❌ 重置失败：${error.message}\n请稍后重试`, 'error')
     } else {
-      hasUpdate.value = false
-      updateCheckResult.value = '当前已是最新版本'
-      showMessage('当前已是最新版本', 'success')
+      showMessage('❌ 重置失败，请检查应用权限后重试', 'error')
     }
-  } catch (error) {
-    console.error('❌ 检查更新失败:', error)
-    updateCheckResult.value = '检查更新失败'
-    showMessage('检查更新失败，请稍后重试', 'error')
-  } finally {
-    isCheckingUpdate.value = false
   }
 }
 
-// 下载并安装更新
-const downloadAndInstall = async () => {
-  isUpdating.value = true
-  
+// 增量更新相关方法
+const checkForUpdatesWrapper = async () => {
   try {
-    const { check } = await import('@tauri-apps/plugin-updater')
-    const { relaunch } = await import('@tauri-apps/plugin-process')
+    const result = await checkForUpdate(false)
     
-    console.log('📥 开始下载更新...')
-    const update = await check()
-    
-    if (!update) {
-      throw new Error('无法获取更新信息')
+    // 根据检查结果显示不同的提示
+    if (result) {
+      // 发现新版本 - 不显示弹窗，因为界面状态已经更新
+      console.log('🎉 发现新版本，界面已更新')
+    } else {
+      // 已是最新版本
+      showMessage('已是最新版本', 'success', 2000)
     }
-
-    // 下载并安装更新
-    await update.downloadAndInstall()
-    
-    showMessage('更新下载完成，即将重启应用...', 'success')
-    
-    // 延迟重启
-    setTimeout(async () => {
-      try {
-        await relaunch()
-      } catch (error) {
-        console.error('❌ 重启应用失败:', error)
-        showMessage('重启应用失败，请手动重启', 'error')
-      }
-    }, 2000)
-    
   } catch (error) {
-    console.error('❌ 更新失败:', error)
-    showMessage('更新失败，请稍后重试', 'error')
-  } finally {
-    isUpdating.value = false
+    console.error('检查更新失败:', error)
+    showMessage('检查更新失败，请检查网络连接', 'error')
+  }
+}
+
+const installUpdatesWrapper = async () => {
+  try {
+    await installUpdates()
+    showMessage('正在安装更新，应用将自动重启', 'success', 4000)
+  } catch (error) {
+    console.error('安装更新失败:', error)
+    showMessage('安装更新失败，请稍后重试', 'error')
   }
 }
 

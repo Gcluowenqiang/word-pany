@@ -1,0 +1,464 @@
+/* ===============================
+   WordPony 主题系统
+   =============================== */
+
+/* 基础CSS变量定义 */
+:root {
+  /* 主色调 */
+  --wp-primary: #409eff;
+  --wp-primary-shade: #337ecc;
+  --wp-primary-tint: #66b3ff;
+  --wp-primary-rgb: 64, 158, 255;
+  
+  /* 次要色 */
+  --wp-secondary: #909399;
+  --wp-secondary-shade: #73767a;
+  --wp-secondary-tint: #a6a9ad;
+  --wp-secondary-rgb: 144, 147, 153;
+  
+  /* 表面色 */
+  --wp-surface: #ffffff;
+  --wp-surface-variant: #f5f7fa;
+  --wp-on-surface: #303133;
+  --wp-on-surface-variant: #606266;
+  
+  /* 背景色 */
+  --wp-background: #f8f9fa;
+  --wp-on-background: #303133;
+  
+  /* 状态色 */
+  --wp-success: #67c23a;
+  --wp-warning: #e6a23c;
+  --wp-error: #f56c6c;
+  --wp-info: #909399;
+  
+  /* 阴影 */
+  --wp-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --wp-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --wp-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.06);
+  --wp-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+  --wp-shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
+  
+  /* 边框 */
+  --wp-border-color: rgba(0, 0, 0, 0.12);
+  --wp-border-color-light: rgba(0, 0, 0, 0.06);
+  --wp-border-radius: 8px;
+  --wp-border-radius-sm: 4px;
+  --wp-border-radius-lg: 12px;
+  --wp-border-radius-xl: 16px;
+  
+  /* 过渡动画 */
+  --wp-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --wp-transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --wp-transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* 字体 */
+  --wp-font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --wp-font-mono: 'SF Mono', Consolas, 'Liberation Mono', monospace;
+  
+  /* 尺寸 */
+  --wp-spacing-xs: 4px;
+  --wp-spacing-sm: 8px;
+  --wp-spacing: 16px;
+  --wp-spacing-lg: 24px;
+  --wp-spacing-xl: 32px;
+  --wp-spacing-2xl: 48px;
+}
+
+/* 暗黑模式变量 */
+.wp-dark {
+  /* 更柔和的表面色 */
+  --wp-surface: #2a2d31;
+  --wp-surface-variant: #36393f;
+  --wp-on-surface: #dcddde;
+  --wp-on-surface-variant: #b9bbbe;
+  
+  /* 更舒适的背景色 */
+  --wp-background: #1e2124;
+  --wp-on-background: #dcddde;
+  
+  /* 优化的边框色 */
+  --wp-border-color: rgba(255, 255, 255, 0.16);
+  --wp-border-color-light: rgba(255, 255, 255, 0.08);
+  
+  /* 更自然的阴影效果 */
+  --wp-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --wp-shadow: 0 2px 4px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.4);
+  --wp-shadow-md: 0 4px 8px rgba(0, 0, 0, 0.6), 0 2px 4px rgba(0, 0, 0, 0.5);
+  --wp-shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.7), 0 4px 8px rgba(0, 0, 0, 0.6);
+  --wp-shadow-xl: 0 16px 32px rgba(0, 0, 0, 0.8), 0 8px 16px rgba(0, 0, 0, 0.7);
+}
+
+/* 主题应用到全局元素 */
+html {
+  font-family: var(--wp-font-family);
+  transition: var(--wp-transition);
+}
+
+body {
+  background-color: var(--wp-background);
+  color: var(--wp-on-background);
+  transition: var(--wp-transition);
+}
+
+/* 应用样式类 */
+.wp-bg-primary {
+  background-color: var(--wp-primary) !important;
+  color: white !important;
+}
+
+.wp-bg-secondary {
+  background-color: var(--wp-secondary) !important;
+  color: white !important;
+}
+
+.wp-bg-surface {
+  background-color: var(--wp-surface) !important;
+  color: var(--wp-on-surface) !important;
+}
+
+.wp-bg-surface-variant {
+  background-color: var(--wp-surface-variant) !important;
+  color: var(--wp-on-surface-variant) !important;
+}
+
+.wp-text-primary {
+  color: var(--wp-primary) !important;
+}
+
+.wp-text-secondary {
+  color: var(--wp-secondary) !important;
+}
+
+.wp-text-on-surface {
+  color: var(--wp-on-surface) !important;
+}
+
+.wp-text-on-surface-variant {
+  color: var(--wp-on-surface-variant) !important;
+}
+
+.wp-text-success {
+  color: var(--wp-success) !important;
+}
+
+.wp-text-warning {
+  color: var(--wp-warning) !important;
+}
+
+.wp-text-error {
+  color: var(--wp-error) !important;
+}
+
+.wp-text-info {
+  color: var(--wp-info) !important;
+}
+
+/* 边框样式 */
+.wp-border {
+  border: 1px solid var(--wp-border-color);
+}
+
+.wp-border-light {
+  border: 1px solid var(--wp-border-color-light);
+}
+
+.wp-border-primary {
+  border: 1px solid var(--wp-primary);
+}
+
+/* 阴影样式 */
+.wp-shadow-sm {
+  box-shadow: var(--wp-shadow-sm);
+}
+
+.wp-shadow {
+  box-shadow: var(--wp-shadow);
+}
+
+.wp-shadow-md {
+  box-shadow: var(--wp-shadow-md);
+}
+
+.wp-shadow-lg {
+  box-shadow: var(--wp-shadow-lg);
+}
+
+.wp-shadow-xl {
+  box-shadow: var(--wp-shadow-xl);
+}
+
+/* 圆角样式 */
+.wp-rounded-sm {
+  border-radius: var(--wp-border-radius-sm);
+}
+
+.wp-rounded {
+  border-radius: var(--wp-border-radius);
+}
+
+.wp-rounded-lg {
+  border-radius: var(--wp-border-radius-lg);
+}
+
+.wp-rounded-xl {
+  border-radius: var(--wp-border-radius-xl);
+}
+
+/* 主题过渡动画 */
+.wp-theme-transition,
+.wp-theme-transition * {
+  transition: background-color 0.3s ease, 
+              border-color 0.3s ease, 
+              color 0.3s ease, 
+              box-shadow 0.3s ease !important;
+}
+
+/* Element Plus 组件主题覆盖 */
+.el-button {
+  transition: var(--wp-transition);
+  
+  &--primary {
+    background-color: var(--wp-primary);
+    border-color: var(--wp-primary);
+    
+    &:hover {
+      background-color: var(--wp-primary-tint);
+      border-color: var(--wp-primary-tint);
+    }
+    
+    &:active {
+      background-color: var(--wp-primary-shade);
+      border-color: var(--wp-primary-shade);
+    }
+  }
+  
+  &--success {
+    background-color: var(--wp-success);
+    border-color: var(--wp-success);
+  }
+  
+  &--warning {
+    background-color: var(--wp-warning);
+    border-color: var(--wp-warning);
+  }
+  
+  &--danger {
+    background-color: var(--wp-error);
+    border-color: var(--wp-error);
+  }
+  
+  &--info {
+    background-color: var(--wp-info);
+    border-color: var(--wp-info);
+  }
+  
+  /* 默认按钮样式优化 */
+  &:not(.el-button--primary):not(.el-button--success):not(.el-button--warning):not(.el-button--danger):not(.el-button--info) {
+    background-color: var(--wp-surface);
+    border-color: var(--wp-border-color);
+    color: var(--wp-on-surface);
+    
+    &:hover {
+      background-color: var(--wp-surface-variant);
+      border-color: var(--wp-primary);
+      color: var(--wp-primary);
+    }
+  }
+}
+
+.el-card {
+  background-color: var(--wp-surface);
+  border-color: var(--wp-border-color);
+  color: var(--wp-on-surface);
+  
+  .el-card__header {
+    background-color: var(--wp-surface-variant);
+    border-bottom-color: var(--wp-border-color);
+    color: var(--wp-on-surface);
+  }
+}
+
+.el-input {
+  .el-input__inner {
+    background-color: var(--wp-surface);
+    border-color: var(--wp-border-color);
+    color: var(--wp-on-surface);
+    
+    &:focus {
+      border-color: var(--wp-primary);
+    }
+  }
+}
+
+.el-select {
+  .el-input__inner {
+    background-color: var(--wp-surface);
+    border-color: var(--wp-border-color);
+    color: var(--wp-on-surface);
+  }
+}
+
+/* Element Plus消息提示使用默认样式 */
+
+/* 更多Element Plus组件主题覆盖 */
+.el-dialog {
+  background-color: var(--wp-surface);
+  color: var(--wp-on-surface);
+  
+  .el-dialog__header {
+    background-color: var(--wp-surface-variant);
+    border-bottom: 1px solid var(--wp-border-color);
+  }
+  
+  .el-dialog__title {
+    color: var(--wp-on-surface);
+  }
+}
+
+.el-switch {
+  .el-switch__core {
+    background-color: var(--wp-border-color);
+    
+    &.is-checked {
+      background-color: var(--wp-primary);
+    }
+  }
+}
+
+.el-tag {
+  background-color: var(--wp-surface-variant);
+  border-color: var(--wp-border-color);
+  color: var(--wp-on-surface-variant);
+  
+  &.el-tag--success {
+    background-color: color-mix(in srgb, var(--wp-success) 15%, transparent);
+    border-color: var(--wp-success);
+    color: var(--wp-success);
+  }
+  
+  &.el-tag--warning {
+    background-color: color-mix(in srgb, var(--wp-warning) 15%, transparent);
+    border-color: var(--wp-warning);
+    color: var(--wp-warning);
+  }
+  
+  &.el-tag--danger {
+    background-color: color-mix(in srgb, var(--wp-error) 15%, transparent);
+    border-color: var(--wp-error);
+    color: var(--wp-error);
+  }
+  
+  &.el-tag--info {
+    background-color: color-mix(in srgb, var(--wp-info) 15%, transparent);
+    border-color: var(--wp-info);
+    color: var(--wp-info);
+  }
+}
+
+.el-alert {
+  &.el-alert--success {
+    background-color: color-mix(in srgb, var(--wp-success) 10%, var(--wp-surface));
+    border-color: var(--wp-success);
+    color: var(--wp-success);
+  }
+  
+  &.el-alert--warning {
+    background-color: color-mix(in srgb, var(--wp-warning) 10%, var(--wp-surface));
+    border-color: var(--wp-warning);
+    color: var(--wp-warning);
+  }
+  
+  &.el-alert--error {
+    background-color: color-mix(in srgb, var(--wp-error) 10%, var(--wp-surface));
+    border-color: var(--wp-error);
+    color: var(--wp-error);
+  }
+  
+  &.el-alert--info {
+    background-color: color-mix(in srgb, var(--wp-info) 10%, var(--wp-surface));
+    border-color: var(--wp-info);
+    color: var(--wp-info);
+  }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  :root {
+    --wp-spacing: 12px;
+    --wp-spacing-lg: 20px;
+    --wp-spacing-xl: 28px;
+  }
+}
+
+/* 主题切换动画 */
+@keyframes theme-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.wp-theme-fade-in {
+  animation: theme-fade-in 0.3s ease-out;
+}
+
+/* 个性化主题预览 */
+.theme-preview {
+  width: 120px;
+  height: 80px;
+  border-radius: var(--wp-border-radius);
+  overflow: hidden;
+  cursor: pointer;
+  transition: var(--wp-transition);
+  border: 2px solid transparent;
+  
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: var(--wp-shadow-lg);
+  }
+  
+  &.active {
+    border-color: var(--wp-primary);
+    box-shadow: 0 0 0 1px var(--wp-primary);
+  }
+  
+  .theme-preview-header {
+    height: 24px;
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    gap: 4px;
+    
+    .theme-preview-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      
+      &:nth-child(1) { background-color: #ff5f57; }
+      &:nth-child(2) { background-color: #ffbd2e; }
+      &:nth-child(3) { background-color: #28ca42; }
+    }
+  }
+  
+  .theme-preview-content {
+    height: 56px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    
+    .theme-preview-bar {
+      height: 8px;
+      border-radius: 4px;
+      
+      &:nth-child(1) { width: 80%; }
+      &:nth-child(2) { width: 60%; }
+      &:nth-child(3) { width: 40%; }
+    }
+  }
+} 

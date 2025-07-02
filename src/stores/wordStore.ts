@@ -235,10 +235,10 @@ export const useWordStore = defineStore('word', () => {
   }
 
   // 开始学习会话
-  const beginStudySession = (sessionType: 'review' | 'new_words' | 'mixed' = 'mixed') => {
+  const beginStudySession = async (sessionType: 'review' | 'new_words' | 'mixed' = 'mixed') => {
     if (currentSession) {
       console.warn('⚠️ 已有活跃的学习会话，将结束当前会话')
-      currentSession.endSession()
+      await currentSession.endSession()
     }
     
     currentSession = startStudySession(sessionType)
@@ -253,22 +253,52 @@ export const useWordStore = defineStore('word', () => {
       await currentSession.endSession()
       currentSession = null
       console.log('✅ 学习会话已结束')
+      
+      // 显示学习会话结束总结
+      const { ElMessage } = await import('element-plus')
+      const stats = currentStats.value
+      
+      if (stats) {
+        const studiedToday = stats.daily_progress || 0
+        const goalAchieved = studiedToday >= (stats.daily_goal || 20)
+        
+        if (goalAchieved) {
+          ElMessage.success(`🎉 学习会话结束！今日目标已达成：${studiedToday}/${stats.daily_goal}`)
+        } else {
+          const remaining = (stats.daily_goal || 20) - studiedToday
+          ElMessage.info(`📚 学习会话结束！今日进度：${studiedToday}/${stats.daily_goal}，还需学习 ${remaining} 个单词`)
+        }
+      } else {
+        ElMessage.success(`📖 学习会话结束！感谢您的努力学习`)
+      }
     }
   }
 
   // 标记单词为已掌握
   const markWordKnown = async (wordId?: string) => {
     const targetId = wordId || currentWord.value?.id
-    if (targetId) {
+    const word = targetId ? wordList.value.find(w => w.id === targetId) : null
+    
+    if (targetId && word) {
       await updateWordMastery(targetId, 95, true)
+      
+      // 简单确认提示
+      const { ElMessage } = await import('element-plus')
+      ElMessage.success(`✅ "${word.word}" 已掌握`)
     }
   }
 
   // 标记单词为未掌握
   const markWordUnknown = async (wordId?: string) => {
     const targetId = wordId || currentWord.value?.id
-    if (targetId) {
+    const word = targetId ? wordList.value.find(w => w.id === targetId) : null
+    
+    if (targetId && word) {
       await updateWordMastery(targetId, 10, false)
+      
+      // 简单确认提示
+      const { ElMessage } = await import('element-plus')
+      ElMessage.info(`📚 "${word.word}" 需要复习`)
     }
   }
 

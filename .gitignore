@@ -976,6 +976,7 @@ userinput.py
 需求.md
 git-push-manual
 .cursorignore
+增量更新设计方案.md
 
 # 临时文件和日志
 *.log
@@ -990,6 +991,15 @@ Thumbs.db
 .env
 .env.local
 .env.*.local
+
+# 代码签名相关文件 (Code Signing)
+*.key
+*.pfx
+*.p12
+wordpony-update.*
+certificate-info.txt
+signing-config.json
+.signing/
 
 # 测试和覆盖率
 coverage/

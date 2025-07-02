@@ -210,25 +210,26 @@ watch(searchQuery, (newValue) => {
   padding-left: 40px;
   font-size: 14px;
   height: 40px;
-  background: #f8f9fa;
-  border: 1px solid #e0e0e0;
-  transition: all 0.3s ease;
+  background: var(--wp-surface-variant, #f8f9fa);
+  border: 1px solid var(--wp-border-color, #e0e0e0);
+  color: var(--wp-on-surface, #333);
+  transition: var(--wp-transition, all 0.3s ease);
 }
 
 .search-input :deep(.el-input__inner):focus {
-  background: #fff;
-  border-color: #007bff;
-  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+  background: var(--wp-surface, #fff);
+  border-color: var(--wp-primary, #007bff);
+  box-shadow: 0 0 0 2px rgba(var(--wp-primary-rgb, 0, 123, 255), 0.25);
 }
 
 .search-icon {
-  color: #999;
+  color: var(--wp-on-surface-variant, #999);
   font-size: 16px;
 }
 
 .search-suggestion-item {
   padding: 8px 0;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid var(--wp-border-color-light, #f0f0f0);
 }
 
 .suggestion-content {
@@ -240,21 +241,21 @@ watch(searchQuery, (newValue) => {
 
 .suggestion-word {
   font-weight: 600;
-  color: #333;
+  color: var(--wp-on-surface, #333);
   font-size: 14px;
 }
 
 .suggestion-type {
   font-size: 11px;
-  color: #007bff;
-  background: #e3f2fd;
+  color: var(--wp-primary, #007bff);
+  background: color-mix(in srgb, var(--wp-primary, #007bff) 15%, transparent);
   padding: 2px 6px;
   border-radius: 10px;
 }
 
 .suggestion-details {
   font-size: 12px;
-  color: #666;
+  color: var(--wp-on-surface-variant, #666);
 }
 
 .suggestion-trans {
@@ -263,7 +264,7 @@ watch(searchQuery, (newValue) => {
 
 .search-result-count {
   font-size: 12px;
-  color: #666;
+  color: var(--wp-on-surface-variant, #666);
   margin-top: 5px;
   text-align: center;
 }
@@ -273,10 +274,10 @@ watch(searchQuery, (newValue) => {
   top: 100%;
   left: 0;
   right: 0;
-  background: #fff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background: var(--wp-surface, #fff);
+  border: 1px solid var(--wp-border-color, #e0e0e0);
+  border-radius: var(--wp-border-radius, 8px);
+  box-shadow: var(--wp-shadow, 0 2px 8px rgba(0, 0, 0, 0.1));
   z-index: 1000;
   margin-top: 5px;
   padding: 12px;
@@ -284,7 +285,7 @@ watch(searchQuery, (newValue) => {
 
 .history-title {
   font-size: 12px;
-  color: #999;
+  color: var(--wp-on-surface-variant, #999);
   margin-bottom: 8px;
   font-weight: 500;
 }
@@ -299,35 +300,38 @@ watch(searchQuery, (newValue) => {
   cursor: pointer;
   font-size: 12px;
   border-radius: 12px;
-  background: #f0f8ff;
-  border-color: #d4edda;
-  color: #495057;
-  transition: all 0.2s ease;
+  background: var(--wp-surface-variant, #f0f8ff);
+  border-color: var(--wp-border-color, #d4edda);
+  color: var(--wp-on-surface, #495057);
+  transition: var(--wp-transition, all 0.2s ease);
 }
 
 .history-tag:hover {
-  background: #e3f2fd;
+  background: color-mix(in srgb, var(--wp-primary, #007bff) 10%, var(--wp-surface-variant, #e3f2fd));
   transform: translateY(-1px);
 }
 
 .history-tag :deep(.el-tag__close) {
-  color: #999;
+  color: var(--wp-on-surface-variant, #999);
   font-size: 10px;
 }
 
 /* 自动完成下拉样式调整 */
 :deep(.el-autocomplete-suggestion) {
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: var(--wp-border-radius, 8px);
+  box-shadow: var(--wp-shadow-lg, 0 4px 12px rgba(0, 0, 0, 0.15));
+  background: var(--wp-surface, #fff);
+  border: 1px solid var(--wp-border-color, #e0e0e0);
 }
 
 :deep(.el-autocomplete-suggestion .el-autocomplete-suggestion__item) {
   padding: 10px 15px;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid var(--wp-border-color-light, #f0f0f0);
+  color: var(--wp-on-surface, #333);
 }
 
 :deep(.el-autocomplete-suggestion .el-autocomplete-suggestion__item:hover) {
-  background: #f8f9fa;
+  background: var(--wp-surface-variant, #f8f9fa);
 }
 
 :deep(.el-autocomplete-suggestion .el-autocomplete-suggestion__item:last-child) {

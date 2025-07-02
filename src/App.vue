@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="wp-theme-transition">
     <router-view />
   </div>
 </template>
@@ -18,9 +18,10 @@
 
 html, body {
   height: 100%;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #ffffff;
-  color: #000000;
+  font-family: var(--wp-font-family, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif);
+  background: var(--wp-background, #ffffff);
+  color: var(--wp-on-background, #000000);
+  transition: var(--wp-transition, all 0.3s ease);
 }
 
 #app {
@@ -28,6 +29,8 @@ html, body {
   width: 100vw;
   display: flex;
   flex-direction: column;
+  background: var(--wp-background);
+  color: var(--wp-on-background);
 }
 
 /* 移除所有复杂的动画和效果 */
