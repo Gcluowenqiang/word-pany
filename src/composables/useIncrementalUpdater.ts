@@ -73,16 +73,29 @@ export function useIncrementalUpdater() {
   }
 
   // 自定义更新检查函数，替代Tauri原生updater
-  const check = async (): Promise<Update | null> => {
+  const check = async (retryCount = 0): Promise<Update | null> => {
+    const maxRetries = 3
+    
     try {
-      const response = await fetch('https://api.github.com/repos/Gcluowenqiang/word-pany/releases/latest')
+      console.log(`🔍 正在检查更新... (尝试 ${retryCount + 1}/${maxRetries + 1})`)
+      
+      const response = await fetch('https://api.github.com/repos/Gcluowenqiang/word-pany/releases/latest', {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/vnd.github.v3+json',
+          'User-Agent': 'WordPony-App'
+        }
+      })
+      
       if (!response.ok) {
-        throw new Error(`GitHub API请求失败: ${response.status}`)
+        throw new Error(`GitHub API请求失败: ${response.status} ${response.statusText}`)
       }
       
       const release = await response.json()
       const currentVersion = await getCurrentVersion()
       const latestVersion = release.tag_name.replace(/^v/, '') // 移除v前缀
+      
+      console.log(`📋 当前版本: ${currentVersion}, 最新版本: ${latestVersion}`)
       
       // 简单的版本比较
       if (latestVersion !== currentVersion) {
@@ -97,8 +110,29 @@ export function useIncrementalUpdater() {
       
       return null // 没有更新
     } catch (error) {
-      console.error('检查更新失败:', error)
-      throw error
+      console.error(`检查更新失败 (尝试 ${retryCount + 1}):`, error)
+      
+      // 如果是网络错误且还有重试次数，则重试
+      if (retryCount < maxRetries && (
+        error instanceof TypeError || 
+        (error instanceof Error && error.message.includes('fetch'))
+      )) {
+        console.log(`⏳ ${2 ** retryCount} 秒后重试...`)
+        await new Promise(resolve => setTimeout(resolve, 1000 * (2 ** retryCount)))
+        return check(retryCount + 1)
+      }
+      
+      // 构造更友好的错误信息
+      let friendlyMessage = '检查更新失败'
+      if (error instanceof TypeError && error.message.includes('fetch')) {
+        friendlyMessage = '网络连接失败，请检查网络设置'
+      } else if (error instanceof Error && error.message.includes('404')) {
+        friendlyMessage = '更新服务暂时不可用'
+      } else if (error instanceof Error && error.message.includes('403')) {
+        friendlyMessage = 'API访问受限，请稍后重试'
+      }
+      
+      throw new Error(friendlyMessage)
     }
   }
 

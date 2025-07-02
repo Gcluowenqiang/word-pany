@@ -31,7 +31,7 @@ pub async fn play_pronunciation(word: &str, phonetic: Option<&str>) -> Result<()
         }
         
         // 播放单词发音
-        let text_to_speak = if let Some(phonetic) = phonetic {
+        let text_to_speak = if let Some(_phonetic) = phonetic {
             format!("{}", word) // 只播放单词，不播放音标
         } else {
             word.to_string()
@@ -114,7 +114,7 @@ pub async fn is_speaking() -> Result<bool> {
 }
 
 pub async fn get_available_voices() -> Result<Vec<String>> {
-    let mut tts = Tts::default()?;
+    let tts = Tts::default()?;
     let voices = tts.voices()?;
     
     let voice_names: Vec<String> = voices

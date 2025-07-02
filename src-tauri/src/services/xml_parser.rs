@@ -2,41 +2,47 @@ use crate::models::{Word, Example, WordFilter};
 use anyhow::{Result, anyhow};
 use quick_xml::events::Event;
 use quick_xml::reader::Reader;
-use quick_xml::writer::Writer;
-use std::collections::HashMap;
 use std::fs;
-use std::io::Cursor;
 use std::path::{Path, PathBuf};
 use chrono::Utc;
 use uuid::Uuid;
 use regex::Regex;
 
-static mut WORDS_CACHE: Option<Vec<Word>> = None;
-static CACHE_LOCK: std::sync::Mutex<()> = std::sync::Mutex::new(());
+use std::sync::Mutex;
+use once_cell::sync::Lazy;
+
+static WORDS_CACHE: Lazy<Mutex<Option<Vec<Word>>>> = Lazy::new(|| Mutex::new(None));
 
 pub async fn clear_cache() {
-    let _lock = CACHE_LOCK.lock().unwrap();
-    unsafe { WORDS_CACHE = None; }
+    let mut cache = WORDS_CACHE.lock().unwrap();
+    *cache = None;
     println!("🧹 单词缓存已清理");
 }
 
 pub async fn load_words(filter: Option<WordFilter>) -> Result<Vec<Word>> {
-    let words = {
-        let _lock = CACHE_LOCK.lock().unwrap();
+    // 先检查缓存是否存在
+    let need_load = {
+        let cache = WORDS_CACHE.lock().unwrap();
+        cache.is_none()
+    };
+    
+    let words = if need_load {
+        println!("📚 缓存为空，从文件重新加载单词数据...");
+        let words = load_words_from_file().await?;
         
-        // 如果缓存为空，则从文件加载
-        if unsafe { WORDS_CACHE.is_none() } {
-            println!("📚 缓存为空，从文件重新加载单词数据...");
-            drop(_lock); // 释放锁以便在异步调用期间避免Send问题
-            let words = load_words_from_file().await?;
-            let _lock = CACHE_LOCK.lock().unwrap();
-            unsafe { WORDS_CACHE = Some(words); }
-            println!("✅ 单词数据已加载到缓存，共 {} 个单词", unsafe { WORDS_CACHE.as_ref().unwrap().len() });
-        } else {
-            println!("💾 使用已缓存的单词数据，共 {} 个单词", unsafe { WORDS_CACHE.as_ref().unwrap().len() });
+        // 加载完成后更新缓存
+        {
+            let mut cache = WORDS_CACHE.lock().unwrap();
+            *cache = Some(words.clone());
+            println!("✅ 单词数据已加载到缓存，共 {} 个单词", words.len());
         }
         
-        unsafe { WORDS_CACHE.as_ref().unwrap().clone() }
+        words
+    } else {
+        let cache = WORDS_CACHE.lock().unwrap();
+        let cached_words = cache.as_ref().unwrap();
+        println!("💾 使用已缓存的单词数据，共 {} 个单词", cached_words.len());
+        cached_words.clone()
     };
     
     // 应用过滤器
@@ -61,9 +67,9 @@ pub async fn get_word_by_id(id: &str) -> Result<Option<Word>> {
 
 pub async fn update_word_progress(id: &str, progress: u8, is_correct: bool) -> Result<()> {
     let words_to_save = {
-        let _lock = CACHE_LOCK.lock().unwrap();
+        let mut cache = WORDS_CACHE.lock().unwrap();
         
-        if let Some(words) = unsafe { WORDS_CACHE.as_mut() } {
+        if let Some(words) = cache.as_mut() {
             if let Some(word) = words.iter_mut().find(|w| w.id == id) {
                 word.update_progress(progress, is_correct);
                 Some(words.clone())
@@ -79,8 +85,8 @@ pub async fn update_word_progress(id: &str, progress: u8, is_correct: bool) -> R
         save_words_to_file(&words).await?;
         
         // 更新缓存
-        let _lock = CACHE_LOCK.lock().unwrap();
-        unsafe { WORDS_CACHE = Some(words); }
+        let mut cache = WORDS_CACHE.lock().unwrap();
+        *cache = Some(words);
     }
     
     Ok(())
@@ -193,7 +199,6 @@ async fn parse_xml_content(content: &str) -> Result<Vec<Word>> {
     let mut current_word: Option<Word> = None;
     let mut current_example: Option<Example> = None;
     let mut buf = Vec::new();
-    let mut current_element = String::new();
     let mut text_content = String::new();
     
     loop {
@@ -202,10 +207,10 @@ async fn parse_xml_content(content: &str) -> Result<Vec<Word>> {
             Ok(Event::Eof) => break,
             
             Ok(Event::Start(ref e)) => {
-                current_element = String::from_utf8_lossy(e.name().as_ref()).to_string();
+                let element_name = String::from_utf8_lossy(e.name().as_ref()).to_string();
                 text_content.clear();
                 
-                match current_element.as_str() {
+                match element_name.as_str() {
                     "item" => current_word = Some(Word::default()),
                     "example" => current_example = Some(Example {
                         source: String::new(),
@@ -312,7 +317,6 @@ async fn parse_xml_content(content: &str) -> Result<Vec<Word>> {
 
 fn generate_xml_content(words: &[Word]) -> Result<String> {
     let mut output = Vec::new();
-    let mut writer = Writer::new(Cursor::new(&mut output));
     
     // XML声明
     output.extend_from_slice(b"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<wordbook>\n");

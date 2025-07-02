@@ -44,6 +44,8 @@ async fn main() {
         .plugin(tauri_plugin_notification::init())
         .plugin(tauri_plugin_global_shortcut::Builder::new().build())
         .plugin(tauri_plugin_dialog::init())
+        .plugin(tauri_plugin_http::init())
+        .plugin(tauri_plugin_updater::Builder::new().build())
         .invoke_handler(tauri::generate_handler![
             commands::get_words,
             commands::get_word_by_id,
@@ -85,7 +87,7 @@ async fn main() {
             let menu = Menu::with_items(app, &[&show, &hide, &separator, &settings, &separator, &quit])?;
             
             // 设置系统托盘
-            let tray = TrayIconBuilder::new()
+            let _tray = TrayIconBuilder::new()
                 .menu(&menu)
                 .tooltip("小驴单词薄")
                 .icon(app.default_window_icon().unwrap().clone())

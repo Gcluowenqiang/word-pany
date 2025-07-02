@@ -977,6 +977,7 @@ userinput.py
 git-push-manual
 .cursorignore
 增量更新设计方案.md
+项目改进清单.md
 
 # 临时文件和日志
 *.log

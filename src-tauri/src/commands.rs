@@ -451,7 +451,7 @@ pub async fn get_file_size(file_path: String) -> Result<u64, String> {
 #[command]
 pub async fn check_disk_space(required_bytes: u64) -> Result<bool, String> {
     // 简化实现：检查当前目录所在磁盘的可用空间
-    let current_dir = std::env::current_dir().map_err(|e| {
+    let _current_dir = std::env::current_dir().map_err(|e| {
         format!("获取当前目录失败: {}", e)
     })?;
     

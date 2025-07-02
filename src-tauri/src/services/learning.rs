@@ -1,10 +1,8 @@
-use crate::models::{Word, LearningStats, WordFilter};
+use crate::models::{Word, LearningStats};
 use crate::services::xml_parser;
 use crate::utils::config;
 use anyhow::Result;
-use chrono::{DateTime, Utc, Local, Datelike};
-use std::collections::HashMap;
-use rand::Rng;
+use chrono::{Utc, Local, Datelike};
 
 pub async fn get_next_word(current_id: Option<&str>) -> Result<Option<Word>> {
     let words = xml_parser::load_words(None).await?;
@@ -135,7 +133,7 @@ pub async fn mark_word_unknown(id: &str) -> Result<()> {
     xml_parser::update_word_progress(id, 1, false).await
 }
 
-pub async fn get_daily_words(date: Option<&str>) -> Result<Vec<Word>> {
+pub async fn get_daily_words(_date: Option<&str>) -> Result<Vec<Word>> {
     let settings = config::load_settings().await?;
     let daily_goal = settings.learning.daily_goal as usize;
     
