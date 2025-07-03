@@ -972,6 +972,8 @@ convert_to_xml.py
 userinput.py
 
 # 用户文档和说明文件
+student/
+FixFunc/
 说明
 需求.md
 git-push-manual

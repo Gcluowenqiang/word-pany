@@ -86,9 +86,23 @@ Build:    Tauri Bundle
 │   └── main.ts                 # 入口文件
 ├── package.json                # 前端依赖（含Store插件）
 ├── vite.config.ts              # Vite配置
+├── LICENSE                     # CC BY-NC-SA 4.0许可证文件
 └── README.md                   # 项目文档
 ```
 
+
+## 📄 许可证
+
+本项目采用 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) 许可证
+
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+
+### 🎯 许可证要点
+
+- **✅ 允许**: 个人学习、教育使用、研究、非营利组织使用
+- **❌ 禁止**: 任何形式的商业使用、销售、商业项目集成
+- **📝 要求**: 署名原作者、保持相同许可证、说明修改内容
+- **🔄 传承**: 衍生作品必须采用相同的CC BY-NC-SA 4.0许可证
 
 ## 📦 APP分发
 
@@ -274,7 +288,7 @@ npm run app:release
 #### v3.0.4 - GitHub发布与自动更新配置 (2025-07-01)
 - 🚀 **GitHub仓库发布**: 项目正式发布到GitHub平台
   - **仓库地址**: https://github.com/Gcluowenqiang/word-pany
-  - **开源协议**: MIT License
+  - **开源协议**: CC BY-NC-SA 4.0 (Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International)
   - **版本管理**: 采用语义化版本控制（Semantic Versioning）
   - **自动化**: 配置GitHub Actions工作流（待实现）
 - 🔄 **自动更新配置优化**: 修正自动更新功能的仓库配置
