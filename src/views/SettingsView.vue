@@ -286,8 +286,8 @@
           <template #header>
             <div class="update-header">
               <span>应用更新</span>
-              <el-tag v-if="currentUpdateInfo" :type="currentUpdateInfo.isIncremental ? 'success' : 'primary'" size="small">
-                {{ currentUpdateInfo.isIncremental ? '增量更新' : '完整更新' }}
+              <el-tag v-if="currentUpdateInfo" type="primary" size="small">
+                浏览器下载
               </el-tag>
             </div>
           </template>
@@ -324,19 +324,15 @@
           <!-- 更新详情 -->
           <div v-if="formatUpdateInfo" class="update-details-card">
             <div class="update-header-info">
-              <div class="update-badge" :class="formatUpdateInfo.method">
+              <div class="update-badge browser">
                 <el-icon>
-                  <Download v-if="formatUpdateInfo.method === 'incremental'" />
-                  <Box v-else />
+                  <Download />
                 </el-icon>
                 <span>{{ formatUpdateInfo.title }}</span>
               </div>
               
               <div class="update-size-info">
                 <span class="size-text">{{ formatUpdateInfo.size }}</span>
-                <span v-if="currentUpdateInfo?.isIncremental" class="savings-text">
-                  节省 {{ formatUpdateInfo.savings }}% 流量
-                </span>
               </div>
             </div>
             
@@ -346,15 +342,11 @@
               <div class="changelog-content">{{ currentUpdateInfo.body }}</div>
             </div>
             
-            <!-- 下载信息 -->
-            <div v-if="downloadSpeed > 0" class="download-stats">
-              <div class="stat-item">
-                <span class="stat-label">下载速度:</span>
-                <span class="stat-value">{{ (downloadSpeed / 1024 / 1024).toFixed(2) }} MB/s</span>
-              </div>
-              <div class="stat-item">
-                <span class="stat-label">预计时间:</span>
-                <span class="stat-value">{{ estimatedTime }}</span>
+            <!-- 下载说明 -->
+            <div class="download-info">
+              <div class="info-item">
+                <span class="info-label">下载方式:</span>
+                <span class="info-value">浏览器下载</span>
               </div>
             </div>
           </div>
@@ -425,7 +417,7 @@
                 <template #icon>
                   <el-icon><Download /></el-icon>
                 </template>
-                {{ isUpdating ? '更新中...' : '立即更新' }}
+                {{ isUpdating ? '下载中...' : '立即下载' }}
               </el-button>
             </div>
             
@@ -437,7 +429,7 @@
                   <div class="status-title">发现新版本</div>
                   <div class="status-desc">
                     v{{ currentUpdateInfo.version }} 
-                    {{ currentUpdateInfo.isIncremental ? '(增量更新)' : '(完整更新)' }}
+                    (浏览器下载)
                   </div>
                 </div>
               </div>
@@ -456,6 +448,43 @@
                   <div class="status-title">未检查更新</div>
                   <div class="status-desc">点击"检查更新"获取最新版本信息</div>
                 </div>
+              </div>
+            </div>
+            
+            <!-- 简单更新器状态 -->
+            <div v-if="simpleUpdater.hasUpdate.value || simpleUpdater.errorMessage.value" class="simple-update-status">
+              <div v-if="simpleUpdater.hasUpdate.value" class="simple-update-card success">
+                <div class="simple-update-header">
+                  <el-icon class="status-icon"><SuccessFilled /></el-icon>
+                  <span class="update-title">🚀 简单更新器发现新版本</span>
+                </div>
+                <div class="simple-update-details" v-if="simpleUpdater.formattedUpdateInfo.value">
+                  <div class="version-info">
+                    <span>{{ simpleUpdater.formattedUpdateInfo.value.currentVersion }}</span>
+                    <el-icon><ArrowRight /></el-icon>
+                    <span class="new-version">{{ simpleUpdater.formattedUpdateInfo.value.version }}</span>
+                  </div>
+                  <div class="update-meta">
+                    <span>📦 大小: {{ simpleUpdater.formattedUpdateInfo.value.size }}</span>
+                    <span>📅 发布: {{ simpleUpdater.formattedUpdateInfo.value.publishDate }}</span>
+                  </div>
+                  <div class="update-actions">
+                    <el-button type="primary" @click="simpleUpdateDownload" size="small">
+                      <template #icon>
+                        <el-icon><Download /></el-icon>
+                      </template>
+                      立即下载
+                    </el-button>
+                  </div>
+                </div>
+              </div>
+              
+              <div v-if="simpleUpdater.errorMessage.value" class="simple-update-card error">
+                <div class="simple-update-header">
+                  <el-icon class="status-icon error"><CircleCheck /></el-icon>
+                  <span class="update-title">❌ 简单更新器错误</span>
+                </div>
+                <div class="error-message">{{ simpleUpdater.errorMessage.value }}</div>
               </div>
             </div>
           </div>
@@ -509,21 +538,25 @@
             
             <el-form-item label="数据备份">
               <div style="display: flex; flex-direction: column; gap: 12px;">
-                <div style="display: flex; gap: 12px;">
+                <div style="display: flex; gap: 12px; flex-wrap: wrap;">
                   <el-button 
                     @click="exportProgress" 
-                    type="success"
                     :loading="isExporting"
-                    :icon="isExporting ? '' : 'Upload'"
+                    class="data-backup-btn"
                   >
+                    <template #icon v-if="!isExporting">
+                      <el-icon><Upload /></el-icon>
+                    </template>
                     {{ isExporting ? '导出中...' : '导出进度' }}
                   </el-button>
                   <el-button 
                     @click="importProgress" 
-                    type="warning"
                     :loading="isImporting"
-                    :icon="isImporting ? '' : 'Download'"
+                    class="data-backup-btn"
                   >
+                    <template #icon v-if="!isImporting">
+                      <el-icon><Download /></el-icon>
+                    </template>
                     {{ isImporting ? '导入中...' : '导入进度' }}
                   </el-button>
                 </div>
@@ -578,7 +611,7 @@
 
 <script setup lang="ts">
 import { computed, ref, onMounted, watch } from 'vue'
-import { ArrowLeft, Refresh, Download, Clock, Check, CircleCheck, ArrowRight, Box, InfoFilled, SuccessFilled, CircleCheckFilled, QuestionFilled } from '@element-plus/icons-vue'
+import { ArrowLeft, Refresh, Download, Clock, Check, CircleCheck, ArrowRight, Box, InfoFilled, SuccessFilled, CircleCheckFilled, QuestionFilled, Upload } from '@element-plus/icons-vue'
 import { useSettingsStore } from '../stores/settingsStore'
 import { ElMessage } from 'element-plus'
 import HotkeyEditor from '../components/HotkeyEditor.vue'
@@ -586,6 +619,7 @@ import ThemeSelector from '../components/ThemeSelector.vue'
 import { useNotifications } from '../composables/useNotifications'
 import { useProgress } from '../composables/useProgress'
 import { useUnifiedUpdater } from '../composables/useUnifiedUpdater'
+import { useSimpleUpdater } from '../composables/useSimpleUpdater'
 import { save, open } from '@tauri-apps/plugin-dialog'
 
 const settingsStore = useSettingsStore()
@@ -631,24 +665,24 @@ const {
   isChecking,
   isUpdating,
   updateProgress,
-  downloadSpeed,
   currentUpdateInfo,
-  updateMode,
   enableAutoCheck,
   formatUpdateInfo,
   checkForUpdate,
   installUpdate,
-  setUpdateMode,
   resetUpdateState
 } = useUnifiedUpdater()
+
+// 简单更新器（替代方案）
+const simpleUpdater = useSimpleUpdater()
 
 // 其他更新界面状态
 const expandedSections = ref<string[]>([])
 const lastCheckTime = ref<Date | null>(null)
 
 // 当前版本信息
-const currentVersion = ref('3.0.5')
-const currentVersionDate = ref('2025-01-02')
+const currentVersion = ref('3.0.11')
+const currentVersionDate = ref('2025-07-03')
 
 // 获取应用版本信息
 const getAppVersion = async () => {
@@ -681,32 +715,9 @@ const formatDate = (dateString?: string): string => {
   return date.toLocaleDateString('zh-CN')
 }
 
-// 计算预计下载时间
-const estimatedTime = computed(() => {
-  if (downloadSpeed.value <= 0 || !formatUpdateInfo.value) return '计算中...'
-  
-  // 假设下载大小为10MB（实际应该从formatUpdateInfo获取）
-  const sizeInMB = 10
-  const timeInSeconds = (sizeInMB * 1024 * 1024) / downloadSpeed.value
-  
-  if (timeInSeconds < 60) {
-    return `${Math.ceil(timeInSeconds)}秒`
-  } else if (timeInSeconds < 3600) {
-    return `${Math.ceil(timeInSeconds / 60)}分钟`
-  } else {
-    return `${Math.ceil(timeInSeconds / 3600)}小时`
-  }
-})
-
 // 获取进度标题
 const getProgressTitle = (): string => {
-  if (!currentUpdateInfo.value) return '正在更新'
-  
-  if (currentUpdateInfo.value.isIncremental) {
-    return '增量更新进行中'
-  } else {
-    return '完整更新进行中'
-  }
+  return '正在下载更新'
 }
 
 // 简单的快捷键格式验证
@@ -1104,6 +1115,26 @@ const installUpdatesWrapper = async () => {
   } catch (error) {
     console.error('安装更新失败:', error)
     showMessage('安装更新失败，请稍后重试', 'error')
+  }
+}
+
+// 已移除调试更新检查功能，使用简化的更新系统
+
+// 已移除独立的简单更新检查，使用统一的更新检查系统
+
+// 简单更新下载
+const simpleUpdateDownload = async () => {
+  try {
+    if (!simpleUpdater.hasUpdate.value) {
+      showMessage('⚠️ 没有可用的更新', 'warning')
+      return
+    }
+    
+    await simpleUpdater.downloadAndInstall()
+    showMessage('🌐 已在浏览器中打开下载链接，请手动下载并安装', 'success', 4000)
+  } catch (error) {
+    console.error('下载更新失败:', error)
+    showMessage(`❌ 下载失败: ${error instanceof Error ? error.message : '未知错误'}`, 'error')
   }
 }
 
@@ -1522,19 +1553,120 @@ onMounted(async () => {
 
 /* 学习进度管理样式 */
 .progress-stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
   margin-top: 8px;
+  justify-content: flex-start;
+}
+
+/* 数据备份按钮样式优化 */
+.data-backup-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+}
+
+.data-backup-btn :deep(.el-button__content) {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
 }
 
 .stat-card {
   background: #f8f9fa;
   border: 1px solid #e9ecef;
   border-radius: 6px;
-  padding: 12px;
+  padding: 16px;
   text-align: center;
   transition: box-shadow 0.2s ease;
+  min-width: 120px;
+  flex: 1;
+  max-width: 150px;
+}
+
+/* 简单更新器样式 */
+.simple-update-status {
+  margin-top: 16px;
+}
+
+.simple-update-card {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 12px;
+}
+
+.simple-update-card.success {
+  background: #f0f9ff;
+  border-color: #60a5fa;
+}
+
+.simple-update-card.error {
+  background: #fef2f2;
+  border-color: #fca5a5;
+}
+
+.simple-update-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.simple-update-header .status-icon {
+  color: #10b981;
+}
+
+.simple-update-header .status-icon.error {
+  color: #ef4444;
+}
+
+.update-title {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.simple-update-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.version-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.version-info .new-version {
+  color: #10b981;
+  font-weight: 600;
+}
+
+.update-meta {
+  display: flex;
+  gap: 16px;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.update-actions {
+  margin-top: 8px;
+}
+
+.error-message {
+  color: #dc2626;
+  font-size: 13px;
+  background: #fee2e2;
+  padding: 8px;
+  border-radius: 4px;
 }
 
 .stat-card:hover {

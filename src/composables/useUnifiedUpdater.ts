@@ -1,6 +1,5 @@
-import { ref, computed } from 'vue'
-import { useUpdater, UpdateStatus } from './useUpdater'
-import { useIncrementalUpdater } from './useIncrementalUpdater'
+import { ref, computed, readonly } from 'vue'
+import { useSimpleUpdater } from './useSimpleUpdater'
 import { useNotifications } from './useNotifications'
 
 export interface UnifiedUpdateInfo {
@@ -9,122 +8,64 @@ export interface UnifiedUpdateInfo {
   body?: string
   currentVersion: string
   available: boolean
-  isIncremental: boolean
-  estimatedSavings?: number
   downloadSize?: string
-  method: 'incremental' | 'full'
+  publishedAt?: string
 }
 
 export function useUnifiedUpdater() {
   const { sendNotification } = useNotifications()
   
-  // 导入两个更新系统
-  const standardUpdater = useUpdater()
-  const incrementalUpdater = useIncrementalUpdater()
+  // 只使用简单更新器
+  const simpleUpdater = useSimpleUpdater()
   
   // 统一状态管理
-  const updateMode = ref<'auto' | 'standard' | 'incremental'>('auto')
   const currentUpdateInfo = ref<UnifiedUpdateInfo | null>(null)
   
   // 计算属性 - 统一状态
   const isChecking = computed(() => 
-    standardUpdater.isChecking.value || incrementalUpdater.isChecking.value
+    simpleUpdater.isChecking.value
   )
   
   const isUpdating = computed(() => 
-    standardUpdater.isDownloading.value || 
-    standardUpdater.isInstalling.value || 
-    incrementalUpdater.isUpdating.value
+    false // 简单更新器直接打开浏览器下载，无需显示下载状态
   )
   
   const updateProgress = computed(() => {
-    if (incrementalUpdater.isUpdating.value) {
-      return incrementalUpdater.updateProgress.value
-    }
-    return standardUpdater.downloadProgress.value
+    return 0 // 简单更新器不提供进度，直接跳转到浏览器下载
   })
   
-  const downloadSpeed = computed(() => {
-    return incrementalUpdater.downloadSpeed.value
-  })
-  
-  // 智能更新检查
+  // 智能更新检查（现在只使用简单更新器）
   const checkForUpdate = async (silent = false): Promise<UnifiedUpdateInfo | null> => {
     try {
       if (!silent) {
         console.log('🔍 开始智能更新检查...')
       }
       
-      // 首先尝试增量更新检查
-      if (updateMode.value === 'auto' || updateMode.value === 'incremental') {
-        try {
-          const incrementalUpdate = await incrementalUpdater.checkForUpdate(silent)
-          
-          if (incrementalUpdate && incrementalUpdate.incrementalAvailable) {
-            const unifiedInfo: UnifiedUpdateInfo = {
-              version: incrementalUpdate.version,
-              date: incrementalUpdate.date,
-              body: incrementalUpdate.body,
-              currentVersion: incrementalUpdate.currentVersion,
-              available: true,
-              isIncremental: true,
-              estimatedSavings: incrementalUpdate.estimatedSavings,
-              downloadSize: incrementalUpdater.updateStats.value?.downloadSize,
-              method: 'incremental'
-            }
-            
-            currentUpdateInfo.value = unifiedInfo
-            
-            if (!silent) {
-              console.log(`🚀 增量更新可用: v${incrementalUpdate.version}，可节省 ${incrementalUpdate.estimatedSavings}% 下载量`)
-              await sendNotification(
-                '🚀 增量更新可用',
-                `发现新版本 v${incrementalUpdate.version}，增量更新可节省 ${incrementalUpdate.estimatedSavings}% 下载量！`
-              )
-            }
-            
-            return unifiedInfo
-          }
-        } catch (error) {
-          console.warn('⚠️ 增量更新检查失败，回退到标准更新检查:', error)
-          if (!silent) {
-            await sendNotification(
-              '⚠️ 网络连接问题',
-              '增量更新检查失败，正在尝试标准更新检查...'
-            )
-          }
-          // 继续执行标准更新检查
-        }
-      }
+      // 使用简单更新器检查
+      const updateInfo = await simpleUpdater.checkForUpdate(silent)
       
-      // 如果增量更新不可用，尝试标准更新
-      if (updateMode.value === 'auto' || updateMode.value === 'standard') {
-        const hasStandardUpdate = await standardUpdater.checkForUpdates(silent)
-        
-        if (hasStandardUpdate && standardUpdater.updateInfo.value) {
-          const updateInfo = standardUpdater.updateInfo.value
-          const unifiedInfo: UnifiedUpdateInfo = {
-            version: updateInfo.version,
-            date: updateInfo.date,
-            body: updateInfo.body,
-            currentVersion: updateInfo.currentVersion,
-            available: true,
-            isIncremental: false,
-            method: 'full'
-          }
-          
-          currentUpdateInfo.value = unifiedInfo
-          
-          if (!silent) {
-            console.log(`📦 标准更新可用: v${updateInfo.version}`)
-            await sendNotification(
-              '📦 标准更新可用',
-              `发现新版本 v${updateInfo.version}，将使用完整更新包`
-            )
-          }
-          
-          return unifiedInfo
+      if (updateInfo) {
+        const unifiedInfo: UnifiedUpdateInfo = {
+          version: updateInfo.version,
+          date: updateInfo.publishedAt,
+          body: updateInfo.body,
+          currentVersion: updateInfo.currentVersion,
+          available: true,
+          downloadSize: simpleUpdater.formattedUpdateInfo?.value?.size,
+          publishedAt: updateInfo.publishedAt
         }
+        
+        currentUpdateInfo.value = unifiedInfo
+        
+        if (!silent) {
+          console.log(`🚀 发现新版本: v${updateInfo.version}`)
+          await sendNotification(
+            '🚀 发现新版本',
+            `发现新版本 v${updateInfo.version}，点击立即下载！`
+          )
+        }
+        
+        return unifiedInfo
       }
       
       // 没有更新
@@ -142,7 +83,7 @@ export function useUnifiedUpdater() {
     }
   }
   
-  // 执行更新
+  // 执行更新（跳转到浏览器下载）
   const installUpdate = async (): Promise<boolean> => {
     if (!currentUpdateInfo.value) {
       console.warn('⚠️ 没有可用的更新')
@@ -150,47 +91,28 @@ export function useUnifiedUpdater() {
     }
     
     try {
-      const updateInfo = currentUpdateInfo.value
-      
-      if (updateInfo.isIncremental) {
-        console.log('🚀 执行增量更新...')
-        await sendNotification(
-          '🚀 开始增量更新',
-          `正在下载增量补丁，可节省 ${updateInfo.estimatedSavings}% 下载量`
-        )
-        
-        await incrementalUpdater.installUpdates()
-        return true
-      } else {
-        console.log('📦 执行标准更新...')
-        await sendNotification(
-          '📦 开始标准更新',
-          '正在下载完整更新包'
-        )
-        
-        return await standardUpdater.downloadAndInstallUpdate()
-      }
-    } catch (error) {
-      console.error('❌ 更新安装失败:', error)
+      console.log('🌐 打开浏览器下载更新...')
       await sendNotification(
-        '❌ 更新失败',
+        '🌐 正在下载',
+        '已在浏览器中打开下载链接，请手动下载并安装'
+      )
+      
+      await simpleUpdater.downloadAndInstall()
+      return true
+    } catch (error) {
+      console.error('❌ 打开下载链接失败:', error)
+      await sendNotification(
+        '❌ 下载失败',
         error instanceof Error ? error.message : '未知错误'
       )
       return false
     }
   }
   
-  // 设置更新模式
-  const setUpdateMode = (mode: 'auto' | 'standard' | 'incremental') => {
-    updateMode.value = mode
-    console.log(`🔧 更新模式设置为: ${mode}`)
-  }
-  
   // 重置状态
   const resetUpdateState = () => {
     currentUpdateInfo.value = null
-    standardUpdater.resetUpdateState()
-    // incrementalUpdater 没有重置方法，但状态会自动管理
+    // simpleUpdater 的状态会自动管理
   }
   
   // 格式化更新信息
@@ -199,15 +121,14 @@ export function useUnifiedUpdater() {
     
     const info = currentUpdateInfo.value
     return {
-      title: info.isIncremental ? '增量更新可用' : '标准更新可用',
+      title: '发现新版本',
       version: `v${info.version}`,
-      description: info.isIncremental 
-        ? `增量更新 - 节省 ${info.estimatedSavings}% 下载量`
-        : '完整更新包下载',
+      description: '浏览器下载更新包',
       size: info.downloadSize || '计算中...',
-      method: info.method,
-      savings: info.estimatedSavings || 0,
-      changeLog: info.body || '版本更新说明'
+      method: 'browser' as const,
+      savings: 0,
+      changeLog: info.body || '版本更新说明',
+      publishDate: info.publishedAt || '未知'
     }
   })
   
@@ -233,9 +154,7 @@ export function useUnifiedUpdater() {
     isChecking: readonly(isChecking),
     isUpdating: readonly(isUpdating),
     updateProgress: readonly(updateProgress),
-    downloadSpeed: readonly(downloadSpeed),
     currentUpdateInfo: readonly(currentUpdateInfo),
-    updateMode: readonly(updateMode),
     
     // 配置
     enableAutoCheck,
@@ -246,11 +165,9 @@ export function useUnifiedUpdater() {
     // 方法
     checkForUpdate,
     installUpdate,
-    setUpdateMode,
     resetUpdateState,
     
-    // 底层更新器访问（用于高级操作）
-    standardUpdater,
-    incrementalUpdater
+    // 底层更新器访问（只提供简单更新器）
+    simpleUpdater
   }
 } 

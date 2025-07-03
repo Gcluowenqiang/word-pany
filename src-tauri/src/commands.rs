@@ -394,6 +394,19 @@ pub async fn get_app_version() -> Result<String, String> {
     Ok(env!("CARGO_PKG_VERSION").to_string())
 }
 
+/// 在默认浏览器中打开URL
+#[command]
+pub async fn open_url(url: String) -> Result<(), String> {
+    // 使用系统默认浏览器打开URL
+    if let Err(e) = webbrowser::open(&url) {
+        log::error!("🌐 打开URL失败: {} - {}", url, e);
+        return Err(format!("打开URL失败: {}", e));
+    }
+    
+    log::info!("🌐 已在浏览器中打开URL: {}", url);
+    Ok(())
+}
+
 /// 应用增量补丁 (模拟实现)
 #[command]
 pub async fn apply_incremental_patch(patch_data: Vec<u8>) -> Result<(), String> {

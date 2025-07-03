@@ -206,6 +206,12 @@ const { } = useHotkeys(hotkeyCallbacks)
 
 // 事件监听器引用
 let unlistenOpenSettings: (() => void) | null = null
+let unlistenMenuNextWord: (() => void) | null = null
+let unlistenMenuPrevWord: (() => void) | null = null
+let unlistenMenuAutoSwitch: (() => void) | null = null
+let unlistenMenuRefreshWords: (() => void) | null = null
+let unlistenMenuToggleStats: (() => void) | null = null
+let unlistenMenuThemeSwitch: (() => void) | null = null
 
 // 生命周期
 onMounted(async () => {
@@ -230,6 +236,50 @@ onMounted(async () => {
     console.log('✅ 设置事件监听器已注册')
   } catch (error) {
     console.error('❌ 注册设置事件监听器失败:', error)
+  }
+  
+  // 监听应用菜单事件
+  try {
+    // 监听菜单-下一个单词
+    unlistenMenuNextWord = await listen('menu-next-word', () => {
+      console.log('📢 收到菜单下一个单词事件')
+      nextWord()
+    })
+    
+    // 监听菜单-上一个单词
+    unlistenMenuPrevWord = await listen('menu-prev-word', () => {
+      console.log('📢 收到菜单上一个单词事件')
+      previousWord()
+    })
+    
+    // 监听菜单-自动切换
+    unlistenMenuAutoSwitch = await listen('menu-auto-switch', () => {
+      console.log('📢 收到菜单自动切换事件')
+      toggleAutoSwitch()
+    })
+    
+    // 监听菜单-刷新单词库
+    unlistenMenuRefreshWords = await listen('menu-refresh-words', async () => {
+      console.log('📢 收到菜单刷新单词库事件')
+      await wordStore.loadWords()
+    })
+    
+    // 监听菜单-统计面板
+    unlistenMenuToggleStats = await listen('menu-toggle-stats', () => {
+      console.log('📢 收到菜单统计面板事件')
+      toggleStats()
+    })
+    
+    // 监听菜单-主题切换
+    unlistenMenuThemeSwitch = await listen('menu-theme-switch', () => {
+      console.log('📢 收到菜单主题切换事件')
+      // TODO: 实现主题切换功能
+      console.log('主题切换功能待实现')
+    })
+    
+    console.log('✅ 所有菜单事件监听器已注册')
+  } catch (error) {
+    console.error('❌ 注册菜单事件监听器失败:', error)
   }
   
   // 显示启动信息
@@ -257,6 +307,27 @@ onUnmounted(async () => {
     unlistenOpenSettings()
     console.log('🗑️ 设置事件监听器已移除')
   }
+  
+  // 移除菜单事件监听器
+  if (unlistenMenuNextWord) {
+    unlistenMenuNextWord()
+  }
+  if (unlistenMenuPrevWord) {
+    unlistenMenuPrevWord()
+  }
+  if (unlistenMenuAutoSwitch) {
+    unlistenMenuAutoSwitch()
+  }
+  if (unlistenMenuRefreshWords) {
+    unlistenMenuRefreshWords()
+  }
+  if (unlistenMenuToggleStats) {
+    unlistenMenuToggleStats()
+  }
+  if (unlistenMenuThemeSwitch) {
+    unlistenMenuThemeSwitch()
+  }
+  console.log('🗑️ 所有菜单事件监听器已移除')
   
   // 清理自动切换定时器
   if (autoSwitchTimer) {
